@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .quiz1 img {
+            width: 200px;
+            /* height: 0px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 테이블 -->
+    <a id="top" href="#bottom">맨 아래로</a>
+    <a href="#quiz1">퀴즈1로</a>
+    <a href="#quiz2">퀴즈2로</a>
+    <a href="http://192.168.0.87:5500/01_hello.html" target="_blank">1번 파일로</a>
+    <a href="http://192.168.0.87:5500/02_tag.html" target="_blank">2번 파일로</a>
+    <a href="http://192.168.0.87:5500/03_상대주소/03_a.html" target="_blank">3번 파일로</a>
+    <a href="http://192.168.0.87:5500/04_ul.html" target="_blank">4번 파일로</a>
+    <table border="1">
+        <!-- tr: table row의 약자. 한 줄을 뜻함. -->
+        <tr>
+            <!-- 
+                table data의 약자. 한 칸을 뜻함.
+                상하 정렬 기능이 있음.
+                안의 내용 content 만큼 너비 width가 늘어남.
+             -->
+            <td>내용1</td>
+            <td>내용2<br>두번째 줄</td>
+            <td>내용3</td>
+        </tr>
+        <tr>
+            <td>
+                내용2-1 !!!!!!!!!!!!!!!
+            </td>
+            <td>
+                내용2-2 !!!!!!!!!!!!!!!
+            </td>
+            <td>
+                내용2-3 !!!!!!!!!!!!!!!
+            </td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <!-- 
+                th: table header의 약자. 컬럼의 제목
+                두꺼운 글씨 strong과 같은 효과도 들어가고. 상하 정렬에 좌우 가운데 정렬까지
+            -->
+            <th>내용1</th>
+            <th>내용2<br>두번째 줄</th>
+            <th>내용3</th>
+        </tr>
+        <tr>
+            <th>
+                내용2-1 !!!!!!!!!!!!!!!
+            </th>
+            <th>
+                내용2-2 !!!!!!!!!!!!!!!
+            </th>
+            <th>
+                내용2-3 !!!!!!!!!!!!!!!
+            </th>
+            <!-- <th>
+                내용2-4 !!!!!!!!!!!!!!!
+            </th> -->
+            <!-- td가 아닌 곳 -->
+            <!-- 
+                각 줄마다 칸의 개수가 같아야 한다.
+                같지 않으면 디자인이 이상해진다. 안 이쁘다.
+            -->
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <th>지역</th>
+            <td>천안</td>
+            <td>평택</td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td>최아무개</td>
+            <td>김아무개</td>
+        </tr>
+    </table>
+
+    <!-- 
+        수작업이나 복붙으로 만들 수도 있으나 매크로 활용해서
+        table>tr*2(줄 수)>td*3(칸 수) 활용해서 빠르게 만들기 가능.
+      -->
+    <table border="1">
+        <tr>
+            <td rowspan="2">1-1</td>
+            <td colspan="2">1-2</td>
+            <!-- <td>1-3</td> -->
+        </tr>
+        <tr>
+            <!-- <td>2-1</td> -->
+            <td>2-2</td>
+            <td>2-3</td>
+        </tr>
+    </table>
+
+    <hr>
+    <h1>테이블의 정석 구성</h1>
+    <!-- 테이블이 thead와 tbody의 영역으로 나뉠 수 있는 구조면 쓰는 게 좋다.
+     tbody가 더 중요. 많이 쓰는 추세 -->
+    <table border="1">
+
+        <caption hidden>테이블 내용에 대한 설명</caption>
+        <!-- <summary> 태그는 주로 컬럼명 나열, 보통 디자인이 안 예뻐지므로 가림. 기계들은 인식 가능하므로 -->
+        <summary hidden>제목, 작성자</summary>
+
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>제목1</td>
+                <td>작성자1</td>
+            </tr>
+            <tr>
+                <td>제목2</td>
+                <td>작성자2</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <!-- table>tr*2>td -->
+    <table border="1">
+        <tr>
+            <th width="200" height="100">첫번째</th>
+        </tr>
+        <tr>
+            <td width="50" height="50">두번째</td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th width="20"></th>
+                <th width="260">제목</th>
+                <th width="70">작성자</th>
+                <th width="130">작성일</th>
+                <th width="60">조회</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름1</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>UI구현(사전평가)</td>
+                <td>이름2</td>
+                <td>2022.06.20.</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <h1><a id="quiz1" href="#top">퀴즈1</a></h1>
+    <div class="quiz1">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=851388">
+                            <img
+                                src="https://image-comic.pstatic.net/webtoon/851388/thumbnail/thumbnail_IMAG21_1dcac808-fa37-450b-93c7-ebbc072a3a08.jpg">
+                        </a>
+                    </th>
+                    <th>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=851854">
+                            <img
+                                src="https://image-comic.pstatic.net/webtoon/851854/thumbnail/thumbnail_IMAG21_b4ecff72-291b-4cc3-b913-586ce97680c4.jpg">
+                        </a>
+                    </th>
+                    <th>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=828715">
+                            <img
+                                src="https://image-comic.pstatic.net/webtoon/828715/thumbnail/thumbnail_IMAG21_8957548a-2eb2-4ddf-a50e-dbc7fddc16a7.jpg">
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=851388">
+                            대공가의 새아가는 조금 사나워요
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=851854">
+                            인그레이브
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://comic.naver.com/webtoon/list?titleId=828715">
+                            절대회귀
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>심상 / 뫄과 / 진이현</td>
+                    <td>도마</td>
+                    <td>JP / 박진환 / 장영훈</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <h1><a id="quiz2" href="#top">퀴즈2</a></h1>
+
+    <div class="quiz2">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <h2>추천 베스트도전 & 도전만화</h2>
+                    </th>
+                    <td colspan="2">베스트도전 전체보기 &gt; </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://comic.naver.com/bestChallenge/list?titleId=851850">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2026/06/16/358421/upload_3847256487147155555_202x164.jpeg">
+                        </a>
+                    </td>
+                    <td width="300">
+                        <table>
+                            <tr>
+                                <th colspan="2"><a href="https://comic.naver.com/bestChallenge/list?titleId=851850">당신의
+                                        가격</a></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">박정현 </th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">9.53</td>
+                                <td>2,365</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <a href="https://comic.naver.com/bestChallenge/list?titleId=701701">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2020/02/03/312881/thumbnail_202x1644a1ff785_5bae_4dfe_a1ae_53e3528d0836_00003656.JPEG">
+                        </a>
+                    </td>
+                    <td width="300">
+                        <table>
+                            <tr>
+                                <th colspan="2"><a href="https://comic.naver.com/bestChallenge/list?titleId=701701">아빠는
+                                        N살</a></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">유영근</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">9.90</td>
+                                <td>5,814만</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://comic.naver.com/bestChallenge/list?titleId=840964">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2026/02/12/374855/upload_3558459660592821350_202x164.jpeg">
+                        </a>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th colspan="2"><a
+                                        href="https://comic.naver.com/bestChallenge/list?titleId=840964">대마법소녀의
+                                        시대</a></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">한라뽕</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">9.43</td>
+                                <td>26만</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <a href="https://comic.naver.com/bestChallenge/list?titleId=826992">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2026/05/20/363625/upload_4063199278040102753_202x164.jpeg">
+                        </a>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th colspan="2"><a href="https://comic.naver.com/bestChallenge/list?titleId=826992">구미호
+                                        사제</a></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">아네모네</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">9.39</td>
+                                <td>63만</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://comic.naver.com/challenge/list?titleId=850359">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2026/05/03/407800/upload_4050814568063186483_202x164.jpeg">
+                        </a>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th colspan="2"><a href="https://comic.naver.com/challenge/list?titleId=850359">편견 타파 종족
+                                        교류회</a></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">위마</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">9.98</td>
+                                <td>1.8만</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <a href="https://comic.naver.com/challenge/list?titleId=843945">
+                            <img
+                                src="https://image-comic.pstatic.net/user_contents_data/challenge_comic/2025/12/30/396299/upload_3473232112099799862_202x164.jpeg">
+                        </a>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th colspan="2"><a href="https://comic.naver.com/challenge/list?titleId=843945">나무와
+                                        미어</a>
+                                </th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="50">나무와 미어</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50">8.81</td>
+                                <td>3,362</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <a id="bottom" href="#top">맨 위로</a>
+</body>
+
+</html>

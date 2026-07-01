@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#loginsection {
+    padding: 100px;
+    box-sizing: border-box;
+}
+
+#loginbox {
+    margin: auto;
+    height: 30vh;
+}
+
+.text {
+    text-align: center;
+}
+
+#ID,
+#PW {
+    text-align: left;
+}
+
+#ID,
+#PW,
+#loginbtn {
+    margin: 2px;
+    width: 21vw;
+    height: 5vh;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 10px;
+    min-width: 246px;
+}
+
+#ID:focus,
+#PW:focus {
+    /* focus 시 테두리 색상 변경? */
+    background-color: black;
+    color: white;
+    /* border-color: blue;
+    border-width: 1px; */
+    text-align: center;
+}
+
+
+[type=button] {
+    background-color: black;
+    color: white;
+}
+
+[type=button]:hover {
+    background-color: white;
+    color: black;
+}
+
+a[href] {
+    color: gray;
+    
+}

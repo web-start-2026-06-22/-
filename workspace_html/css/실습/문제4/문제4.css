@@ -1,0 +1,87 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    /* font-size: 13px; */
+    /* 과제로 내주신 홈페이지 개발자 도구로 까보니 폰트 크기가 13px이었는데
+    공백으로 인해 inline-block이 제대로 동작하지 않아서 주석처리 함. 2026-06-30 */
+    font-size: 0px;
+    margin: 0;
+    padding: 100px;
+    /* border: 2px dotted navy; */
+    /* body 테두리까진 필요없을 듯 2026-06-30 */
+}
+
+/* div {
+    width: 100%;
+} */
+/* 그냥 main에 줘도 되는 값 2026-06-30 */
+
+div.main {
+    /* border: 2px dashed purple; */
+    display: inline-block;
+    /* 메인 영역에 줄 게 아니라, 내용물 영역에, 일단 border로 체크를 해보자. 2026-06-30 */
+    width: 100%;
+    text-align: center;
+    /* vertical-align: top; */
+    /* 부모에 주는 게 아니라 얘도 마찬가지로 inline-block으로 나열할
+    컨텐츠 영역을 정렬하는 것이므로 아래에 선언하면 적용될 듯? 2026-06-30 */
+}
+
+/* section {
+    border: 3px solid red;
+    display: inline-block;
+} */
+/* section으로 구분 -> 복습 때 해보자. 일단 div로 익숙해지기. 2026-06-30 */
+
+/* div.main>.left, .right { */
+/* border: 3px solid yellow; */
+/* display: inline-block; */
+/* 여기가 아닌 듯...? 2026-06-30 */
+/* } */
+/* class를 left, right로 나누면 안 될 듯
+ 내용물 영역 하나하나를 인라인 요소로 만들 거니까 2026-06-30*/
+
+div.main>.contents {
+    display: inline-block;
+    /* border: 3px solid yellow; */
+    width: 50%;
+    min-width: 300px;
+    /* px로 하드코딩하기보단 vw 같은 게 나을 듯. 2026-06-30 */
+    /* min-width: 20vw; */
+    /* 접근 자체는 괜찮았던 거 같은데 다른 방식이 필요할 듯? 일단 px로 적용. 2026-06-30 */
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.contents > h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+.contents > p {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.contents > blockquote {
+    font-size: 1.25em;
+}
+
+div.main>.contents>img {
+    width: 100%;
+}
+
+div.main>.contents>video {
+    width: 100%;
+    /* 비디오 상하 크기 늘리기 2026-06-30 */
+    height: 400px;
+    /* vertical-align: top; */
+    /* 이건 여기다 줄 게 아니라 부모에 선언해 자식들의 높이를 맞춰주기 2026-06-30 */
+    /* width: 50%; */
+    margin-bottom: 50px;
+}
+
+/* div.main.contents>p {
+    margin-top : 100px;
+} */
+ /* 안 되네? 비디오에 bottom으로 줘볼까? 2026-06-30 */

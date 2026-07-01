@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 모바일이나 태블릿 환경에서 보는데 PC 버전마냥 글씨 크기 같은 것들이 작게 나온다면 아래의 코드가 없는 것. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="top">맨 위</h1>
+    <a href="#bottom">맨 아래로</a>
+    <br>
+    <a href="#middle">가운데로</a>
+    <br>
+
+    <!-- a 태그 : anchor 닻의 약자. 어딘가로 연결해주는 태그.
+     브라우저 주소를 대신 적어주는 기능. -->
+    <a href="https://naver.com">네이버</a>
+    <br>
+    <!-- target="_blank" = 새 탭에서 미드 오픈 -->
+     <!-- href = hypertext reference 약자 -->
+      <!-- a 태그와 href 속성은 세트로 구성. href가 없어지면
+       a 태그 기능을 하지 못하고 커스텀 태그, 의미없는 태그가 됨. -->
+    <a href="https://google.com" target="_blank">구글</a>
+    <br>
+    <a href="tel:01020467051">전화걸기</a><br>
+    <a href="mailto:0419yjjh@naver.com">메일보내기</a><br>
+    <a href="https://comic.naver.com/webtoon/list?titleId=849352" target="_blank">
+        <img src="https://image-comic.pstatic.net/webtoon/849352/thumbnail/thumbnail_IMAG21_0049830d-3474-462a-96b8-7cd0b8be1b52.jpg">
+    </a>
+    <br>
+    <a href="https://comic.naver.com/webtoon/list?titleId=851257" target="_blank">
+        <img src="https://image-comic.pstatic.net/webtoon/851257/thumbnail/thumbnail_IMAG21_60dc1239-0c18-430e-b45d-62640df7febe.jpg">
+    </a>
+    <br>
+    <a href="https://comic.naver.com/webtoon/list?titleId=641253&tab=fri" target="_blank">
+        <img id="middle" src="https://image-comic.pstatic.net/webtoon/641253/thumbnail/thumbnail_IMAG21_01672165-03c8-44b1-ba0e-ef82c9cfcd10.jpg">
+    </a>
+    <br>
+    <a href="01_hello.html" target="_blank">1번 파일</a>
+    <br>
+    <a href="detail.html" target="_blank">디테일페이지 이동 오류</a>
+    <br>
+     <!-- 
+        상대 주소
+        내 위치를 기준으로 삼는 주소
+        현재 주소의 가장 마지막 / 이후의 주소를 변경한다.
+
+        . : 내 폴더
+        .. : 부모 폴더
+
+        사용하기는 편리하나 구조가 조금이라도 틀어지면 사용할 때 에러가 발생. 사용 불가? 수정해야될 듯
+     -->
+    <a href="../asset/detail.html" target="_blank">상대주소 디테일페이지 이동</a>
+
+    <!-- 
+        절대 주소
+        1. 프로토콜로 시작 (http://, https://, ftp://)
+        2. // 로 시작(프로토콜의 마지막 //)
+        3. / 로 시작(폴더 구분할 때 /, 최상위 폴더)
+            3.1. ip:port/ <<< 여기를 뜻함.
+        * 절대 주소가 아닌 모든 주소는 상대 주소를 뜻함.
+    -->
+    <br>
+    <a href="/asset/detail.html" target="_blank">절대주소 디테일페이지 이동</a>
+    <br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <strong>여기 맨 아래임</strong><br>
+    <a href="#top" id="bottom">맨 위로</a>
+</body>
+</html>

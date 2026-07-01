@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #table input[type=date] {
+            width: 600px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        #table .searchoption [id=comName] {
+            width: 600px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        #table .search [value=조회] {
+            width: 610px;
+            height: 40px;
+            background-color : rgb(58, 127, 255);
+            color: white;
+        }
+
+        #table .content td {
+            border-top: 1px solid gray;
+        }
+
+        #table .content td {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form>
+        <table id="table">
+            <tr class="header">
+                <td colspan="5">
+                    <h1>서비스 신청 내역</h1>
+                </td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr class="searchoption">
+                <td colspan="5"><input type="date" id="begindate" value="2026-06-22"></td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr class="searchoption">
+                <td colspan="5"><input type="date" id="enddate" value="2026-06-25"></td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr class="searchoption">
+                <td colspan="5"><input type="text" id="comName" placeholder="민원 사무명"></td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr class="search">
+                <td colspan="5"><input type="button" value="조회"></td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr class="header">
+                <th>접수번호[신청일]</th>
+                <th>민원 사무명</th>
+                <th>부<br>수</th>
+                <th>처리상태</th>
+                <th>추가신청</th>
+            </tr>
+            <tr class="content">
+                <td>20260625-12345678<br>[20260625]</td>
+                <td>샘플</td>
+                <td>1</td>
+                <td>처리중</td>
+                <td>-</td>
+            </tr>
+            <tr class="content">
+                <td>20260427-87654321<br>[20260625]</td>
+                <td>테스트</td>
+                <td>1</td>
+                <td>처리불가</td>
+                <td>-</td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

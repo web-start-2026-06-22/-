@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="문제2.css">
+</head>
+
+<!-- <body> -->
+<!-- <div class="page">
+        <div class="imgcont">
+            <img
+                src="https://image-comic.pstatic.net/webtoon/851388/thumbnail/thumbnail_IMAG21_1dcac808-fa37-450b-93c7-ebbc072a3a08.jpg">
+        </div>
+        <div class="textcont">
+            <span>Podcasting operational change management inside
+            of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the
+            long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive
+            convergence on cross-platform integration. Objectively innovate empowered manufactured products whereas
+            parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains.
+            Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</span> -->
+<!-- <form> -->
+<!-- 서버로 보내는 것이므로 form은 적당하지 않다. -->
+<!-- <div>
+                <input type="button" value="read more">
+            </div> -->
+<!-- </form> -->
+<!-- </div>
+    </div>
+</body> -->
+
+<body>
+    <!-- 계속 안 되던 이유 : div 안에서 div, div 양쪽으로 나누려고 했기 때문.
+     line-block은 div 내부의 자식 div를 나눠주는 것이 아니라 두개 이상의 동일한 클래스로 묶인
+     서로 다른 div를 line 요소처럼 옆으로 늘어트려 주는 것 -->
+    <div class="cont">
+        <div class="imgcont">
+            <img
+                src="https://image-comic.pstatic.net/webtoon/851388/thumbnail/thumbnail_IMAG21_1dcac808-fa37-450b-93c7-ebbc072a3a08.jpg">
+        </div>
+    </div>
+    <div class="cont">
+        <div class="textcont">
+            Podcasting operational change management inside
+            of workflows to establish a framework. Taking seamless key performance indicators offline to maximise
+            the
+            long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive
+            convergence on cross-platform integration. Objectively innovate empowered manufactured products whereas
+            parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains.
+            Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.
+            <!-- <form> -->
+            <!-- 서버로 보내는 것이므로 form은 적당하지 않다. -->
+            <div class="btn">
+                <!-- <input type="button" value="read more"> -->
+                <!-- 그냥 버튼 타입 주는 게 더 적합해보임 2026-06-30 -->
+                <button>read more</button>
+            </div>
+        </div>
+        <!-- </form> -->
+    </div>
+</body>
+
+</html>

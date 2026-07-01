@@ -1,0 +1,25 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+div {
+    /* border: 1px solid red; */
+    /* 브라우저 크기가 줄어서 한 줄 영역에 2개까지 표시될 경우 왼쪽 정렬 시켜보기 */
+      /* text-align: center;를 빼니까 성공. 넣었던 이유 웹툰 텍스트를 가운데 정렬하기 위함이었음.
+      img, text랑 영역, section을 div로 나누면? 해결 될 듯함. */
+    display: inline-block;
+    /* text-align: center; */
+    
+    /* div 영역 간의 공백을 없애기 위함 */
+    font-size: 0;
+}
+
+div.webtoon {
+    /* 위의 부모에서 선언한 font-size: 0;으로 div 내부의 텍스트가 
+    사라진 것처럼 보이므로 그걸 돌려놓기 위해 font-size 부여*/
+    font-size: 16px;
+}
+
+div.webtoon > img {
+    width : 300px;
+}

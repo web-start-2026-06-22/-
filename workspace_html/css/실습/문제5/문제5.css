@@ -1,0 +1,115 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 0;
+}
+
+/* div { */
+    /* border: 2px solid magenta; */
+    /* 대강 정렬이 끝났으니 주석처리 2026-07-01 */
+/* } */
+
+.main {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* vertical-align: top; */
+    /* 또 실수했네. contents들의 높이를 맞춰주기 위함이므로 .contents 영역에. 2026-06-30 */
+}
+
+.contents {
+    border: 2px solid aquamarine;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    text-align: left;
+    /* padding: 20% 0; */
+    /* padding으로 인해 화면이 줄어들 때 오른쪽 div 영역의 이미지들이 왼쪽 영역을 침범함. 2026-07-01 */
+    /* width: 40%; */
+    width: 600px;
+    height: 800px;
+    /* height: 100%; */
+    /* width는 여기 먼저 줄 게 아니라 부모, main에 먼저 2026-06-30 */
+}
+
+.contents>h1 {
+    font-size: 3rem;
+    /* text-align: left; */
+    /* 위에 쓰면 한 번에 텍스트 정렬 2026-06-30 */
+}
+
+/* .contents > p {
+    font-size: 1.25rem;
+} */
+/* 안 주는 게 맞는 듯 2026-07-01 */
+
+.contents>.contentsimg {
+    /* 왜 자꾸 오른쪽 영역의 이미지 정렬이 이상했을까?
+    = 해당 클래스가 오른쪽 div 영역이었는데 div 안쪽 컨텐츠의 규격보다
+    그걸 담아낼 용기의 규격이 작았다. 2026-07-01 */
+    display: inline-block;
+    /* width: 100%; */
+    /* 여기가 문제. 웹 반응성을 신경쓰는 건 좋으나 접근법이 잘못된 것 같다. 일단 px로 조정. 
+    + 여기가 아니라 이미지를 감싸는 상위 div 영역의 문제. 2026-07-01 */
+    width: 600px;
+}
+
+/* 모든 img 태그에 주면 안 됨. contentsimg의 이미지는 재조정 필요. 2026-06-30 */
+img {
+    /* %를 주지 말고 일단 px로 조정. 아래 이미지들도 동일. 2026-06-30, 2026-07-01 */
+    /* width: 100%;
+    /* height: 50%; */
+    /* height도 별도로 지정하면 레이아웃, 이미지가 깨질 수 있음. by 강사님 2026-06-30 */
+    width: 500px;
+    /* 여기다 주면 모든 이미지에 적용. 2026-06-30 */
+    /* 하지만 아래의 코드들로 오른쪽 영역의 이미지들의 사이즈, 규격이 재조정되므로
+    결과적으로 왼쪽의 이미지 하나에 영향을 줌. 2026-07-01 */
+    min-width: 250px;
+    /* 각각의 이미지마다 지정해줘야될 것으로 보임. 2026-07-01 */
+}
+
+/* 위에서 발견한 내용으로 수정.
+다만, 원본 페이지에서 contentsimg 영역에 해당하는 이미지의 사이즈도 다르기 때문에
+img 태그 자체에 클래스를 부여하든 span 태그로 감싸서 span에 클래스를 부여하든 해서
+별도의 추가 크기 조정 필요 2026-06-30 */
+/* .contentsimg >img {
+    width: 40%;
+} */
+
+/* 우측 하단 이미지 크기 조정 위해 넣었던 부분이나, 클래스 명시해서 조정하는 게 맞을 듯. 2026-06-30 */
+/* .contentsimg > img {
+    height: 30%;
+} */
+
+.contentsimg>.leftimg>img {
+    /* width: 45%;
+    height: 50%; */
+    width: 300px;
+    /* margin: 0 10px; */
+    min-width: 250px;
+}
+
+.contentsimg>.rightimg>img {
+    /* width: 45%;
+    height: 40%; */
+    width: 200px;
+    min-width: 150px;
+}
+
+.contentsimg>.isolateimg>img {
+    /* width: 40%;
+    height: 35%; */
+    width: 300px;
+    min-width: 350px;
+}
+
+/* 우측 하단 영역의 이미지를 별도로 규격 조정하기 위해 작성했으나 크게 의미없었다.
+왜 영향이 없었을까?
+이유: div로 감싸지 않은 영역이었기에 계층구조 자체가 잘못돼서 css 적용이 안 된 것. 2026-07-01 */
+
+.isolateimg> {
+    /* width: 40%;
+    height: 35%; */
+    width: 300px;
+    min-width: 350px;
+}

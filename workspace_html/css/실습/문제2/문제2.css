@@ -1,0 +1,49 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.cont {
+    border: 1px solid blue;
+    display: inline-block;
+    width: 400px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+.imgcont>img {
+    width: 400px;
+    border: 3px dotted purple;
+}
+
+/* 애초에 좌측 정렬이었음 */
+/* 텍스트 영역 padding 주기 */
+/* .textcont {
+    border: 2px solid green;
+    width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+} */
+
+.textcont {
+    border: 2px solid green;
+    /* text-align: center; */
+    /* left가 맞는 방향 2026-06-30 */
+    text-align: left;
+    padding: 50px 20px;
+    height: 430px;
+    /* margin: 30px; */
+}
+
+.btn {
+    /* border: 3px solid plum; */
+    /* width: 300px; */
+    /* 감싸는 div의 너비를 조정하는 거라 동작하지 않아 의미 없음 2026-06-30 */
+    text-align: left;
+}
+
+/* 버튼 크기 조정 */
+.btn>button {
+    width: 100px;
+    height: 30px;
+}

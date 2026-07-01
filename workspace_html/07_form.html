@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 중첩 form문 작성하지 않기
+     한 페이지에 여러 개 있을 수 있음.
+     서버로 전달할 내용을 감싸는 태그 -->
+    <form>
+        text : <input type="text"><br>
+        text(기본값) : <input><br>
+        text(value) : <input type="text" name="va1" value="초기값"><br>
+        text(placeholder) : <input type="text" placeholder="플레이스 홀더"><br>
+        text(readonly) : <input type="text" value="리드온리" readonly><br>
+        text(disabled) : <input type="text" value="disabled" disabled><br>
+        password : <input type="password"><br>
+        input:button : <input type="button" value="input:button"><br>
+        button : <button type="button" name="btn1" value="1">button</button><br>
+        submit : <input type="submit" value="제출"><br>
+        button(기본값:submit): <button>submit</button><br>
+        <!-- <button><a href="http://maplescouter.com">버튼</a></button> -->
+        이미지를 버튼 태그로 감싼다<br>
+        <button type="button">
+            <img width="100"
+                src="https://image-comic.pstatic.net/webtoon/641253/thumbnail/thumbnail_IMAG21_01672165-03c8-44b1-ba0e-ef82c9cfcd10.jpg">
+        </button>
+        <hr>
+        <!-- 체크박스나 라디오 버튼의 경우도 name, value가 있는 경우 전송됨. 
+         체크되지 않은 값들은 전송되지 않음.
+         value를 따로 지정해주지 않으면 기본값은 의미없는 값인 on으로.
+         = value값도 필수값임을 알 수 있음. name값 또한 필수 -->
+        checkbox :
+        <input type="checkbox" name="coffee" value="1">샷추가
+        <input type="checkbox" name="coffee" value="2" checked>펄추가
+        <input type="checkbox" name="coffee" value="3" disabled>휘핑크림
+        <input type="checkbox" name="coffee" value="4">시럽추가
+        <input type="checkbox" name="coffee" value="5">간얼음
+        <br>
+        radio :
+        <input type="radio" name="china" checked>짜장면
+        <input type="radio" name="china" disabled>마파두부밥
+        <input type="radio" name="china">짬뽕
+        <br>
+        <input type="radio" name="gender" value="여자" checked>여자
+        <input type="radio" name="gender" value="남자">남자
+        <br>
+        select:
+        <select name="sel1">
+            <option value="1">한식</option>
+            <option value="2">중식</option>
+            <option value="3">양식</option>
+            <option value="4" selected>일식</option>
+            <option value="5" >분식</option>
+        </select>
+        <br>
+        select-multiple:
+        <select name="sel2">
+            <option value="1">한식</option>
+            <option value="2">중식</option>
+            <option value="3">양식</option>
+            <option value="4" selected>일식</option>
+            <option value="5" >분식</option>
+        </select>
+        <br>
+        <label>
+            <input type="checkbox">펄추가
+        </label>
+        <br>
+        <input type="checkbox" id="perl">
+        <label for="perl">펄추가</label>
+        <br>
+        <!-- textarea도 title처럼 주석이나 태그도 그대로 출력됨 -->
+        <textarea rows="10" cols="50" placeholder="placeholder" name="ta">미리
+            보여줄 글
+            <br>
+            <!-- 주석 -->
+        </textarea>
+        <br>
+        reset : <input type="reset" value="reset"><br>
+        color : <input type="color"><br>
+        date : <input type="date" name="date" value="2026-06-24"><br>
+        time : <input type="time"><br>
+        number : <input type="number"><br>
+        range : <input type="range"><br>
+    </form>
+    <hr>
+    <!-- 
+    form 속성
+    method : get, post
+    method의 기본값 : get
+
+    action : 전송할 서버의 주소
+    action 기본값 : 현재 내 주소
+    -->
+    <!-- get: 뭔가 조회할 때, 검색할 때 사용 -->
+    <!-- name이 중요. name 부여가 안 돼있으면 값을 참조하지 않음. -->
+     <!-- get (쿼리스트링 query string)
+      서버 주소 뒤에 ?로 시작
+      주소에 name=value 형태로 서버로 전달
+      여러개인 경우 &로 구분-->
+      <!-- post의 경우 주소는 변경이 없음.
+       body 영역에 담아서 서버로 전달함. 그렇기 때문에 주소에 보이지 않음. -->
+    <form method="get">
+        <input type="text" name="song"><br>
+        <input type="text"><br>
+        <input type="text" name="singer"><br>
+        <input type="submit" value="get 연습"><br>
+    </form>
+
+    <form method="get" action="https://search.naver.com/search.naver">
+        <input type="text" name="query"><br>
+        <input type="submit" value="네이버 검색"><br>
+    </form>
+
+    <form method="get" action="https://www.google.com/search" target="_blank">
+        <input type="text" name="q"><br>
+        <input type="submit" value="구글 검색"><br>
+    </form>
+
+     <form method="post" action="">
+        <input type="text" name="query"><br>
+        <input type="submit" value="post 연습"><br>
+    </form>
+    <!-- <form>
+        <table border="1">
+            <tr>
+                <td><a href="https://www.youtube.com/@%ED%94%BC%EC%A7%91%EC%82%AC%EB%8B%A4%EC%A0%9C" target="_blank"><input
+                            type="button" value="대충 유튜브 링크1"></button></a></td>
+                <td><input type="button" value="대충 유튜브 링크2"><a
+                            href="https://www.youtube.com/@%EC%9C%A0%EB%8B%88%EB%B0%9C%EB%8B%A6%EA%B0%9C" target="_blank"></a></button>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="http://maplestory.nexon.com" target="_blank"><input type="radio" name="habbit">이거 게임 아님</a>
+                </td>
+                <td><a href="https://novelpia.com/" target="_blank"><input type="radio" name="habbit">월정액 요금 내리라고</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://namu.wiki/w/%EA%B9%80%EC%B0%BD%EC%84%AD?from=%EC%8B%A0%EC%B0%BD%EC%84%AD"
+                        target="_blank"><img
+                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAACBAEDBQAGBwj/xAA0EAACAgEDAgYBAgMIAwAAAAAAAQIDEQQSIQUxBhMiQVFhcRQyB0KhM1JTYoGRkrEVIyT/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQID/8QAGxEBAQEAAwEBAAAAAAAAAAAAAAERAiExUQP/2gAMAwEAAhEDEQA/APpeCcHJBYAjBOCV3JAjAWCcHYAglI5IDVairR0Tv1ElCuCy2yW4sirqfUdN0vSS1OsmoVrt8t/CPmfXv4jay+cqumJU15/cl6mvz7GT428S29d1myvMdLW2q4/P2zzMaySb62d1XV+oaxuV+osm38yZRC+5tbrZf8hrQ9J1usntoplL8I2qvA3VZJN0v5NZGaxI6zVwXp1NiX1Itq6z1GianVrLk1/nZvR8B9WaxGt4+xTVeC+saSLnLTOSXvEZDXr/AAf47jqJLS9Xkoz7Rt+fye/qshbBWVyjKD7STymfnezT20z2WQlCafZrB6vwX4sv6RctPq5Oelk0sP8Al/BmzF9fYDivTXVaqiF9ElKuaymi1IsZvSME4Jwc0VAolIlIkCDmScwBxk7BJwCKQWCUiQBwEkcFgDkdtySkEkBEYcnzf+KHW5WWx6Xp5cQ5tx7v4PpTkoRcn7cnwvrU56zrGps5bnY8Gfa3GXo9FbrL41VRcpN/B9D8P+CdPVGM9bidj9vYHwl0qGjqVko/+2XOfg9lpeMZNJVug6dp9KsU1RivpGlVUvhFVQxCWEEXQqSCnVBxaklydCWUHjIR5jxB4W0XU6nmuMLPaaXJ8o694f1XSNVKFkcwz6ZL3Pvk1w0YXiDpVPUNJZG2Ccsel++QseP/AIZda2uXTNRN881OTPou3B8SlTd07WqdWYzrn/U+xdG1q6h02jUZy5x5/JnytZ0awTgLB2DTAME4CwQwBOJOAjB2CTgEiUckEkFckFg6ISQHIlIlRC2hCPWdRHSdK1NzWXGDwfKuiaJ6zWyunjClk+i+Np7eizr/AMSSR5foumVWkXGPlmY3r0GhojFLGOxr0Qgu7R5r/wAi6Y7a1ul9BVajX2S3bJKP4NI9dW4fIUpxis5MGnU2Qltsyn3walc3ZWnjgGDl1GFXd9gY9c0+cNmTqoZu2rhv+g9odDp1jdHe/dsGH11CuzGH3LHiyPDFrdLTGa2RSwCpfpYyscsw/mCPC+MdA6df5iT2WfRt+AtWv09mjk8NcxHeuV0dT0E/Ly51+pZi0YXhf/5ur1N+7wyXtrXv8M7BZJckYKxQHNcBYIwAODsBYIAjBARwCSQSRyCQVyQcUTGOQ1HARCiEkSgkgPKeOX6NPD2eXgzNLXu00Yx4+Ta8ZVOcdO+McoS0lSrqUEu/OSRa7QaSuM82JP8AJuQs08IcuKX5MSVNrksSaG6OmeY825f1kqK+rThPTu3TNJrCbNfpGmoehhOSlKTXLcmY3VtJCmiFOmhtc5Lcel6XFLSQi12iGrXmdbF1dQvq083NpJpZztKY3dTi1GppflG/rel1x1n62rKysTSDjUsLCT+waR0sOpTw52UtPvwaq0maZeY+cexZTth7JFsroyW1dwijVVRt0zrlH+X2PA4nTquMxlCZ9F7yy/YxqunUy6tbZbHKSUkgNbQXfqdHVa01JxWUy5oohKXnLhKLXpwMsgEjARxUVtEMsaAaAE4LBGApRBxQKLYIAooNI6KDSCISCwSkSkBk+I9PG3QKTaTjLgQpqUdrx2Rq9apdlK+PgRrjiuP4I0urVfHCyW+ZGKy2sC6q3e+BinTVQeZ5k/tlTCd0XffCTXoXZ/Jq6OyMIJZ4MzW3NNqKy12KKdRZs9aw8+wHo98XmKaf+hRLRLl0zcc913Rh0UayWqdsbpbfaJ6KiM1WvM/cwFHo9Qn/AGkGvpclkKfL75z8sbecFU+4FfJW6pOx2QWZJdvkuSDiuUAFU42JJxw12L2iFUlPdHj6DIK8HYDwQUBgjBZgBoAGQEyAFYovgiqKL4IAkg0jkTgDkiUSSgFtes0NGdGvEUauqh5leBBR28BueKdpZBhY2vO0CQQtbGO5hU0QmuZL8AWSwUee2+PYpjdplVCKSeMF6llZymeblqLWs+ov0mvti9koyw/ohjfzlANFdE90S5BkKiTjBIUEB0W33QRJwAnYCwQAOAWGDICtghsFgLwL4lUS6IFiJIQaA5ILByRIEYKLKF3Qwc1wDcZs44eCqUR3Uww8issBsnbQpPkmuijOJ5L54KfKbb5NBmEqKliMUyyElJ8RWCmnSbmm2NwqUFhESpTS9kg0wcIjKXuEFnkvgvShZNSawNQ/aiFSSccGUHEnBVbBYbBkADBYTBYVTBFsSqBbECxBoBBIIsJQKJyBJD7EkMICcd0HkzLXtk18GpJ4i88GTfJOTaDpxgJSXyFCUVyLywVttdmGrGnDURXAT1KMjfL3DjJv5DONCy/OAYzk2LwTGa0F6M0rkcXYTq4Y2mgxREkHBlxz7HEPsFCwZBMFhQMFhghFNaLSmDwWJ5AsTCTBRIFiZOStyUVmTS/JRfrIVx9Ly/oLONptyS7i12qUV6f+zPnq5z7vBRba++Q6cfz+mL9XOawn+UU7vkVlPD/JZXNSjlvkN2SLG8sBktguRXNKjkshFAxYcWEWxLoFMSyLIGE8ItqmxfPAdcgHVJMkVU8FqsDOLcgt8A7ztyfAMdkhksBhUMElsBsIri4f34/7hebVF/vyYisCjYiDVs1sIL0xbFLupW4ePQhSUvfPArfPhlbi+WrnY/VNsnzOO5nxmkWxsGNw15n2Q7eMC7nwVSsw+4XV9k+zRNVuJ4b4FpWZg8lcbOMFStdSyRnIlTqU/TJ4fyX+YvZ5QYpqGCxMVhaixWphkwpF1bQorF8nS1EYrh8kDcrOcFkZcCVU97TYzuSQVephxkK7iyMwGHMjeLysIVgQx5u1hK9PuJuz7I8zJA/mMuzRDS/vIR3pHeZ9jEee/UevGWO1uMoJnnbbsPKkO6DWSnFxZVaVluOBK63L7hTsFLp9wsSrOSyNgkphqZV06rOAZSyLxmFu4C6s3cYAkmuUBvJ3hNTvDhqJRWBeUiMhDi1kvdFkdWxBcl0E/ZZAbWqlLjkvohKTzLkX09EpS59P2aOY0V5Ty/kA3Ly8RX7mMRnuWTM8xKW6XcuhdlcBD+8hWiqt4Ad5A5ZYDG3gSlduJhbwA5KwDzORV3clUrsyA0XZ6SFZwJO14RHnL2f9QPL2P0BdNvxc1ngpUlOko0c9uowB6GyfCwI3WDG7MF9CGofq4AJWchKeRVSeQlPBVNqYW/gU8wnzAaYcyPMF3NkbwGJWExtFHYR5v2BoRtxyXV3PJnQsyNUzwBqV6hqIFuoz3fAnK9JAqTmmvkIvjqN8klyjQi9sF8ienrVay17Ezub5Aadv2VysFXaD5v2A27MPuga7k5d0JW2/ZTC97gNKy3BXG7MhK29v3Ipt3TQD19+1oCMm1nHcTvscrHjsi2F2Iog//9k="></a>
+                </td>
+                <td>
+                    <a href="https://www.youtube.com/watch?v=g49mAlrAo9I" target="_blank">
+                        <img
+                            src="data:image/jpeg;base64,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">
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </form> -->
+</body>
+
+</html>

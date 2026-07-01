@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML/CSS 학습 대화 기록</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    h1 {
+      color: #333;
+    }
+    .box {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .tag {
+      font-weight: bold;
+      color: #555;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>HTML/CSS 학습 대화 요약</h1>
+
+<div class="box">
+  <div class="tag">1. 핵심 개념 - display: inline-block</div>
+  <p>
+    inline-block은 요소 자신을 inline처럼 배치하면서 block처럼 width/height를 가질 수 있게 하는 속성이다.<br>
+    부모가 아니라 <b>자기 자신</b>의 display가 바뀌며, 같은 부모의 형제 요소들이 가로로 배치될 수 있다.
+  </p>
+</div>
+
+<div class="box">
+  <div class="tag">2. 왜 50% + 50%인데도 줄바꿈이 발생했는가</div>
+  <p>
+    이유는 3가지가 겹쳤다:
+  </p>
+  <ul>
+    <li>inline-block 사이의 HTML 공백(엔터 포함)</li>
+    <li>border로 인한 실제 박스 크기 증가</li>
+    <li>box-sizing 기본값(content-box)</li>
+  </ul>
+</div>
+
+<div class="box">
+  <div class="tag">3. text-align:center의 영향</div>
+  <p>
+    inline-block 요소는 텍스트처럼 취급되기 때문에 부모의 text-align:center 영향을 받아 가운데 정렬된다.
+  </p>
+</div>
+
+<div class="box">
+  <div class="tag">4. box-sizing 이해</div>
+  <p>
+    <code>border-box</code>를 사용하면 border와 padding이 width 안에 포함되어 계산된다.<br>
+    하지만 HTML 공백 문제는 해결하지 못한다.
+  </p>
+</div>
+
+<div class="box">
+  <div class="tag">5. font-size: 0 트릭</div>
+  <p>
+    inline-block 사이 공백을 제거하기 위해 부모에 font-size: 0을 적용하는 방법이 있다.<br>
+    다만 자식 요소는 다시 font-size를 지정해야 한다.
+  </p>
+</div>
+
+<div class="box">
+  <div class="tag">6. 최종 이해 포인트</div>
+  <ul>
+    <li>display는 "자기 자신"에게 적용된다</li>
+    <li>inline-block은 요소를 가로 배치 가능하게 만든다</li>
+    <li>레이아웃 문제는 display + box model + 공백이 함께 작용한다</li>
+  </ul>
+</div>
+
+<div class="box">
+  <div class="tag">7. 학습 방향 피드백</div>
+  <p>
+    단순 암기가 아니라 "왜 이렇게 동작하는가"를 계속 추론하는 방식으로 학습하고 있음.<br>
+    이는 CSS/JS 학습에서 매우 좋은 접근 방식이다.
+  </p>
+</div>
+
+</body>
+</html>

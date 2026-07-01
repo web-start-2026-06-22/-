@@ -1,0 +1,156 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div.first {
+    border: 1px solid red;
+    /* 안 줬을 경우 div의 경우 100vw처럼 100%의 너비를 기본값으로 가져감. */
+    /* content 내용물 영역의 규격을 지정 */
+    width: 150px;
+    height: 200px;
+}
+
+div.second {
+    /* border: 1px solid red; */
+    /* 안 줬을 경우 div의 경우 100vw처럼 100%의 너비를 기본값으로 가져감. */
+    width: 150px;
+    height: 200px;
+
+    /* margin: border 바깥 영역 */
+    margin-top: 50px;
+    margin-right: 40px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+    /* -도 가능 */
+    /* margin-top: -50px; */
+
+    /* margin 축약형 */
+
+    /* 4개일 경우 : top(위)에서부터 시계방향으로 top, right, bottom, left 순 */
+    margin: 50px 40px 30px 20px;
+
+    /* 3개일 경우 : top, 좌우, bottom 순 */
+    margin: 50px 40px 30px;
+
+    /* 2개일 경우 : 상하, 좌우 순 */
+    margin: 50px 40px;
+
+    /* 1개 : 상하좌우 동일하게 줄 수 있음 */
+    margin: 30px;
+
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+
+    /* 보통 5~10px 정도 떨어트림. 가독성, 가시성을 위해서 */
+    padding: 30px;
+
+    /* 너비만 지정해줘선 출력되지 않고, 어떤 스타일로, 형식으로 출력할지 또한 지정해줘야 함. */
+    /* 축약되지 않은 형태 */
+    border-top-width: 3px;
+    border-top-style: dotted;
+    border-top-color: blue;
+
+    /* width, style, color 순으로 */
+    border-left: 2px dashed pink;
+
+    /* - 타이푼, 방향 지정없이 작성 시 4방향 다 */
+    border: 1px solid red;
+
+    border-radius: 30px;
+}
+
+/* inset, outset: 약간 엇나가게 세팅해서 입체감을 주고 싶을 때 사용 */
+div.profile img {
+    border: 1px solid #000;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.chat.right {
+    border: 1px solid black;
+    background-color: yellow;
+
+    width: 100px;
+    padding: 5px;
+    margin: 10px;
+
+    border-radius: 10px 0 10px 10px;
+}
+
+div.width {
+    border: 1px solid red;
+    width: 70%;
+    /* width: 600px; */
+
+    min-width: 400px;
+    max-width: 600px;
+}
+
+#auto {
+    border: 1px solid red;
+    width: 150px;
+
+    /* 너비 100%가 아닌 경우 */
+    /* 상하는 auto를 안 먹음 그래서 상하, 좌우 0, auto */
+    margin: 10px auto;
+}
+
+.box {
+    border: 1px solid red;
+
+    width: 300px;
+    height: 300px;
+
+    margin: 50px;
+}
+
+.box-sizing {
+    padding: 50px;
+
+    box-sizing: border-box;
+}
+
+div.orig {
+    border: 1px solid red;
+}
+
+/* 
+    마진 중첩
+    세로 방향으로 붙어있을 때 또는 부모와 첫번째 자식 간에
+    margin이 큰 값 하나만 적용되는 현상
+    
+    해법
+    
+    * 사이에 컨텐츠 넣기(좋은 방법은 아님)
+    
+    * border, padding 등을 이용해서 부모와 첫번째 자식간의 마진 중첩 해결 가능.
+
+    * 부모에 overflow: hidden 주기
+
+*/
+#div2,
+#div3 {
+    margin: 30px;
+}
+
+#div3 {
+    margin: 50px;
+}
+
+#div1 {
+   /* border: 1px solid red; */
+
+   /* padding: 1px; */
+   
+   overflow: hidden;
+
+}
+
+/* #div2 {
+    margin-top: -1px;
+} */

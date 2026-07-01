@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="문제3.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- <h1 class="Title"> -->
+        <!-- 굳이 클래스를 줘야 할까? h1이 여러개 들어갈 일은 딱히 없어 보이는데. 2026-06-30 -->
+        <h1>
+        <!-- 이건 inline-block으로 묶지 말고 따로 빼기. by 강사님 2026-06-30  -->
+            Extraordinary rooms with elegant, yet a rustic atmosphere
+        </h1>
+        <div class="contents">
+            <!-- <div class="imgcont"> -->
+            <!-- 텍스트 파트를 div 외의 블럭 요소들로 나눴기 때문에
+                 굳이 클래스로 묶을 필요가 없을 듯해서 수정. 2026-06-30 -->
+            <img src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/34.jpg">
+            <!-- </div> -->
+            <!-- <div class="contentstext"> -->
+            <!-- 굳이 div로 감쌀 필요가 있나? h태그, p 태그로 분리 -->
+            <!-- <h2> -->
+            <!-- 클래스 부여. 지금은 호텔(추정)만 있지만, 추후 확장돼서 모텔, 펜션, 멘션 
+             등등의 다른 숙박업소라던가 다른 상품들이 추가될 수 있으니. 2026-06-30 -->
+            <h2 class="room">
+                Apartment with Amazing Park View
+            </h2>
+            <!-- <br> -->
+            <!-- <br>보단 <p>가 적합해 보여서 수정.
+                블럭 요소 태그기도 하고, 가격도 컬러를 다르게 줘야 하므로. 2026-06-30 -->
+            <!-- <p class="price"> -->
+            <!-- bold 처리를 위해 p보다 h2가 적합해보임. 
+             font-size도 위의 방 설명 텍스트와 동일하고. 2026-06-30 -->
+            <h2 class="price">
+                $45.00
+            </h2>
+            <!-- </p> -->
+            <!-- <p> -->
+            <!-- 수정하고 보니 얘도 h3 같은 거 주는 게 나을 듯. 2026-06-30 -->
+            <h3>
+                <span>
+                    VIEW
+                </span>
+            </h3>
+            <!-- </p> -->
+        </div>
+        <!-- </div> -->
+        <div class="contents">
+            <!-- div 넣다 말았네. 2026-06-30 -->
+            <img
+                src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/modern-studio-apartment-design-with-bedroom-living-space_1262-12375.jpg">
+            <!-- <div class="contentstext"> -->
+            <h2 class="room">
+                Double Deluxe Room - Double Bed
+            </h2>
+            <!-- <br> -->
+            <!-- <p class="price"> -->
+            <h2 class="price">
+                $35.00
+            </h2>
+            <!-- </p> -->
+            <!-- <p class="viewtext"> -->
+            <!-- VIEW같은 크게 의미없는 텍스트에 클래스를 부여하기보단
+         가격같은 의미를 가지는 텍스트에 클래스를 부여하는 것이 좋아보임. 2026-06-30 -->
+            <!-- <p> -->
+            <h3>
+                <span>
+                    VIEW
+                </span>
+            </h3>
+            <!-- </p> -->
+        </div>
+        <!-- </div> -->
+        <!-- div 추가하고 지우고 하다 수정 누락. 2026-06-30 -->
+        <div class="contents">
+            <img src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/4.jpg">
+            <!-- <div class="contentstext"> -->
+            <h2 class="room">
+                Luxury Apartment - Ground Floor
+            </h2>
+            <!-- <br> -->
+            <!-- <p class="price"> -->
+            <h2 class="price">
+                $40.00
+            </h2>
+            <!-- </p> -->
+            <!-- <p> -->
+            <h3>
+                <span>
+                    VIEW
+                </span>
+            </h3>
+            <!-- </p> -->
+            <!-- </div> -->
+        </div>
+        <p>
+            Images from <span>Freepik</span>
+        </p>
+    </div>
+</body>
+
+</html>

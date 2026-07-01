@@ -1,0 +1,112 @@
+#div1 {
+    border: 1px solid red;
+}
+
+div.block {
+    border: 1px solid red;
+
+    width: 100px;
+    height: 50px;
+    margin: 10px auto;
+}
+
+span.inline {
+    border: 1px solid red;
+
+    /* inline의 특징: 너비, 높이가 적용되지 않는다. */
+    width: 200px;
+    height: 100px;
+
+    /* margin의 경우 상하는 적용되지 않고, 좌우만 적용 */
+    margin: 30px 50px;
+
+    /* padding도 마찬가지로 좌우는 되고 위아래는 적용 안 됨. 다만 border 영역만 밀려서 출력됨 */
+    padding: 30px 50px;
+
+    background-color: blanchedalmond;
+
+    /* display: block; */
+}
+
+div.parent {
+    border: 1px dotted rgb(255, 0, 255);
+
+    /* inline 요소를 정렬할 때 사용 */
+    text-align: center;
+}
+
+.parent>div {
+    border: 1px solid red;
+    /* inline은 공간이 없어서 내부 정렬이랄 게 없다.
+    꽉 찼기 때문에 width, 정렬 같은 것들이 동작하지 않는다. 
+    text-align은 내부 정렬이기 때문에*/
+    display: inline;
+    text-align: center;
+    width: 100px;
+
+}
+
+.parent2 {
+    border: 1px dotted rgb(255, 0, 255);
+    text-align: center;
+}
+
+.parent2>div {
+    border: 1px solid red;
+    /* inline 영역만큼의 block이 생기는 것.
+    부피감이 있는 inline 
+    inline의 장점, block의 장점을 함께 가진 요소
+    웹 반응형 설계에 적합*/
+    display: inline-block;
+
+    width: 100px;
+    height: 50px;
+
+    margin: 30px;
+    /* margin: 완전한 block 요소, div 같은 것에만 적용
+    내 땅이 없어서 적용 안 됨. */
+    /* margin : 0 auto; */
+    padding: 50px;
+
+    /* box-sizing 사용은 가능하나 inline-block 지정을 먼저 해줘야 가능 */
+}
+
+.parent3 {
+    border: 1px dotted rgb(255, 0, 255);
+    font-size: 0;
+}
+
+.parent3>div {
+    border: 1px solid red;
+    display: inline-block;
+
+    width: 100px;
+    height: 50px;
+
+    padding: 50px;
+
+    /* inlie, inline-block만 사용 가능. top, middle, bottom */
+    vertical-align: top;
+
+    font-size: 16px;
+}
+/* 모바일일 때도 적용돼서 좋아 보이지 않는다 */
+/* .parent3>div.right {
+    margin-left: -4px;
+} */
+
+.hide {
+    display: none;
+}
+
+.table {
+    display: table;
+}
+
+.table .td {
+    display: table-cell;
+
+    border: 1px solid red;
+    height: 100px;
+    vertical-align: middle;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css 주석 */
+        /*
+             여러줄
+            주석 
+        */
+        /* h1 { color: red; }
+        p { background: aqua; } */
+        /* 전체 선택자 */
+        * {
+            color: red;
+        }
+
+        /* tag 선택자 */
+        h2 {
+            font-size: 300%
+        }
+
+        h1 {
+            font-size: 300%
+        }
+
+
+        /* ,로 구분해서 여러 개 동시 적용도 가능. 또, 동일 태그에 다회 적용 시, 마지막 적용한 내용만 반영됨. */
+        h1,
+        h2 {
+            font-size: 400%
+        }
+
+        #item1 {
+            color: black;
+        }
+
+        /* id 선택자 또한 마찬가지로 동일 태그에 다회 적용 시, 마지막 적용한 내용만 반영됨. */
+        #item1,
+        #item2 {
+            color: magenta;
+        }
+
+        /* id 선택자가 좀 더 우선순위가 높다. */
+        .c1 {
+            background: green;
+            color: blue;
+        }
+
+        /* tag 선택자 < class 선택자 < id 선택자 */
+        li {
+            color: yellow;
+        }
+
+        .bigtext {
+            font-size: 30px;
+        }
+
+        /* 속성 선택자 */
+        /* 속성이 존재한다면 */
+        [readonly] {
+            background-color: yellow;
+        }
+
+        /* 특정 타입에 해당되는 것만 적용해주고 싶다. type=""까지 함께 작성
+        속성이 있고 값도 일치하는 경우. id도 속성값이라 이런 방식으로도 작성 가능. 
+        속성이 id일 경우 id 선택자로 작성하는 #id명의 경우 [id=id명]의 줄임말 */
+        [type="password"] {
+            background-color: plum;
+        }
+
+        [id="item3"] {
+            border: 3px solid red;
+            background-color: blueviolet;
+        }
+
+        /* 속성의 값만 가능 
+        ^ 작성 시 href 속성의 값이 = 뒤에 오는 것으로 시작되는 것. 해당 코드에선 http */
+        [href^=http] {
+            color: cadetblue;
+        }
+
+        [href^=https] {
+            color: chartreuse;
+        }
+
+        /* $ 작성 시 href 속성의 값이 = 뒤에 오는 것으로 끝나는 것. 해당 코드에선 com */
+        [href$=com] {
+            color: aliceblue;
+            background-color: cornflowerblue;
+            font-size: 30px;
+        }
+
+        /* ~= : 띄어쓰기로 구분되는 값 */
+        /* .bigtext는 [class~=bigtext] 줄인 것  */
+        [class~=bigtext] {
+            color: #0000FF;
+        }
+
+        /* 딱 붙여서 쓰면 "그리고" 조건 */
+        h2.c1 {
+            color: rgb(200, 100, 0);
+        }
+
+        /* li 태그면서 c1과 c2 클래스를 가지는 것 선택해보자 */
+        li.c1.c2 {
+            background-color: yellow;
+        }
+
+        /* 자손 선택자
+        div 안의 하위 계층에 존해자는 strong들 모두 선택
+        */
+        div strong {
+            color: blue;
+        }
+
+        /* 자식 선택자 div 바로 아랫 계층에 존재하는 strong을 선택
+        제약이 심함.
+        구조가 바뀔 때 꼬일 수 있기에 잘 쓰지 않는다. 
+        구조를 절대 바꾸지 않을 때엔 사용.*/
+        div > strong {
+            font-size: 40px;
+        }
+        /* 마우스를 올렸을 때 */
+        #div1:hover {
+            background-color : yellow;
+        }
+        /* 마우스 클릭 시 */
+        #div1:active {
+            background-color: green;
+        }
+        /* 요소가 포커스가 들어와 있을 때, 해당 코드에선 input field 활성화 시 */
+        .text1:focus {
+            background-color: yellow;
+        }
+        /* : 는 만약 ~한 상태라면. checked의 경우 체크박스나 라디오 버튼 같은 것들이 체크됐을 경우 */
+        [type=checkbox]:checked {
+            width: 20px;
+            height: 20px;
+        }
+        /* 바로 다음 형제 요소 */
+        /* input[type="checkbox"] + span {
+            text-decoration: line-through;
+        } */
+
+        /* check박스와 함께 붙은 텍스트를 선택하는데, 체크박스가 체크가 됐을 경우. */
+        [type=checkbox]:checked + span {
+            text-decoration: line-through;
+        }
+        /* 특정 순번의 자식 선택 */
+        #ul1 > li:nth-child(4) {
+            color: black;
+        }
+        /* 짝수 선택, 2n 곱해주면 짝수가 된다.*/
+        #ul1 > li:nth-child(2n) {
+            background-color: gray;
+        }
+        /* 홀수 선택, 2n에 1을 더하거나 빼면 홀수가 된다. */
+        #ul1 > li:nth-child(2n-1){
+            background-color: black;
+        }
+
+        /* .c3:not {
+            border: 3px solid blue;
+        } */
+
+
+        /* not 안의 선택자를 제외하고 */
+        #ul1 li:not(.c3){
+            font-size: 32px;
+            border: 3px solid blue;
+        }
+
+        /* 선택자 앞 또는 뒤에 content 추가 및 css 적용 */
+        h3::before {
+            /* content 밑에 css를 적으면 content에 적용됨 */
+            content: "before";
+            color: black;
+        }
+
+        h3::after{
+            content: "after";
+            color: blue;
+            font-size: 10px;
+        }
+
+        /* 태그나 id, 속성 같은 걸 지정하지 않았을 경우 전체에 적용 */
+        ::selection{
+            background-color: aqua;
+        }
+
+        /* 
+            우선순위
+            !important > style 속성 > id > .class = 속성 > 태그 > 전체 선택자 *표 > 브라우저 기본값
+            구체적일수록 세부내용, 세밀할수록 우선순위가 높아진다.
+
+            동등한 우선 순위일 때
+                나중에 나온 것이 덮어 쓴다.
+        */
+
+         #div2 {
+            border: 1px solid aqua;
+        }
+
+        div {
+            border: 1px solid red;
+        }
+        
+        .c4 {
+            border: 1px solid blue;
+        }
+
+        [human] {
+            border: 1px solid pink !important;
+        }
+
+        #table .no {
+            background-color : yellow;
+        }
+
+        #table [id^=title_] {
+            border: 3px, solid red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- CSS : Cascading Style Sheets 약자. -->
+    <!-- event, action, method 등의 기능은 주로 자바스크립트로 구현 -->
+    <h1>hello world</h1>
+    <h2 class="c1">부제목</h2>
+    <p>This is a web page.</p>
+
+    <ul>
+        <li id="item1" class="c1">li1</li>
+        <!-- 속성 선택자로 접근 시 띄어쓰기가 있을 경우 따옴표로 묶어주면 된다. -->
+        <li id="item2" class="c1 bigtext c2">li2</li>
+        <li id="item3">li3</li>
+    </ul>
+
+    <input type="text" readonly="readonly"><br>
+    <input type="password"><br>
+    <a href="http://...">http</a><br>
+    <a href="https://...">https</a><br>
+    <a href="https://www.naver.com" target="_blank">NAVER</a><br>
+    <a href="https://www.google.com" target="_blank">GOOGLE</a><br>
+    <a href="https://www.daum.net" target="_blank">DAUM</a><br>
+
+    <!-- strong은 <br> 생략해도 자동 적용 -->
+    <strong>밖에 있는 strong</strong>
+    <div>
+        <strong> div 안에 있는 strong</strong>
+    </div>
+    <div>
+        <a href="a">
+            <!-- div > a > strong -->
+            <strong>div 안의 a 안에 있는 strong</strong>
+        </a>
+    </div>
+
+    <hr>
+    <div id="div1">
+        hover 연습
+    </div>
+    focus 연습 : <input type="text" class="text1"><br>
+    <input type="checkbox">checked 연습<br>
+    <input type="checkbox"><span>점심 먹기</span>
+
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class="c3">4</li>
+        <li class="c3">5</li>
+    </ul>
+
+    <h3>비포 애프터 연습</h3>
+
+    <div class="c4" human id="div2" style="border: 1px solid black;">
+        우선순위 연습
+    </div>
+    <br>
+    <hr>
+    <br>
+    <table id="table" border="1">
+        <tr>
+            <!-- 번호 노란 배경, title 빨간색 네모 -->
+            <td class="no">No</td>
+            <td id="title_0">제목</td>
+            <td>글쓴이</td>
+        </tr>
+        <tr>
+            <td class="no">1</td>
+            <td id="title_1">제목1</td>
+            <td>글쓴이1</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td id="title_2">제목2</td>
+            <td>글쓴이2</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

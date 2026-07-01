@@ -1,0 +1,86 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 13px;
+}
+
+/* div.main { */
+/* main을 통으로 줄 게 아니라, div.main > h1 태그 접근 */
+div.main {
+    text-align: center;
+    background-color: plum;
+}
+
+div.main>h1 {
+    /* border: 3px solid violet; */
+    /* 대강 끝나서 테두리 제거 2026-06-30 */
+    /* display: inline-block; */
+    /* inline-block 넣으면 화면 해상도에 따라 헤더, 제목 텍스트가 이상해짐. 2026-06-30 */
+    text-align: center;
+}
+
+div.main>.contents {
+    display: inline-block;
+    /* border: 3px solid blue; */
+    /* 대강 끝나서 테두리 제거 2026-06-30 */
+    text-align: center;
+    width: 400px;
+    background-color: white;
+}
+
+.main>h1 {
+    font-size: 3rem;
+}
+
+div.main>.contents>img {
+    width: 100%;
+    /* display: inline-block; */
+    /* height: 300px; */
+    /* 이미지 크기가 변경됨, 적합하지 않음 2026-06-29 */
+}
+
+/* .contents.room {
+    
+} */
+/* font-size 변경하려 넣었던 건데 필요없음 2026-06-30 */
+
+div.main>.contents>h2.room {
+    max-width: 100%;
+    /* text-align: center; */
+    /* contents 쪽에 넣어야될 듯 2026-06-30 */
+}
+
+div.main>.contents>.price {
+    color: red;
+}
+
+/* div.main>.contents>h3 {
+    border-bottom: 1px solid red;
+} */
+/* 글씨 밑에만 줄이 쳐져야 하는데 h3은 block 요소라 전체에 그어짐.
+span으로 감싸든 해서 수정. 필요 2026-06-30 */
+div.main>.contents>h3>span {
+    border-bottom: 1px solid red;
+}
+
+div.main>.contents>h3>span:hover {
+    border-bottom: 1px solid black;
+}
+
+div.main>p {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+div.main>p>span {
+    /* font-size: 1.25em; */
+    /* 윗 코드 복붙이라 주석처리 2026-06-30 */
+    border-bottom: 1px solid black;
+}
+
+/* hover 넣기 위해 복붙 */
+div.main>p>span:hover {
+    /* font-size: 1.25em; */
+    /* 윗 코드 복붙이라 주석처리 2026-06-30 */
+    border-bottom: 1px solid red;
+}
