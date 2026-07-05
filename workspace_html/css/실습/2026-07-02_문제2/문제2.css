@@ -1,0 +1,88 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --box-color: #6e52c7;
+}
+
+div.main {
+    /* border: 2px solid blue; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+img {
+    /* width: 50%; */
+    /* %를 주는 식으로 작성했는데, @media, px로 줘서 레이아웃을 여러개 그린 듯 2026-07-04 */
+    width: 600px;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    z-index: 1;
+}
+
+div.main div:not(.textbox) {
+    background-color: var(--box-color);
+    /* width: 80%;
+    height: 80%; */
+    /* 얘도 마찬가지. 위와 같은 이유로 px로 수정하기 위해 주석처리. 2026-07-04 */
+    width: 800px;
+    height: 800px;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    font-size: 0;
+    z-index: 0;
+    min-width: 600px;
+}
+
+.textbox {
+    /* border: 2px solid red; */
+    background-color: white;
+    /* color: var(--box-color); */
+    /* width: 30%;
+    height: 45%; */
+    /* 얘도 위의 둘과 마찬가지. 2026-07-04 */
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    padding: 5% 10px 0 10%;
+    /* line-height 주면 되니까 필요없어짐. 2026-07-04 */
+    z-index: 2;
+    text-align: right;
+    /* min-width: 400px; */
+    /* %를 줬기 때문에 부여했는데, px로 수정했기에 필요없어짐. 2026-07-04 */
+    box-sizing: border-box;
+    /* color: (--box-color); */
+    /* 하위, 자식 레벨로 상속이 되지 않기 때문에 적용 안 됨. 2026-07-03 */
+}
+
+.textbox>p {
+    /* border: 1px solid plum; */
+    color: var(--box-color);
+    margin: 0;
+    /* height: 10%; */
+    /* line-height: 15%; */
+    /* padding: 5%; */
+    /* 줘야될 줄 알았는데 필요없었음. 2026-07-03 */
+}
+
+.PRment {
+    font-weight: bold;
+}
+
+.title {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.textbox>p>span {
+    border-bottom: 1px solid var(--box-color);
+}

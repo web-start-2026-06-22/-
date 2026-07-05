@@ -1,0 +1,36 @@
+body {
+    border: 1px solid blue;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* div {
+    border: 1px solid violet;
+} */
+
+div.main {
+    width: 100%;
+    height: 100%;
+    /* display: inline-block; */
+}
+
+.hovimg1>img, .hovimg2>img, .hovimg3>img {
+    width: 50px;
+    height: 50px;
+}
+
+.disimg1>img, .disimg2>img, .disimg3>img {
+    display: none;
+}
+
+div.hovimg1 img:hover + .disimg1 img {
+    display: block;
+}
+div.hovimg2 img:hover + .disimg2 img {
+    display: block;
+}
+div.hovimg3 img:hover + .disimg3 img {
+    display: block;
+}

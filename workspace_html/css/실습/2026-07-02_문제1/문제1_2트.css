@@ -1,0 +1,69 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+div.main {
+    width: 100%;
+    height: 100%;
+}
+
+/* .thum1,
+.thum2,
+.thum3 {
+    width: 50px;
+    height: 50px;
+}
+
+.large1,
+.large2,
+.large3 {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    display: none;
+}
+
+.thum1:hover+.large1 {
+    display: block;
+}
+
+.thum2:hover+.large2 {
+    display: block;
+}
+
+.thum3:hover+.large3 {
+    display: block;
+} */
+
+/* html 코드에 작성해뒀던 내용과 마찬가지.
+썸네일처럼 작은 이미지, 정상적인 크기의 이미지 한 쌍들의 반복이라
+지금 당장은 3쌍밖에 없어서 상관은 없고 10개까지도 크게 문제될 건 없지만
+나중에 1000쌍, 10000쌍 이상으로 확장이 됐을 때도 그렇게 할 것인가?
+확장성을 고려는 했는데 thum, large로 부여하면
+hover시 다른 이미지들까지 함께 출력될 것이라 생각해서 넘버링을 붙였던 것인데
++ 형제 선택자는 바로 옆에 붙어있는 것에만 영향을 주는 것이었다. 2026-07-02*/
+
+.thum {
+    width: 50px;
+    height: 50px;
+}
+
+.large {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    display: none;
+}
+
+/* 선택된 이미지, 보고 있는 이미지 border처리 추가. 2026-07-04 */
+.thum:hover {
+    border: 1px solid blue;
+}
+
+
+.thum:hover+.large {
+    display: block;
+}

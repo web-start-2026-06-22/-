@@ -6,7 +6,9 @@ body {
     공백으로 인해 inline-block이 제대로 동작하지 않아서 주석처리 함. 2026-06-30 */
     font-size: 0px;
     margin: 0;
-    padding: 100px;
+    /* 여백을 주기 위한 padding: px-> % 
+    웹 반응성 고려하면 px보단 %가 적합. 2026-07-01 */
+    padding: 20%;
     /* border: 2px dotted navy; */
     /* body 테두리까진 필요없을 듯 2026-06-30 */
 }
@@ -20,7 +22,7 @@ div.main {
     /* border: 2px dashed purple; */
     display: inline-block;
     /* 메인 영역에 줄 게 아니라, 내용물 영역에, 일단 border로 체크를 해보자. 2026-06-30 */
-    width: 100%;
+    width: 65%;
     text-align: center;
     /* vertical-align: top; */
     /* 부모에 주는 게 아니라 얘도 마찬가지로 inline-block으로 나열할
@@ -54,21 +56,24 @@ div.main>.contents {
 }
 
 .contents > h1 {
-    text-align: center;
+    text-align: left;
     font-size: 3em;
 }
 
 .contents > p {
-    text-align: center;
+    text-align: left;
     font-size: 1.25em;
 }
 
 .contents > blockquote {
-    font-size: 1.25em;
+    font-size: 1em;
+    text-align: left;
+    border-left: 3px solid aquamarine;
 }
 
 div.main>.contents>img {
     width: 100%;
+    margin-top: 30px;
 }
 
 div.main>.contents>video {
@@ -79,6 +84,10 @@ div.main>.contents>video {
     /* 이건 여기다 줄 게 아니라 부모에 선언해 자식들의 높이를 맞춰주기 2026-06-30 */
     /* width: 50%; */
     margin-bottom: 50px;
+}
+
+div.main>.contents>.videotext {
+    padding: 10px 30px;
 }
 
 /* div.main.contents>p {

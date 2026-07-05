@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid red;
+            height: 100px;
+            width: 100px;
+            background-color: green;
+            color: white;
+            margin: 10px;
+
+            /* transition: all 0.5s; */
+            /* transition: width 1s; */
+        }
+
+        .box1:hover {
+            background-color: red;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .box2:hover {
+            background-color: red;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+
+            /* 위치 신경 써야함.
+            hover 이런 이벤트에 주면 이벤트가 발생하고 있는 동안에만 적용. */
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box box1">
+        박스
+    </div>
+    <div class="box box2">
+        박스2
+    </div>
+</body>
+
+</html>

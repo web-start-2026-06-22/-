@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./asset/css/10_float.css">
+</head>
+
+<body>
+    <article>
+        <img src="../asset/Spongebob-Christmas-PNG-Picture.png">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quas sunt repellat nemo ipsum
+        exercitationem, perspiciatis at eum magnam, amet aspernatur saepe quis iure necessitatibus tempora non, possimus
+        distinctio pariatur?
+    </article>
+    <hr>
+    <div class="box left">1</div>
+    <div class="box left">2</div>
+    <div class="box right">3</div>
+    <div class="box right">4</div>
+    <div style="clear:both"></div>
+
+    <!-- 이거 대신 after로 해결함 보통. 아래 코드에 before를 써도 될 듯? -->
+
+    <div style="border: 1px solid blue;">다른 내용의 시작</div>
+
+    <div class="clearFix">
+        <div class="box left">왼쪽</div>
+        <div class="box right">오른쪽</div>
+    </div>
+    <div style="border: 1px solid blue;">다른 내용의 시작</div>
+
+    <div class="clearFix boxalign">
+    <!-- 전체를 감쌀 게 아니라 센터로 옮길 쿠팡(로고)에 해당하는 요소만 -->
+    <!-- 전체를 감싸는 방향성은 맞았는데
+     위에서 썼던 clearFix 클래스 함께 부여해서 다음 줄로 떨어지지 않게. -->
+    <div class="box left">메뉴</div>
+    <div class="box right">마이페이지</div>
+    <!-- margin: auto, text-align -->
+    <!-- <div class="boxalign"> -->
+        <div>쿠팡</div>
+    <!-- </div> -->
+    </div>
+
+</body>
+
+</html>

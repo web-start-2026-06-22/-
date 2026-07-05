@@ -1,0 +1,44 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+article img {
+    width: 200px;
+    /* float: left; */
+    float: right;
+}
+
+.box {
+    border: 1px solid red;
+
+    width: 100px;
+    height: 100px;
+
+    margin: 10px;
+}
+
+.left {
+    float: left;
+    border-color: blue;
+}
+
+.right {
+    float: right;
+    border-color: green;
+}
+
+.clearFix:after {
+    content: "";
+    /* div의 가장 큰 특징: block이므로 css 코드로만 구현하기 위해 display: block; */
+    display: block;
+    clear: both;
+}
+
+.boxalign{
+    border: 1px solid blue;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
