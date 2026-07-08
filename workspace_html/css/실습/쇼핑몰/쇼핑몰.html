@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="쇼핑몰.css">
+</head>
+
+<body>
+    <!-- 일단 맨 위의 장바구니, 검색창 등이 묶여있는 div, sticky 주고...
+     가 아니라 fixed 준 거 같다.
+     sticky면 스크롤 내려서 없어질 때쯤 붙어야되는데 그냥 처음 그 위치 고정됨.
+     + Contact Us 위에 사람 아이콘 마우스 올렸을 때 로그인, sign up 리스트.
+     = hover, transition 활용. 
+     display: table을 줬던데, display: inline-flex;로 구현해볼까.
+     버튼들이니까 바깥을 <form>으로 감싸보자.
+        float였네. 맞네 이걸 inline으로 어떻게 구현하지? 싶었는데 접근 방향성이 잘못됐었다.
+        2026-07-05
+     + 까보니 여기가 header 영역이었다. 2026-07-06
+     -->
+
+    <div class="stickymenu">
+        <form>
+            <div class="header">
+                <!-- <div class="header_box">Today's special Offers!</div>
+                <div class="header_box"></div>
+                <div class="header_box"></div>
+                <div class="header_box"></div> -->
+                <!-- button이 더 적합할 것 같다. -->
+                <button type="button" class="offer">Today's special Offers!</button>
+                <!-- 까보니 div에 a를 줬지만, 사이트 이동 같은 것까진 넣지 않을 것이므로
+                 button, hover, pointer를 활용해도 될 것 같다.
+                 물론 실제 홈페이지를 구현하거나 할 땐 당연히 a태그를 활용하는 것이 좋겠지만,
+                 이 방식 저 방식 써보는 게 지금은 더 중요하니까. 2026-07-05 -->
+
+                <input type="text" class="searchfield" placeholder="Search a product...">
+
+                <button type="button" class="search">검색</button>
+                <!-- search버튼 after로 주면 좋을 것 같다. 잘 안 써보기도 했고.
+                 원본 홈페이지 디자인을 봤을 때 after 줬을 것 같음. 
+                 아닌 것 같다. 얌전히 버튼 주자. 2026-07-05 -->
+
+                <button type="button" class="cart">View Your Cart</button>
+
+                <!-- <button type="button" class="member">회원</button>
+                 <button type="button" class="contact">Contact Us</button> -->
+                <!-- float는 같은 방향 정렬 시 먼저 작성된 것이
+                  그 방향의 우선순위로 들어가기 때문에 배치 순서를 변경하기 위해 주석처리.
+                  2026-07-05-->
+
+                <button type="button" class="contact">Contact Us</button>
+
+                <button type="button" class="member">회원</button>
+
+
+            </div>
+        </form>
+    </div>
+
+    <!-- ------ header 영역.
+     ...인 줄 알았으나 실제론 여기부턴 배너 영역 2026-07-06 .
+
+     바로 아래 영역은 div나 flex로 감싸서 inline 주고,
+     STORE OPEN 로고?만 따로 한 블록으로 좌측 배치.
+
+     오른쪽 블록 - 2개로 영역 나눠놓기.
+     Events / About Us / Best Deals / Services flex 주고
+     white-spacing: evenly 같은 거로 간격 동일하게 주고.
+     -> 코드를 헷갈림 align-content : space-evenly나 space-around 주기.
+     마우스 올렸을 때 서서히 빨간색 되고 뗄 때 원래대로 돌아오는 것.
+     hover, transition 이용
+     우측의 2번쨰 블록 연락처. 이메일도 위의 메뉴와 동일하게. 2026-07-05 -->
+
+    <div class="menu">
+        <div class="menucont logo">
+            STORE
+        </div>
+        <div class="menucont">
+            <!-- Events / About Us / Best Deals / Services -->
+            <!-- flex 주기 위해 div로 분할 2026-07-06 -->
+            <div class="logomenu">Events</div>
+            <div class="logomenu">About Us</div>
+            <div class="logomenu">Best Deals</div>
+            <div class="logomenu">Services</div>
+            <!-- ul, li로 구성해보는 게 좋을 것 같다.
+             왜? 메뉴는 보통 그렇게 구성하니까.
+             semantic 요소, 웹 표준 같은 것들을 고려했을 때,
+             div는 아무런 의미를 갖지 않는 반면,
+             ul, li는 의미를 가지니까.
+             레이아웃 다 그려보고나서 진행해보자. 2026-07-06 -->
+        </div>
+        <!-- <div class="menucont">
+            (+0123) 234 567
+        </div> -->
+    </div>
+
+    <!-- ------ 
+
+     바로 아래 초록 띠 영역 div, text-align: left 줘서 왼쪽 정렬하되,
+     padding이나 margin으로 왼쪽에 아예 딱 달라붙진 않도록 조정. 2026-07-05 -->
+
+    <div class="d_line">
+        <!-- <div class="d_linet"> -->
+        <!-- 불필요한 div 제거. 2026-07-06 -->
+        <span>Home</span>Households
+        <!-- </div> -->
+        <!-- Households -->
+        <!-- </div> -->
+    </div>
+
+    <!-- ------ Household Products 품목 컨텐츠들 나오기 직전 블록     
+     그 아래 큰 div로 일단 감싸고, 왼쪽이 딱히 순서, 절차적인 의미를 가지는 목록은 아니므로 ul로
+     판매 품목 카테고리들 배치, Veggies & Fruits, Beverages, Frozen Foods 같은 카테고리는
+     hover, transition 활용.
+
+     2개 부모로 묶기.
+     우측은 백그라운드 이미지, position: relative나 absolute를 사용.
+     일단 relative가 좀 더 적합할 것으로 추정됨.
+     왜? body를 기준으로 위치 정렬을 할 것이 아니라 백그라운드 이미지 영역을 기준점으로 잡고
+     가운데 정렬할 것이므로.
+     width, height 50% transition? 같은 것을 이용해 텍스트 박스 백그라운드 이미지 중앙 정렬.
+     Household Products h1으로 주고. 밑줄은 span이나 border-bottom 이런 것인 줄 알았는데
+     after 쓰면 될 것 같음. 2026-07-05  -->
+
+    <div class="category">
+        <div class="cate">
+            <ul>
+                <li>Branded Foods</li>
+                <li>Households</li>
+                <li>Veggies & Fruits</li>
+                <li>Kitchen</li>
+                <li>Short Codes</li>
+                <li>Beverages</li>
+                <li>Pet Food</li>
+                <li>Frozen Foods</li>
+                <li>Bread & Bakery</li>
+            </ul>
+        </div>
+        <div class="cate background">
+            <div class="cate background textbox">
+                Best Deals For New Products
+            </div>
+            <!-- <div class="cate">
+                <h1>Household Products</h1>
+            </div> -->
+            <!-- 의도했던 것: 백그라운드 이미지 영역 아래에 배치되는 것.
+             해당 코드 작성 후 모습: 사이드 메뉴, 카테고리와 텍스트박스 백그라운드의 사이에 위치.
+             일단 주석처리. 2026-07-06 -->
+        </div>
+    </div>
+
+
+
+    <!-- ------ 상품리스트, contents 블록 영역.
+     div class= "contents" 혹운 "category" 이런 식으로 클래스명 부여하고 그 안에.
+     category가 좀 더 적합하겠다.
+     category: h2, text-align: left.
+      + category -> catalog 정정. 2026-07-06
+
+     div class="contents" display:inline-block 주고,
+     img, p태그 등으로 상품 정보 구현
+     품목 영역, class 자체에 마우스 올릴 시 ADD TO CART 버튼 색 변경 = hover, transition 부여
+     왜? 상품 이미지가 아니라 체크박스나 라디오 버튼 라벨로 묶었던 것이 작동하던 것처럼
+     하나하나의 상품 카드 아이템 카드 영역에 마우스를 올렸을 때 동작했기 때문.
+     뗄 때도 올릴 때랑 동일한 속도로 변경되니 hover에 transition을 주는 것은 아님. 2026-07-05 -->
+
+    <div clss="main">
+        <div class="catalog">
+            <h2>CLEANING</h2>
+            <!-- inline-block이나 inline-flex를 줘서 한줄로 나오게끔 하되,
+             사이즈가 줄어들면 둘둘씩 찢어지게, float를 준 것 같음. 2026-07-06 -->
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/17.png">
+                <p class="description">
+                    Dishwash Gel, Lemon (1.5Ltr)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $8.00
+                    </span>
+                    <span class="raw_price">
+                        $10.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/18.png">
+                <p class="description">
+                    Dish Wash Bar (500 Gm)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $2.00
+                    </span>
+                    <span class="raw_price">
+                        $4.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/19.png">
+                <p class="description">
+                    Air Freshener (50 Gm)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $3.00
+                    </span>
+                    <span class="raw_price">
+                        $5.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/20.png">
+                <p class="description">
+                    toilet cleaner expert (1 Ltr)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $6.00
+                    </span>
+                    <span class="raw_price">
+                        $7.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+        </div>
+        <div class="catalog">
+            <h2>UTENSILS</h2>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/21.png">
+                <p class="description">
+                    princeware packaging container pack (6 No's)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $8.00
+                    </span>
+                    <span class="raw_price">
+                        $10.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/22.png">
+                <p class="description">
+                    signoraware container center press (900 Ml)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $5.00
+                    </span>
+                    <span class="raw_price">
+                        $8.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/23.png">
+                <p class="description">
+                    ship stainless steel sauce pan single (1 Pc)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $6.00
+                    </span>
+                    <span class="raw_price">
+                        $8.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/24.png">
+                <p class="description">
+                    omega stainless steel puri dabba (1 Pc)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $6.00
+                    </span>
+                    <span class="raw_price">
+                        $8.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+        </div>
+        <div class="catalog">
+            <h2>PET FOOD</h2>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/25.png">
+                <p class="description">
+                    food for adult dogs (80 Gms)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $3.00
+                    </span>
+                    <span class="raw_price">
+                        $4.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/26.png">
+                <p class="description">
+                    young adult dogs (1.2 Kg)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $6.00
+                    </span>
+                    <span class="raw_price">
+                        $10.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/27.png">
+                <p class="description">
+                    cat food ocean fish (1.4 Kg)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $6.00
+                    </span>
+                    <span class="raw_price">
+                        $7.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+            <div class="item_card">
+                <img src="https://p.w3layouts.com/demos/july-2016/07-07-2016/grocery_store/web/images/28.png">
+                <p class="description">
+                    chicken in jelly can (400 Gm)
+                </p>
+                <p class="price">
+                    <span class="discount_price">
+                        $7.00
+                    </span>
+                    <span class="raw_price">
+                        $9.00
+                    </span>
+                </p>
+                <div class="addcart">
+                    ADD TO CART
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- contents 영역까지 진행함. footer부분부터 이어서 2026-07-06 -->
+
+    <!-- ------ footer 영역
+     div 2개로 나누고 윗 div 회원가입을 위한 이메일 입력하는 공간 작성해주고
+     이때 Email placeholder, 지금 구독 버튼 위에서 많이 나온대로 hover, transition 활용.
+     아랫 블럭
+     Inline-block이나 flex-inline으로 메뉴들 구성하고
+     마우스 올렸을 때 메뉴 텍스트 진해지거나 연해지는 거 마찬가지로 hover, transition 활용.
+     2026-07-05 -->
+
+
+    <!-- 개발자 도구로 까보니까 초록 띠 div 아래, 뉴스레터 div 위의 영역 전체가
+      하나의 div로 묶여서 세부적으로 들어갔음. 일단 처음 구상했던대로 디자인해보고
+      그 뒤 시간이 남는다면 개발자 도구에서 봤던대로
+      배너로 묶고 세부적으로 들어가는 방식으로도 작성해보기. 2026-07-05 -->
+
+</body>
+
+</html>

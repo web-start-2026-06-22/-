@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let val1 = false;
+
+
+        // 소괄호 안의 값이 참일 때 중괄호 안의 내용을 실행.
+        if (!val1) {
+            console.log('이거 true임');
+        }
+
+        let val2 = true;
+        if (val2) {
+            console.log('참');
+        }
+        if (!val2) {
+            console.log('거짓');
+        }
+
+        let val3 = true;
+        if (val3) {
+            console.log('참');
+        } else {
+            console.log('거짓');
+        }
+
+        let score = 85;
+        if (score >= 60) {
+            console.log('합격');
+        } else {
+            console.log('우리 한 번 더 한다.');
+        }
+
+        if (score < 60) {
+            console.log('불합격');
+        } else {
+            console.log('합격');
+        }
+        if (score < 60) { }
+        if (!(score >= 60)) { }
+
+        if (score >= 90) {
+            console.log('A');
+        }
+        else if (score >= 80) {
+            console.log('B');
+        }
+        else if (score >= 70) {
+            console.log('C');
+        }
+        else {
+            console.log('D');
+        }
+
+        /*
+            js에서
+            참(true)의 정의 : 거짓이 아닌 것 (!거짓)
+
+            거짓 : false, 0, undefined, null, NaN
+        */
+
+        let ac = 17;
+        if (ac < 18) ac = 18;
+
+        let fruit = "apple";
+        if (fruit == 'apple') {
+            console.log('사과')
+        } else if (fruit == 'banana') {
+            console.log('바나나');
+        } else {
+            console.log('뭔지 모름');
+        }
+
+        switch (fruit) {
+            case "apple":
+                console.log("사과");
+                break;
+            case "banana":
+                console.log("바나나");
+                break;
+            default:
+                console.log('모름');
+                break;
+        }
+
+        let phone = 's23';
+        // let phone = prompt("기종을 입력하세요");
+        if (phone == 's23') {
+            console.log('삼성')
+        } else if (phone == 's24') {
+            console.log('삼성');
+        }
+
+        if (phone == 's23' || phone == 's24') {
+            console.log('삼성');
+        }
+
+        switch (phone) {
+            case 's23':
+            case 's24':
+            case 's25':
+            case 's26':
+                console.log('삼성');
+                break;
+            case 'i15':
+            case 'i16':
+            case 'i17':
+                console.log('애플');
+                break;
+            default:
+                console.log('삼성, 애플 아님');
+        }
+
+        // -- 다 풀 수 있어야 함.
+        // 문제1
+        // 아무 숫자나 받아서 다음 형식으로 출력
+        // "양수" 또는 0 또는 "음수"
+
+        // let q1_num = prompt("숫자를 입력하세요.");
+        // if (q1_num > 0) {
+        //     console.log("양수", q1_num);
+        // } else {
+        //     if (q1_num == 0) {
+        //         console.log("0", q1_num);
+        //     } else {
+        //         console.log("음수", q1_num);
+        //     }
+        // }
+
+        // 문제2
+        // "홀수" 또는 "짝수" 출력
+
+        // let q2_num = prompt("숫자를 입력하세요.");
+        // if (q2_num % 2 == 0) {
+        //     console.log("짝수", q2_num);
+        // } else {
+        //     console.log("홀수", q2_num);
+        // }
+
+        // 문제3
+        // 두 수를 받아서
+        // 둘 중에 큰 값을 출력
+        // 예시) 3과 5중에 큰 수 : 5
+
+        // let q3_num1 = prompt("첫번째 숫자를 입력하세요.");
+        // let q3_num2 = prompt("두번째 숫자를 입력하세요.");
+
+        // if (q3_num1 > q3_num2) {
+        //     console.log(`${q3_num1}과 ${q3_num2}중에 큰 수 : ${q3_num1}`);
+        // } else {
+        //     console.log(`${q3_num1}과 ${q3_num2}중에 큰 수 : ${q3_num2}`);
+        // }
+
+        // 문제4
+        // 임의의 money가 있을 때
+        // 7000원 이상이면 "택시타자"
+        // 7000원 미만 ~ 3000원 이상이면 "버스타자"
+        // 3000원 미만이면 "걸어가자"
+
+        // let q4_money = prompt("임의의 금액을 입력하세요.");
+        // if (q4_money >= 7000) {
+        //     console.log("택시타자", q4_money);
+        // }
+        // else if (q4_money >= 3000) {
+        //     console.log("버스타자", q4_money);
+        // }
+        // else {
+        //     console.log("걸어가자", q4_money);
+        // }
+
+
+        //  -- 도전~
+        // 문제5
+        // '가위' '바위' '보' 중에 하나만 입력
+        // 문제 5-1
+        // 컴퓨터는 항상 '바위'만 내는 경우
+        // 문제 5-2
+        // 결과값, 이겼다 졌다 비겼다 출력
+
+        // let q5_text = prompt("가위, 바위, 보 중 하나를 입력하세요.");
+        // let rock = parseInt(Math.random() * 10) % 1;
+
+
+        // 컴퓨터 바위 고정일 경우.
+        // if문
+        // if (q5_text == "보"){
+        //     console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock );
+        // } else if (q5_text == "바위") {
+        //     console.log("비겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock );
+        // } else {
+        //     console.log("졌다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock );
+        // }
+        // switch (q5_text) {
+        //     case '보': {
+        //         console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock);
+        //         break;
+        //     }
+        //     case '바위': {
+        //         console.log("비겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock);
+        //         break;
+        //     }
+        //     case '가위': {
+        //         console.log("졌다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock);
+        //     }
+        // }
+        // let q5_text = prompt("가위, 바위, 보 중 하나를 입력하세요.");
+        // let rand = parseInt(Math.random() * 10) % 3;
+        // let comtext;
+        // if (rand == 0) {
+        //     comtext = "가위";
+        // }
+        // else if (rand == 1) {
+        //     comtext = "바위";
+        // }
+        // else {
+        //     comtext = "보";
+        // }
+        // 0 = 가위, 1 = 바위, 2 = 보
+
+        // switch (q5_text) {
+        //     case '보': {
+        //         switch (comtext) {
+        //             case "가위": {
+        //                 console.log("졌다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "바위": {
+        //                 console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "보": {
+        //                 console.log("비겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //             }
+        //         }
+        //     }
+        //     case '바위': {
+        //         switch (comtext) {
+        //             case "가위": {
+        //                 console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "바위": {
+        //                 console.log("비겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "보": {
+        //                 console.log("졌다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //             }
+        //         }
+        //     }
+        //     case '가위': {
+        //         switch (comtext) {
+        //             case "가위": {
+        //                 console.log("비겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "바위": {
+        //                 console.log("졌다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //                 break;
+        //             }
+        //             case "보": {
+        //                 console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', comtext);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // let rand = Math.random()
+        // console.log(rand);
+
+        // 0 <= 숫자 < 1
+        // rand = parseInt(Math.random() * 10) % 3;
+        // console.log(rand);
+
+        // 문제6
+        // 임의의 수 3개 x, y, z
+        // z가 x~y 사이에 있는지 판단
+
+        // let q6_num1 = prompt("첫 번째 수를 입력하세요.");
+        // let q6_num2 = prompt("두 번째 수를 입력하세요.");
+        // let q6_num3 = prompt("세 번째 수를 입력하세요.");
+
+        // x가 y보다 작은 경우
+        // if (q6_num1 < q6_num2) {
+        // if (q6_num3 >= q6_num2) {
+        // 처음 준 조건. 근데 사이를 벗어난 값, 사이값 둘로 나누는 게 적합하다 판단해 수정.
+        // if (q6_num3 >= q6_num2 || q6_num3 <= q6_num1) {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이를 벗어났습니다.`);
+        // }
+        // else if (q6_num1 < q6_num3 < q6_num2) {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이에 있는 값입니다.`);
+        // }
+        // else {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이에 있는 값입니다.`);
+        // }
+        // else {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이를 벗어났습니다.`);
+        // }
+        // }
+        // x가 y보다 크거나 같을 경우
+        // else {
+        // x, y가 같을 경우.
+        // if (q6_num1 == q6_num2) {
+        //     console.log("사잇값이 존재하지 않습니다.");
+        // }
+        // x가 y보다 클 경우.
+        // else {
+        // if (q6_num3 >= q6_num1) {
+        // 위의 경우와 마찬가지의 이유로 수정.
+        // if (q6_num3 >= q6_num1 || q6_num3 <= q6_num2) {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이를 벗어났습니다.`);
+        // }
+        // else if (q6_num2 < q6_num3 < q6_num1) {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이에 있는 값입니다.`);
+        // }
+        // else {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이에 있는 값입니다.`);
+        // }
+        // else {
+        //     console.log(`${q6_num3}은 두 수 ${q6_num1}, ${q6_num2} 사이를 벗어났습니다.`);
+        // }
+        // }
+
+        // }
+
+        // 문제7
+        // 月을 받아서 계절 출력
+        // 단, 13이나 -1 같은 걸 받으면 "다시 입력하세요." 출력
+
+        // let q7_month = Number(prompt("월을 입력하세요."));
+
+        // // 유효하지 않은 값.
+        // if (q7_month > 12 || q7_month < 1) {
+        //     console.log("다시 입력하세요.");
+        // }
+        // else {
+        //     if (q7_month == 12 || 1 <= q7_month <= 2) {
+        //         console.log("겨울");
+        //     }
+        //     else if (q7_month >= 9 || q7_month <= 11) {
+        //         console.log("가을");
+        //     }
+        //     else if (q7_month >= 6 || q7_month <= 8) {
+        //         console.log("여름");
+        //     }
+        //     else if (q7_month >= 3 || q7_month <= 5) {
+        //         console.log("봄");
+        //     }
+
+
+        // }
+        // 봄, 여름, 가을에서 ||이 아니라 &&.
+        
+        // else {
+        //     if (q7_month == 12 || q7_month <= 2) {
+        //         console.log("겨울");
+        //     }
+        //     else if (q7_month >= 9 && q7_month <= 11) {
+        //         console.log("가을");
+        //     }
+        //     else if (q7_month >= 6 && q7_month <= 8) {
+        //         console.log("여름");
+        //     }
+        //     else if (q7_month >= 3 && q7_month <= 5) {
+        //         console.log("봄");
+        //     }
+
+
+        // }
+
+
+
+        // }
+
+        // let season;
+        // if (q7_month == 1 || q7_month == 2 || q7_month == 12) {
+        //     season = "겨울";
+        // }
+        // else if (q7_month == 3 || q7_month == 4 || q7_month == 5) {
+        //     season = "봄";
+        // }
+        // else if (q7_month == 6 || q7_month == 7 || q7_month == 8) {
+        //     season = "여름";
+        // }
+        // else if (q7_month == 9 || q7_month == 10 || q7_month == 11) {
+        //     season = "가을"
+        // }
+        // 제대로 동작 안 해서 폐기처분.
+
+        // else {
+        //     switch (season) {
+        //         case '봄': {
+        //             console.log("봄");
+        //             break;
+        //         }
+        //         case '여름': {
+        //             console.log("여름");
+        //             break;
+        //         }
+        //         case '가을': {
+        //             console.log("가을");
+        //             break;
+        //         }
+        //         case '겨울': {
+        //             console.log("겨울");
+        //         }
+        //     }
+        // }
+        // 마찬가지로 폐기 처분.
+
+
+        // 문제8
+        // 온도를 입력받아 다음처럼 출력
+        // 예: 32 입력
+        // "영상 32도 입니다"
+        // 예: -3 입력
+        // "영하 3도 입니다."
+
+        // let q8_tem = prompt("온도를 입력하세요.");
+
+        // if (q8_tem > 0) {
+        //     console.log(`영상 ${q8_tem}도 입니다.`);
+        // } else {
+        //     if (q8_tem == 0) {
+        //         console.log("0도입니다.");
+        //     } else {
+        //         console.log(`영하 ${q8_tem}도 입니다.`);
+        //     }
+        // }
+
+        // -- 멘탈 챙길 자신 있으면 도전
+        // 문제9
+        // 시와 분을 입력 받아서 35분 후의 시간 출력
+        // 3, 51 입력
+        // 출력 : 4시 26분
+
+        // let hour = Number(prompt("몇 시?"));
+        // let minute = Number(prompt("몇 분?"));
+
+        // 시 유효성 체크.
+        // if (hour > 23 || hour < 0) {
+        //     console.log("유효하지 않은 값입니다. 다시 입력하세요.");
+        // }
+        // 분 유효성 체크.
+        // if (minute > 59 || minute < 0) {
+        //     console.log("유효하지 않은 값입니다. 다시 입력하세요.");
+        // }
+
+        // if (minute <= 59) {
+        //     if (minute >= 25) {
+        //         hour += 1;
+        // 25분의 35분 뒤: 0분, 30분의 35분 뒤: 5분,
+        // 35분의 35분 뒤: 10분, 40분의 35분 뒤: 15분 = 입력 받은 분 - 25
+        //         minute -= 25;
+        //         if (hour == 24) {
+        //             hour = 0;
+        //             console.log(`${hour}시, ${minute}분`);
+        //         } else {
+        //             console.log(`${hour}시, ${minute}분`);
+        //         }
+        //     } else {
+        //         minute += 35;
+        //         console.log(`${hour}시, ${minute}분`);
+        //     }
+        // }
+
+        // 문제10
+        // 두자리 숫자를 받아서
+        // 10의 자리와 1의 자리가 같은지 판단
+        // 예: 88 => 같음, 89 => 다름
+
+        // let q10_num = prompt("두 자리 수를 입력하세요.");
+
+        // 십의 자리, 일의 자리 저장할 변수 선언.
+        // let q10_fnum = parseInt(q10_num / 10);
+        // let q10_bnum = q10_num % 10;
+
+        // if (q10_fnum == q10_bnum) {
+        //     console.log("같음", q10_num, q10_fnum, q10_bnum);
+        // } else {
+        //     console.log("다름", q10_num, q10_fnum, q10_bnum);
+        // }
+
+        // 문제11
+        // 369게임
+        // 어떤 수를 받아서 3,6,9가 있으면 "박수" 출력, 없으면 그냥 숫자 출력
+        // 예: 31 => 박수 12=>12
+
+        // let q11_num = prompt("수를 입력하세요.");
+        // let q11_thnum;
+        // let q11_hunum;
+        // // let q11_tenum = parseInt(q11_num / 10);
+        // let q11_tenum;
+        // let q11_onnum = q11_num % 10;
+
+        // // 입력받은 수 0인지 확인.
+        // if (q11_num != 0){
+        //     // 자릿수, 자리별 숫자 확인.
+        //     if (q11_num % 10000 == q11_num){
+        //         q11_thnum = parseInt(q11_num / 1000);
+        //         q11_hunum = parseInt((q11_num / 100)%10);
+        //         q11_tenum = parseInt((q11_num / 10)%10);
+        //         if (q11_num % 1000 == q11_num){
+        //             q11_hunum = parseInt(q11_num / 100);
+        //             q11_tenum = parseInt((q11_num / 10)%10);
+        //             if (q11_num % 100 == q11_num){
+        //                 q11_tenum = parseInt(q11_num / 10);
+        //             }
+        //         }
+        //     }
+        // // 0일 경우
+        // } else {
+        //     console.log("0");
+        // }
+
+        // console.log(q11_thnum, q11_hunum, q11_tenum, q11_onnum);
+
+        // // if ((q11_thnum || q11_hunum || q11_tenum || q11_onnum) == 3
+        // // || (q11_thnum || q11_hunum || q11_tenum || q11_onnum) == 6
+        // // || (q11_thnum || q11_hunum || q11_tenum || q11_onnum) == 9 ){
+        // if ((q11_thnum == 3 || q11_thnum == 6 || q11_thnum == 9)
+        // || (q11_hunum == 3 || q11_hunum == 6 || q11_hunum == 9)
+        // || (q11_tenum == 3 || q11_tenum == 6 || q11_tenum == 9)){
+        //     console.log("박수");
+        // }else{
+        //      console.log(`${q11_num}`);
+        // }
+
+
+        // 입력받은 수가 0인지 확인.
+        // if (q11_num != 0) {
+        // 자릿수 구분. 4자리까지.
+        //     if (q11_num % 10000 == q11_num) {
+        // 세자리수 100의 자리
+        //         if (q11_num % 1000 == q11_num) {
+        //             if (q11_num % 100 == q11_num) {
+        // 10의 자리.
+        //                 q11_tenum = parseInt(q11_num / 10);
+        //                 if ((q11_tenum % 3) == 0) {
+        //                     console.log("박수");
+        //                 } else {
+        // 1의 자리.
+        // if (q11_onnum == 3 || q11_onnum == 6 || q11_onnum == 9)
+        // % 3 == 0이 더 깔끔할 것 같음. + 변수명 수정. 네자리까지 확장하기 위해.
+        // + % 3 == 0 주면 0도 박수처리 해서 의도와 다르게 동작. 원래대로 돌리는 게 맞을 듯.
+        // if ((q11_onnum % 3) == 0)
+
+        //                     if (q11_onnum == 3 || q11_onnum == 6 || q11_onnum == 9) {
+        //                         console.log("박수");
+        //                     }
+        //                     else {
+        //                         console.log(`${q11_num}`);
+        //                     }
+        //                 }
+        //             } else {
+        //                 q11_hunum = parseInt(q11_num / 100);
+        //                 if ((q11_hunum % 3 == 0)) {
+        //                     console.log("박수");
+        //                 } else {
+        //                     console.log(`${q11_num}`);
+        //                 }
+        //             }
+        //         } else {
+        //             q11_thnum = parseInt(q11_num / 1000);
+        //             if ((q11_thnum % 3 == 0)) {
+        //                 console.log("박수");
+        //             } else {
+        //                 console.log(`${q11_num}`);
+        //             }
+        //         }
+        //     } else {
+        //         console.log("10000 이상의 수는 지원하지 않습니다. 다시 입력하세요.");
+        //     }
+        // } else {
+        //     console.log("0");
+        // }
+
+        // 문제12
+        // 사각형에서
+        // 좌상단 좌표 : x1:10, y1:20
+        // 우하단 좌표 : x2:90, y2:100
+        // 입력받은 좌표가 사각형에 겹치는가?
+
+        // let q12_axis_x = Number(prompt("x좌표를 입력해주세요."));
+        // let q12_axis_y = Number(prompt("y좌표를 입력해주세요."));
+
+        // if ((q12_axis_x >= 10 && q12_axis_x <= 90) && ((q12_axis_y >= 20) && q12_axis_y <= 100)) {
+        //     console.log("입력받은 좌표는 사각형에 겹칩니다.");
+        // } else {
+        //     console.log("입력받은 좌표는 사각형에 겹치지 않습니다");
+        // }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

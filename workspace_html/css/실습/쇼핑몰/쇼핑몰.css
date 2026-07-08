@@ -1,0 +1,382 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* 해당 홈페이지에서 쓸 초록색. */
+    --hpgreen: #84C639;
+
+    /* 해당 홈페이지에서 쓸 검은색 */
+    --hpblack: #212121;
+
+    /* 해당 홈페이지에서 쓸 빨간색 2026-07-05 */
+    --hpred: #FA1818;
+}
+
+.header {
+    /* border: 1px solid red; */
+    background-color: var(--hpblack);
+
+    width: 100%;
+    height: 80px;
+
+    max-height: 80px;
+
+    border-top-left-radius: 10%;
+
+    position: fixed;
+
+    /* 안 주니까 아래에 작성한 background에 의해 가려짐.
+    static 외의 position은 웬만하면 z-index를 부여해주자. 2026-07-06 */
+    z-index: 2;
+}
+
+/* .header .header_box {
+    border: 1px dotted blue;
+    display: inline-flex;
+} */
+/* button이 더 적합할 것 같아 주석처리. 2026-07-05 */
+
+.offer {
+    /* background-color: #84C639; */
+    background-color: var(--hpgreen);
+    color: white;
+
+    /* 임시값 */
+    /* width: 300px; */
+    width: 25%;
+    /* height: 50px; */
+    height: 70%;
+
+    /* line-height: 50px; */
+    text-align: center;
+    font-size: 1.2em;
+
+    float: left;
+}
+
+.searchfield {
+
+    /* 임시값 */
+    /* width: 300px; */
+    width: 25%;
+    /* height: 50px; */
+    height: 60%;
+
+    font-size: 1em;
+
+    float: left;
+
+    margin-left: 80px;
+}
+
+/* .searchfield:after {
+    content: "검색";
+    width: 50px;
+    font-size: 10px;
+} */
+/* input엔 안 붙는 것 같다 2026-07-05 */
+
+.search {
+    background-color: var(--hpred);
+    color: white;
+
+    /* 임시값 */
+    width: 5%;
+    height: 70%;
+}
+
+.cart {
+    border: 1px solid var(--hpgreen);
+    background-color: var(--hpblack);
+    color: white;
+
+    /* 임시값 */
+    width: 12.5%;
+    height: 70%;
+
+    font-size: 1em;
+
+    margin-left: 40px;
+}
+
+.contact {
+    background-color: var(--hpred);
+    color: white;
+
+    /* 임시값 */
+    width: 10%;
+    height: 70%;
+
+    font-size: 1em;
+
+    float: right;
+}
+
+.member {
+    background-color: var(--hpblack);
+    color: white;
+
+    /* 임시값 */
+    height: 70%;
+
+    float: right;
+    margin-right: 40px;
+}
+
+.menu {
+    /* border: 2px solid purple; */
+    /* margin-top: 80px; */
+    /* margin보단 Padding을 주는 게 적합해보임. height로 높이를 줬으니까. 2026-07-06*/
+
+    /* 임시값 */
+    height: 15%;
+    width: 100%;
+
+    padding-top: 80px;
+}
+
+.menucont {
+    /* display: inline-block; */
+    /* 상단의 menu를 flex를 주고 옆으로 늘여트리기 위해 수정. 2026-07-06 */
+    display: inline-flex;
+    border: 2px solid red;
+
+    width: 60%;
+
+    /* vertical-align: top; */
+    /* 주석처리하니까 메뉴 텍스트들이 의도했던 위치에 배치됐다. 왜 됐지? 2026-07-06 */
+}
+
+.logo {
+    /* 임시값 */
+    width: 20%;
+    height: 100%;
+
+    font-size: 3em;
+    font-weight: bold;
+
+    /* text-align: center; */
+    /* inline-block으로 줬었기에 text-align을 사용했으나,
+    flex로 변경했기에 주석처리 2026-07-06 */
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    margin-right: 10%;
+}
+
+.logomenu {
+    border: 2px solid blue;
+    display: flex;
+
+    flex-direction: column;
+    align-content: space-around;
+    /* 접근 자체는 맞았는데 inline-flex로 줄 거면 텍스트 하나하나를 div로 나눠줘야 함.
+        물론 원본 페이지에서 쓰인 건 ul, li라 원본 페이지 그대로 만들기엔 적합하지 않으나,
+        떠올렸던 방식으로 먼저 구현해보고자 함. 2026-07-06 */
+
+    /* 임시값 */
+    width: 40%;
+    /* height: 10%; */
+
+    text-align: center;
+
+    font-size: 0.9em;
+
+    /* margin-left:10%; */
+    /* 여기에 주면 메뉴들끼리 margin을 먹는다. 로고에 margin-right를 줘서 간격을 주자.
+    2026-07-06 */
+}
+
+.d_line {
+    background-color: var(--hpgreen);
+
+    /* 임시값 */
+    height: 6%;
+
+    padding-left: 10%;
+
+    font-size: 1.1em;
+
+    /* box-sizing: border-box; */
+}
+
+.d_line>span {
+    padding-right: 5%;
+    color: white;
+}
+
+/* .d_linet {
+    display: inline-flex;
+} */
+/* 불필요한 flex인 것 같아서 주석처리.
+ 단순한 text이기도 하고 Households 같은 현재 선택돼있는 카테고리의 경우
+ 자바스크립트 같은 것으로 받아와야될 것으로 보임. 2026-07-06 */
+
+.category {
+    /* border: 2px solid black; */
+    width: 100%;
+
+    /* 임시값 */
+    height: 40%;
+    /* vertical-align: top; */
+}
+
+.cate {
+    /* border: 2px solid black; */
+    display: inline-block;
+
+    /* 임시값 */
+    width: 20%;
+    height: 100%;
+
+    vertical-align: top;
+    /* box-sizing: border-box; */
+}
+
+.cate>ul {
+    /* list 앞의 점?을 없애주기 위해. 2026-07-06 */
+    /* border: 1px solid blue; */
+    list-style: none;
+    /* border-bottom: 1px solid gray; */
+    /* 여기 주면 목록의 끝에 출력됨.
+    = 의도했던 것과 다름. 의도한 것은 항목별 공간 구분을 위한 선긋기.
+    즉, ul의 li에 border-bottom을 줘야함. 2026-07-06  */
+    /* width: 50%; */
+
+}
+
+/* .cate>ul>li { */
+/* border-bottom: 1px solid gray; */
+/* 이것도 의도했던 것과 다르게 동작.
+    리스트의 시작지점부터 밑줄이 쳐지기 때문에 그런 것 같아 보이는데
+    padding-left를 주면 해결은 되나, 리스트 항목들까지 왼쪽으로 붙으니
+    일단 주석처리. 아마 after를 쓰면 해결되지 않을까? 2026-07-06 */
+/* box-sizing: border-box; */
+/* padding: 20% auto; */
+/* 의도했던 것과 다르게 동작. 일단 주석처리 2026-07-06 */
+/* } */
+
+.background {
+    background-color: var(--hpgreen);
+    /* 임시로 background-color를 넣었는데 임의의 이미지로 변경하기 위해 주석처리 2026-07-06 */
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTfcB1NnULAVwTNt6Oj3pRWq5H_H1Iu5UZNQetJZrTdg&s=10);
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+
+    /* 임시값 */
+    width: 79%;
+    height: 100%;
+    position: relative;
+}
+
+.background>.textbox {
+    background-color: white;
+    color: var(--hpred);
+
+    /* 임시값 */
+    width: 50%;
+    height: 30%;
+
+    /* padding: 10%, 20%;
+    box-sizing: border-box;
+    text-align: center; */
+    /* 규격 조정을 위해 작성했으나 일단 주석처리. 2026-07-06 */
+
+    font-size: 2em;
+
+    /* position: absolute를 부여해,
+    부모 div class="background"를 기준점으로 위치 조정할 수 있게 해줌. 2026-07-06 */
+    position: absolute;
+
+    /* 부모 div의 중앙으로 이동 */
+    top: 50%;
+    left: 50%;
+
+    /* 요소 본인의 중심 좌표값만큼 이동해 조정. */
+    transform: translate(-50%, -50%);
+
+}
+
+.catalog {
+    /* border: 1px solid purple; */
+    width: 80%;
+    margin-left: 20%;
+}
+
+.catalog .item_card {
+    /* border: 2px solid hotpink; */
+    display: inline-block;
+
+
+    /* 임시값 */
+    width: 22%;
+
+    /* padding: 0 5%; */
+    text-align: center;
+    vertical-align: top;
+
+    box-sizing: border-box;
+}
+
+.catalog .item_card .description {
+    text-align: left;
+    word-break: break-all;
+}
+
+/* .price {
+    color: gray;
+    text-align: left; */
+/* text-decoration: line-through; */
+/* } */
+/* 공통으로 줬던 색상 원가로 분리. 2026-07-06 */
+
+/* .price span {
+    margin-right: 10%;
+    color: black;
+
+    font-weight: bold; */
+/* text-decoration: none; */
+/* none으로 될 줄 알았는데 안 되네. 수정해야됨. 2026-07-06  */
+/* } */
+/* 원가, 할인가 클래스 분리. 2026-07-06 */
+
+.price {
+    text-align: left;
+}
+
+.discount_price {
+    margin-right: 10%;
+    font-weight: bold;
+}
+
+.raw_price {
+    color: gray;
+    text-decoration: line-through;
+}
+
+/* .price:not(span) {
+    color: gray; */
+/* line-through */
+/* 만 기억났는데 text-decoration: line-through와 같은 형태로 사용. 2026-07-06 */
+/* text-decoration: line-through;
+} */
+/* 취소선 처리된 원가에만 주려고 했으나 실패. 그래서 price 전체에 주고
+span으로 묶은 볼드처리된 할인가에서 text-decoration을 없애는 방향으로 수정. 2026-07-06 */
+
+.addcart {
+    background-color: var(--hpred);
+    color: white;
+
+    /* 임시값 */
+    width: 80%;
+    /* padding: 0 5%; */
+    /* padding은 해당 div 영역 안쪽에 영향을 주는 것이므로 적절하지 않음. 2026-07-06 */
+    margin: 0 10% 5%;
+
+}
