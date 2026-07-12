@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let i = 1;
+        // while (i <= 10) {
+        //     console.log(i);
+        //     i++;
+        // }
+        // 횟수가 정해져있을 때, for문
+        // 횟수가 정해져있지 않을 때 while.
+
+        // 메뉴 입력받기
+        // "1:커피, 2:홍차, 0:종료"
+        // let menu;
+        // if (menu == 1) {
+        //     console.log('커피 드릴게요');
+        // }
+        // else if (menu == 2) {
+        //     console.log('홍차 드릴게요');
+        // }
+        // else if (menu == 0) {
+        //     console.log('종료합니다.');
+        // }
+        // else {
+        //     console.log('정확히 입력해 주세요.');
+        // }
+
+        // menu = prompt('1:커피, 2:홍차, 0:종료');
+        // while (menu != 0) {
+        //     // while (true ){ }
+        //     // menu = prompt('1:커피, 2:홍차, 0:종료');
+
+        //     if (menu == 1) {
+        //         console.log('커피 드릴게요');
+        //     }
+        //     else if (menu == 2) {
+        //         console.log('홍차 드릴게요');
+        //     }
+        //     else if (menu == 0) {
+        //         console.log('종료합니다.');
+        //     }
+        //     else {
+        //         console.log('정확히 입력해 주세요.');
+        //     }
+        // }
+
+        // do {
+
+        //     menu = prompt('1:커피, 2:홍차, 0:종료');
+
+        //     if (menu == 1) {
+        //         console.log('커피 드릴게요');
+        //     }
+        //     else if (menu == 2) {
+        //         console.log('홍차 드릴게요');
+        //     }
+        //     else if (menu == 0) {
+        //         console.log('종료합니다.');
+        //     }
+        //     else {
+        //         console.log('정확히 입력해 주세요.');
+        //     }
+        // } while (menu != 0)
+
+        // 문제 통장관리
+
+        // 잔고 0 시작.
+
+        // 입금, 출금, 잔액보기, 종료
+
+        // 입금할 때 : 음수 불가
+        // 출금할 때 : 음수 불가, 잔액보다 큰 금액 불가
+
+        // let bal = 0;
+        // let balmenu;
+        // // isNaN: 숫자가 아니면 true, 숫자면 false
+        // do {
+        //     balmenu = prompt("1:입금, 2:출금, 3:잔액보기, 0:종료 중 입력하세요.");
+        //     if (balmenu == 1) {
+        //         let income = Number(prompt("입금할 금액을 입력하세요."));
+        //         if (income < 0) {
+        //             console.log("음수는 입금하실 수 없습니다.");
+        //         } else if (
+        //             // (typeof income) != 'number'
+        //             (isNaN(income)) == true
+        //         ) {
+        //             console.log("유효값이 아닙니다.");
+        //         } else {
+        //             bal += income;
+        //             console.log(`${income}원 입금되었습니다. 현재 잔고는 ${bal}원입니다.`);
+        //         }
+        //     }
+        //     else if (balmenu == 2) {
+        //         let outcome = Number(prompt("출금할 금액을 입력하세요."));
+        //         if (outcome > bal) {
+        //             console.log(`출금할 금액이 잔액을 초과할 수 없습니다. 현재 잔액은 ${bal}입니다.`);
+        //         } else if ((isNaN(outcome)) == true) {
+        //             console.log("유효값이 아닙니다.");
+        //         }
+        //         else if (outcome < 0) {
+        //             console.log("음수는 출금하실 수 없습니다.");
+        //         }
+        //         else {
+        //             bal -= outcome;
+        //             console.log(`${outcome}원 출금되었습니다. 현재 잔고는 ${bal}원입니다.`);
+        //         }
+        //     }
+        //     else if (balmenu == 3) {
+        //         console.log(`현재 잔액은 ${bal}원입니다.`);
+        //     }
+        //     else {
+        //         if (balmenu == 0) {
+        //             continue;
+        //         }
+        //         console.log("유효값이 아닙니다.");
+        //     }
+        // } while (balmenu != 0)
+        // console.log("안녕히 가세요.");
+
+
+        // 문제2
+        // 주사위를 던져서 3이 나올 때까지 반복하고
+        // 몇 번만에 나왔는가를 출력
+
+        // let dicecount = 0;
+        // let dicenum = Number(prompt("주사위를 던집니다. 1~6까지의 수를 고르세요."));
+        // let randice;
+
+        // do {
+        //     // dicenum = Number(prompt("주사위를 던집니다. 1~6까지의 수를 고르세요."));
+        //     // 여기 두면 매 루프마다 입력 받음. 1회에 나오지 않으면 영원히 안 뜨는 게 반복.
+
+        //     randice = parseInt(Math.random() * 6) + 1
+
+        //     if (dicenum < 1 || dicenum > 6) {
+        //         console.log("주사위의 수는 1~6까지입니다. 다시 입력하세요.");
+        //         break;
+        //     }
+        //     else if (isNaN(dicenum) == true) {
+        //         console.log("문자는 입력하실 수 없습니다. 다시 입력하세요.");
+        //         break;
+        //     }
+        //     // while (true) {
+        //     //     randice = parseInt(Math.random() * 6) + 1
+        //     //     dicecount++;
+        //     // }
+        //     dicecount++;
+        // } while (dicenum != randice)
+        // if (dicecount == 0) {
+        //     console.log("유효한 값이 아닙니다.");
+        // } else {
+        //     console.log(`${dicenum}은 ${dicecount}회 만에 등장했습니다.`);
+        // }
+
+        //  정사각형의 border 구현
+        /*
+            입력 : 4
+            ++++
+            +__+
+            +__+
+            ++++
+
+            입력 : 5
+            +++++
+            +___+
+            +___+
+            +++++
+
+        */
+
+        // let square = Number(prompt("정사각형의 한 변의 길이를 입력하세요."));
+        // let m = '+';
+        // let s = '_';
+        // let draw_square = ''
+
+        // if (square < 3) {
+        //     console.log("표현하고자 하는 정사각형은 최소 3을 요구합니다.");
+        // } else if (isNaN(square) == true) {
+        //     console.log("문자는 유효값이 아닙니다.");
+        // }
+        // else {
+
+
+        //     // 첫줄, 마지막줄에만 +가 square로 받은 횟수만큼 출력,
+        //     // 그 외의 줄은 양쪽 끝 하나씩, 나머지 _
+        //     for (let i = 1; i <= square; i++) {
+        //         draw_square = '';
+        //         if (i == 1 || i == square) {
+        //             // draw_square += m;
+        //             // 이 상태 그대로면 1회 출력.
+        //             for (let k = 1; k <= square; k++) {
+        //                 draw_square += m;
+        //             }
+        //         } else {
+        //             if (square == 3) {
+        //                 draw_square += m;
+        //                 draw_square += s;
+        //             } else {
+        //                 draw_square += m;
+        //                 // 이것만 있으면 끝에 닫히질 않음.
+
+        //                 // for (let j = 2; j <= square - 1; j++)
+        //                 // 이러면 닫히는 모서리 없이 공백이 모서리까지.
+        //                 // 3일 떄가 이상하게 동작.
+        //             }
+        //             for (let j = 2; j <= square - 2; j++) {
+        //                 draw_square += s;
+        //             }
+        //             draw_square += m;
+        //         } console.log(draw_square);
+
+        //     }
+        // }
+
+        /*
+        // 업다운 게임
+        // 1~100까지 임의의 정답이 있을 때
+        // 정답보다 낮은 숫자 : "UP"
+        // 정답보다 높은 숫자 : "DOWN"
+        // 정답까지 걸린 시도 횟수 출력
+
+        */
+
+        // 변수 3개 선언. 횟수를 담을 변수, 1~100까지 랜덤한 숫자를 담을 변수.
+        // + 정답을 입력받을 변수.
+        // let co_cnt = 0;
+        // let rannum = parseInt(Math.random() * 100 + 1);
+        // let correct;
+
+        // do {
+        //     correct = Number(prompt("1~100까지의 수를 입력하세요."));
+        //     if (correct < 1 || correct > 100) {
+        //         console.log("1~100까지의 수를 벗어났습니다.");
+        //         break;
+        //     }
+        //     else if (isNaN(correct) == true) {
+        //         console.log("문자는 유효값이 아닙니다.");
+        //         break;
+        //     }
+        //     if (correct < rannum) {
+        //         console.log(`입력하신 수 ${correct}는 임의의 수보다 작습니다.`);
+        //     }
+        //     else if (correct > rannum) {
+        //         console.log(`입력하신 수 ${correct}는 임의의 수보다 큽니다.`);
+        //     }
+        //     co_cnt++;
+        // } while (correct != rannum)
+        // console.log(`${rannum}을 맞추기까지 ${co_cnt}회 걸리셨습니다.`);
+
+
+
+        // 숫자야구 게임
+        // 임의의 3자리 숫자인 정답이 있을 때
+        // 스트라이크 : 숫자와 자리가 맞은 개수
+        // 볼 : 숫자는 정답에 있지만 자리가 틀린 수
+        // 아웃 : 하나도 안맞음
+        /*
+            예 : [123]이 정답일 때
+            145 : 1스트라이크
+            135 : 1스트라이크 1볼
+            367 : 1스트라이크
+            328 : 2볼
+        */
+
+        // Math.random() * 999 + 1을 주면 될 거라 생각...했는데 이러면 1~999까지.
+        // 100 이상을 뽑아내야 한다. 어떻게 해야될까?
+        // 1. 세 자릿수 미만의 수가 임의로 설정됐을 경우를 if 조건문으로 캐치해서 재생성.
+        // 2. ...? 일의 자리 수라면 100을 곱해주고 십의 자리 수라면 10을 곱해주면 어떨까
+        // 변수 선언? 5개.를 해도 되는데 위에 선언한 변수 초기화 후 재사용해도 될 듯. 3개만.
+        // - 2026-07-09
+        // 변수 백의 자리 1~9, 십의 자리 1~9, 일의 자리 0~9 rand 3번 돌리기
+        // 스트라이크 카운트, 볼 카운트, 정답 맞추기까지의 횟수 카운트, 정답을 입력받을 변수.
+        // 입력받은 수 백의 자리, 십의 자리, 일의 자리 담을 변수까지 선언.
+
+        // // 임의의 세 자리수 변수.
+        // let rand_hun = parseInt(Math.random() * 9) + 1;
+        // let rand_ten = parseInt(Math.random() * 9) + 1;
+        // let rand_one = parseInt(Math.random() * 10);
+        // // 합치기
+        // let rand_num = rand_hun * 100 + rand_ten * 10 + rand_one;
+
+        // // 스트라이크, 볼 개수
+        // let strike_cnt = 0, ball_cnt = 0;
+        // // 정답 맞추기까지의 횟수, 정답을 입력받을 변수 재사용을 위해 초기화.
+        // // 하려 했는데 그냥 선언해야될 듯. 위 주석처리하고.
+        // let co_cnt = 0;
+        // let correct;
+
+        // let co_hun = 0, co_ten = 0, co_one = 0;
+
+        // do {
+        //     // 루프를 돌 때마다 리셋
+        //     strike_cnt = 0, ball_cnt = 0;
+        //     correct = Number(prompt("숫자 야구를 시작합니다. 100~999까지의 수 중 하나를 입력하세요."));
+        //     if (correct > 999 || correct < 100 || correct < 0) {
+        //         console.log("유효한 값이 아닙니다. 다시 입력하세요.");
+        //     }
+        //     co_hun = parseInt(correct / 100);
+        //     co_ten = parseInt((correct / 10) % 10);
+        //     co_one = correct % 10;
+
+        //     // 세 자리 중 두 자리가 같을 경우.
+        //     // && 는 논리곱이라 우선순위가 높으므로 각 자리수 비교를 괄호로 묶어주기.
+
+        //     // 원 스트라이크 + 2볼, 1볼일 경우 체크가 안 될 것 같다.
+        //     if (((rand_hun == co_hun) && (rand_ten == co_ten))
+        //         || ((rand_hun == co_hun) && (rand_one == co_one))
+        //         || ((rand_ten == co_ten) && (rand_one == co_one))) {
+        //         // strike 2개 부여.
+        //         strike_cnt = 2;
+        //         console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
+        //     }
+        //     // 세 자리 중 한 자리가 같을 경우.
+        //     else if ((rand_hun == co_hun)
+        //         || (rand_ten == co_ten)
+        //         || (rand_one == co_one)) {
+        //         // strike 1개 부여.
+        //         strike_cnt = 1;
+        //         console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
+        //     }
+        //     // 세 자리 중 정확히 일치하는 수가 없는 경우.
+        //     else {
+        //         // 자리의 위치는 다르나, 임의의 수 중 2가지는 맞춘 경우.
+        //         if ((rand_hun == co_ten || rand_hun == co_one) && (rand_ten == co_one)) {
+        //             ball_cnt = 2;
+        //             console.log(`${baa_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+        //         }
+        //         else {
+        //             // 자리의 위치는 다르나, 임의의 수 중 1가지는 맞춘 경우.
+        //             if (rand_hun == co_hun) {
+        //                 ball_cnt = 1;
+        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+        //             }
+        //             else if (rand_hun == co_one) {
+        //                 ball_cnt = 1;
+        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+        //             }
+        //             else if (rand_ten == co_one) {
+        //                 ball_cnt = 1;
+        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+        //             }
+        //             // 위치도 숫자도 맞추지 못한 경우
+        //             else {
+        //                 console.log(`아웃입니다. 입력하신 수는 ${correct}입니다.`);
+        //             }
+        //         }
+        //     }
+        //     co_cnt++;
+
+
+        //     // 백의 자리, 십의 자리, 일의 자리가 모두 동일할 때까지 반복
+        //     // 논리곱이라 각각 괄호로 묶어주기.
+        // }
+        // // while ((rand_hun != co_hun) && (rand_ten != co_ten) && (rand_one != co_one))
+        // while (rand_num != correct)
+        // // 될 줄 알았는데 안 됨 조건 설정을 실수했는지 || 처럼 동작
+        // // 그래서 위에서 각각의 자리 수를 임의로 지정하고 합친 걸 담는 변수를 추가 선언해줌.
+        // console.log(`입력하신 수 ${correct}는 정답입니다. 정답까지 ${co_cnt}회 걸리셨습니다.`);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

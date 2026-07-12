@@ -180,7 +180,53 @@
             }
             console.log()
         }
-        // console.log('합 k :' + hap9);
+        console.log('합 9 :' + hap9);
+
+        for (let i = 1; i <= 6; i++) {
+            // 1~45의 숫자 랜덤으로 뽑기
+            let lotto = parseInt(Math.random() * 45) + 1;
+
+            console.log(lotto);
+        }
+
+        for (let i = 1; i <= 100; i++) {
+            if (i > 10) {
+                console.log(i, '종료합니다');
+                break;
+            }
+            console.log(i);
+        }
+
+        // 총 4층의 주차건물이 있습니다.
+        // 각 층에는 10대의 자리가 있다.
+        // 내 차는 1층 첫번째부터 17번째 자리에 있다.
+        let count = 0;
+        let flag = false;
+        for (let i = 1; i <= 4; i++) {
+
+            for (let j = 1; j <= 10; j++) {
+                count++;
+                console.log(i, j, count + '번째');
+
+                if (count >= 17) {
+                    // i = 5 를 주면 i <= 4에서 벗어나 즉시 종료.
+                    // i = 5;
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag == true) {
+                break;
+            }
+            // console.log('한층 끝');
+        }
+
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                continue;
+            }
+            console.log(i);
+        }
 
     </script>
 </head>

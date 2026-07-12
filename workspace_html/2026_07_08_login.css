@@ -1,0 +1,32 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.loginsection {
+    background-color: black;
+    border: 2px solid gray;
+
+    display: flex;
+
+    /* 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
+
+    width: 30%;
+    height: 20%;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.inputID,
+.inputPW {
+    font-size: 2em;
+}

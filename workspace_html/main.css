@@ -1,0 +1,33 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.noticeboard {
+    border-top: 1px solid black;
+    width: 80%;
+    height: 500px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+table {
+    /* border: 1px solid gray; */
+    width: 100%;
+}
+
+p {
+    text-align: center;
+}
+
+p>strong {
+    margin-right: 10px;
+}

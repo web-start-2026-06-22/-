@@ -1,0 +1,69 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    /* border: 2px solid plum; */
+    width: 100%;
+}
+
+.loginsection {
+    border: 2px solid blue;
+
+    background-color: #233340;
+
+    display: flex;
+
+    /* 내부 컨텐츠(id 입력창, PW 입력창, 로그인 버튼 등 가운데 정렬 */
+    align-items: center;
+    justify-content: center;
+
+    width: 500px;
+    height: 250px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+p {
+    /* font-size: 0.5em; */
+    /* border: 2px solid red; */
+
+    color: #F5F5F5;
+
+    text-align: center;
+
+    /* padding-bottom: 20px; */
+
+}
+
+input {
+    background-color: #233340;
+    color: #6c767B;
+    padding: 0 auto;
+    width: 400px;
+    height: 20px;
+    margin: 10px 0;
+}
+
+/* 입력창 활성화 시 */
+input:focus {
+    color: #F5F5F5;
+}
+
+button {
+    background-color: #1AB68E;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5em;
+    padding: 0 auto;
+    width: 400px;
+    height: 40px;
+    margin-bottom: 10px;
+}

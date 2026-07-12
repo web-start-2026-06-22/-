@@ -187,6 +187,7 @@
 
 
         // 컴퓨터 바위 고정일 경우.
+        // 가위바위보 외의 것을 했을 경우를 잡아줘야함.
         // if문
         // if (q5_text == "보"){
         //     console.log("이겼다", '내가 낸 것 :', q5_text, '컴퓨터가 낸 것 :', rock );
@@ -355,7 +356,7 @@
 
         // }
         // 봄, 여름, 가을에서 ||이 아니라 &&.
-        
+
         // else {
         //     if (q7_month == 12 || q7_month <= 2) {
         //         console.log("겨울");
@@ -423,12 +424,18 @@
 
         // let q8_tem = prompt("온도를 입력하세요.");
 
+        // if (q8_tem < 0) {
+        //     q8_tem *= -1;
+        // }
+
+
         // if (q8_tem > 0) {
         //     console.log(`영상 ${q8_tem}도 입니다.`);
         // } else {
         //     if (q8_tem == 0) {
         //         console.log("0도입니다.");
         //     } else {
+        //         q8_tem *= -1;
         //         console.log(`영하 ${q8_tem}도 입니다.`);
         //     }
         // }
@@ -499,21 +506,21 @@
         // let q11_onnum = q11_num % 10;
 
         // // 입력받은 수 0인지 확인.
-        // if (q11_num != 0){
+        // if (q11_num != 0) {
         //     // 자릿수, 자리별 숫자 확인.
-        //     if (q11_num % 10000 == q11_num){
+        //     if (q11_num % 10000 == q11_num) {
         //         q11_thnum = parseInt(q11_num / 1000);
-        //         q11_hunum = parseInt((q11_num / 100)%10);
-        //         q11_tenum = parseInt((q11_num / 10)%10);
-        //         if (q11_num % 1000 == q11_num){
+        //         q11_hunum = parseInt((q11_num / 100) % 10);
+        //         q11_tenum = parseInt((q11_num / 10) % 10);
+        //         if (q11_num % 1000 == q11_num) {
         //             q11_hunum = parseInt(q11_num / 100);
-        //             q11_tenum = parseInt((q11_num / 10)%10);
-        //             if (q11_num % 100 == q11_num){
+        //             q11_tenum = parseInt((q11_num / 10) % 10);
+        //             if (q11_num % 100 == q11_num) {
         //                 q11_tenum = parseInt(q11_num / 10);
         //             }
         //         }
         //     }
-        // // 0일 경우
+        //     // 0일 경우
         // } else {
         //     console.log("0");
         // }
@@ -524,11 +531,13 @@
         // // || (q11_thnum || q11_hunum || q11_tenum || q11_onnum) == 6
         // // || (q11_thnum || q11_hunum || q11_tenum || q11_onnum) == 9 ){
         // if ((q11_thnum == 3 || q11_thnum == 6 || q11_thnum == 9)
-        // || (q11_hunum == 3 || q11_hunum == 6 || q11_hunum == 9)
-        // || (q11_tenum == 3 || q11_tenum == 6 || q11_tenum == 9)){
+        //     || (q11_hunum == 3 || q11_hunum == 6 || q11_hunum == 9)
+        //     || (q11_tenum == 3 || q11_tenum == 6 || q11_tenum == 9)
+        //     || (q11_onnum == 3 || q11_onnum == 6 || q11_onnum == 9)
+        // ) {
         //     console.log("박수");
-        // }else{
-        //      console.log(`${q11_num}`);
+        // } else {
+        //     console.log(`${q11_num}`);
         // }
 
 
