@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        const str = "기사도가 죽었을 리가";
+
+        // 문자열의 길이
+        console.log('str.length :', str.length);
+
+        // indexOf
+        // 동일한 글씨 찾기
+        // 있으면 동일한 첫번째 글씨 index 반환
+        // 없으면 -1
+
+        console.log('죽었', str.indexOf('죽었'));
+        console.log('가', str.indexOf('가'));
+        console.log('나', str.indexOf('나'));
+
+        // replace
+        // 첫 번째 전달인자를 두 번째 전달인자로 바꾼다.
+        let s1 = str.replace('죽었', '살았');
+        console.log(str);
+        console.log(s1);
+
+        let s2 = str.replace('가', '나');
+        console.log(s2);
+
+        // 정규 표현식
+        s2 = str.replace(/가/g, '나');
+        console.log(s2);
+
+        // slice
+        // 시작부터 끝 바로 앞까지 복사
+        // 배열 쪽에서 넘어온 것.
+        console.log(str.slice(3, 6));
+
+        // split
+        // 구분자로 배열을 돌려준다.
+        console.log(str.split(' '));
+
+        // substring slice와 동일.
+        let s = str.substring(3, 6);
+        console.log(str);
+        console.log(s);
+
+        // substr
+        // 시작 index부터 몇 개
+        s = str.substr(3, 7);
+        console.log(s);
+
+        // trim
+        let str2 = "    1 2  3   ";
+        s = str2.trim();
+        console.log(s);
+
+        str2 = "abc";
+        if (str2.length != 0) { };
+        if (str2.trim().length != 0) { };
+
+        // 문제1
+        // 어떤 이메일에서 id만 출력하기.
+
+        // let q1_email = prompt("이메일을 입력하세요.");
+        let q1_email = "4321asdf@hotmail.com";
+        let q1_alpha = q1_email.indexOf('@');
+        console.log('입력하신 이메일에서 id에 해당하는 값은 :', q1_email.slice(0, q1_alpha), '입니다.');
+
+        // 문제2
+        // 주민번호로 성별 출력하기
+
+        // let q2_number = prompt("가상의 주민번호를 입력하세요.");
+        let q2_number = '123456-2345678';
+        // let q2_typhoon = q2_number.indexOf('-');
+        // split이 더 적합할 듯.
+        let q2_typhoon = q2_number.split('-');
+        let q2_genderNum = q2_typhoon[1][0];
+        let q2_gender = '';
+
+        if (q2_genderNum == 1) {
+            q2_gender = '남';
+        } else if (q2_genderNum == 2) {
+            q2_gender = '여';
+        }
+
+        console.log('해당 주민번호의 성별은 :', q2_gender, '입니다.');
+
+        // 문제3
+        // "2026-07-14 12:43:19"
+        // 월, 분 구하기
+
+        let q3_datetime = "2026-07-14 12:43:19";
+        let q3_date = q3_datetime.split(" ")[0];
+        let q3_time = q3_datetime.split(" ")[1];
+
+        let q3_month = q3_date.split("-")[1];
+        let q3_minute = q3_time.split(":")[1];
+
+        console.log('월 :', q3_month, '분 :', q3_minute);
+
+        // ---------------------
+        // 보안상 당첨 이메일을 가려서 출력
+        // todair@naver.com >>>> to****@naver.com
+
+        // 문제4
+        // 앞 두 글자만 제대로 표시하고 *표 4개 표시하고 @부터 다 출력.
+
+        let q4_email = "as1234@hotmail.com";
+
+        // slice(), replace 쓰면 바로 해결될 듯
+        console.log(q4_email.replace(q4_email.slice(2, 6), '****'));
+
+        // 문제5
+        // 앞 두 글자만 제대로 표시하고 * 표는 가려진 개수만큼
+        // 예: study.todair@gmail.com >> st**********@gmail.com
+
+        // 얘도 위처럼 slice(), replace를 활용하되 위에선
+        // 별 개수를 대충 하드코딩으로 출력했는데
+        // for문으로 * 출력용 스트링에 개수만큼 * 담고 replace하면 될 듯
+
+        let q5_email = "asdf987654321@gmail.com";
+        console.log(`이메일 문자열 길이는 : ${q5_email.length}`);
+        let q5_emailID = q5_email.split('@')[0];
+        console.log(`ID 길이는 : ${q5_emailID.length}`);
+        let q5_starStr = '';
+        let q5_star = '*';
+        let q5_starCnt = Number(prompt("이메일에서 *로 대체할 개수를 입력하세요."));
+        let q5_starCnt2 = Number(prompt("ID에서 *로 대체할 개수를 입력하세요."));
+        if (q5_starCnt > q5_email.length - 2) {
+            console.log(`최소 2글자는 제대로 표시돼야 하므로 이메일 배열 길이 -2 보다 큰 값은 불가능합니다.`);
+            console.log(`이메일 길이: ${q5_email.length}, 입력하신 값 : ${q5_starCnt}`);
+        } else if (isNaN(q5_starCnt) == true || q5_starCnt < 0) {
+            console.log('유효값이 아닙니다.');
+        }
+        else {
+            for (i = 1; i <= q5_starCnt; i++) {
+                q5_starStr += q5_star;
+            }
+            // console.log(q5_email.replace(q5_email.slice(2, q5_starCnt), q5_starStr));
+            // 위와 같이 작성하면 1, 2일 때 slice(2, 1), slice(2, 2)가 돼
+            // 의도대로 정상동작하지 않음. 시작 index를 더해주자.
+            console.log(q5_email.replace(q5_email.slice(2, 2 + q5_starCnt), q5_starStr));
+            q5_starStr = '';
+        }
+
+        if (q5_starCnt2 > q5_emailID.length - 2) {
+            console.log(`최소 2글자는 제대로 표시돼야 하므로 ID 배열 길이 -2 보다 큰 값은 불가능합니다.`);
+            console.log(`ID 길이: ${q5_emailID.length}, 입력하신 값 : ${q5_starCnt2}`);
+        } else if (isNaN(q5_starCnt2) == true || q5_starCnt2 < 0) {
+            console.log('유효값이 아닙니다.');
+        }
+        else {
+            for (i = 1; i <= q5_starCnt2; i++) {
+                q5_starStr += q5_star;
+            }
+            console.log(q5_email.replace(q5_emailID.slice(2, 2 + q5_starCnt2), q5_starStr));
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

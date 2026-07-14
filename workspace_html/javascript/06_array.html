@@ -483,7 +483,7 @@
         //             // 아예 틀린 방향성은 아닌데 for를 바로 돌리지 않는 게 좋아보임.
         //             // if (q4_res_seats == []) 
         //             // 예약된 좌석이 없을 경우를 if문으로 주려 했는데, 문법이 잘못된 듯.
-        //             // null을 줘보면 어떨까?
+        //             // null을 줘보면 어떨까? + 그냥 배열 길이 0일 때로 잡아줌.
         //             if (q4_res_seats.length == 0) {
         //                 q4_rem_seats = q4_all_seats;
         //             }
@@ -513,25 +513,74 @@
         let q5_lotto = [];
         let q5_already = [];
         let q5_flag = false;
+
+        function compare(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a < b) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
         q5_lotto.push(parseInt(Math.random() * 45) + 1);
         // 처음으로 들어갈 값이 제대로 들어가는지 확인하기 위해 console.log 찍어보기
         console.log(q5_lotto);
         // 이미 위에서 첫 번째 수를 하나 넣었으니.
         // 또, index 값 기준으로 [0, 1, 2, 3, 4] 까지만 중복체크를 하면 되므로.
         for (i = 0; i < 5; i++) {
+            // for 반복문이 돌 때마다 중복방지 배열에 로또 배열에 넣은 번호를 하나씩 추가.
             q5_already.push(q5_lotto[i]);
-            while (q5_already.indexOf(parseInt(Math.random() * 45 + 1)) == -1) {
-                q5_lotto.push(parseInt(Math.random() * 45 + 1));
-                if (q5_lotto.length == 6) {
-                    q5_flag = true;
+            console.log(`중복 방지 배열 길이: ${q5_already.length}, 루프 ${i + 1}회`);
+            console.log(`중복 방지 배열 : ${q5_already}, 루프 ${i + 1}회`);
+            // q5_already에서 parseInt(Math.random() * 45 + 1)을
+            // indexOf 함수로 찾았을 때 -1 = 없을 때, 중복값이 아닌 동안 while문으로 반복
+            // if로 분기를 줘야될 듯?
+
+            // q5_lotto에 1~45의 값을 또 push로 넣어줌.
+            q5_lotto.push(parseInt(Math.random() * 45) + 1);
+            console.log(`로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
+            console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+
+            // if 중복방지 배열에 q5_lotto[i+1]. 즉 직전에 넣은 숫자가 있을 경우
+            if (q5_already.indexOf(q5_lotto[i + 1]) != -1) {
+
+                // pop으로 마지막, 직전에 들어간 번호를 제거.
+                q5_lotto.pop();
+                console.log(`!팝!로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
+                console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+                // ...? 이걸 while 안에 넣어야 되는 거 아닌가? 아니네...
+                // 일단 몇 번 돌려봤을 때 크게 이상한 점은 보이지 않았는데
+                // 지피티가 아니라 하면 자고 일어나서 운동 다녀오고 수업 전에 수정해보자...
+                // 2026-07-13
+
+                while (q5_already.indexOf(q5_lotto.push(i + 1)) == -1)
+                // while에도 ||을 줄 수 있지 않을까 if 문 배열 길이 조건 while에 넣어보기.
+                // 로또 배열에 넣는 값 자체를 indexOf 함수에 넣을 수 있지 않을까?
+                {
+                    // while (q5_already.indexOf(q5_lotto[i]) == -1) {
+                    // q5_lotto.push(parseInt(Math.random() * 45 + 1));
+                    console.log(`로또 배열 길이 : ${q5_lotto.length}, ~while 안쪽~루프 ${i + 1}회`);
+                    console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+                    // if (q5_lotto.length == 6) 
+                    // 7자리가 될 때가 있음.
+                    if (q5_lotto.length > 5) {
+                        q5_flag = true;
+                        break;
+                    }
+                }
+                if (q5_flag == true) {
                     break;
                 }
             }
-            if (q5_flag == true) {
-                break;
-            }
         }
+        q5_lotto.sort(compare);
         console.log(q5_lotto);
+
+        // arr = [];
+        // console.log(arr.push(5));
+        // console.log(arr);
 
         arr = [1, 2, 3, 4, 5];
         arr.splice(2, 1); // 2번 index부터 몇개를 뺄 것인가?

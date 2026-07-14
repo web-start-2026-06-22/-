@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // ### 문제5
+        // 로또(1~45) 6개 중복없이 출력.
+
+        let lottoNumber = [];
+        let alreadyNumber = [];
+
+        let tempLottoNumber = -1; // lottoNumber 배열에 push하기 전 임시로 담아둘 변수.
+
+        // 2번째 번호부터 while을 돌릴 것,
+        // console.log에 찍을 용도로 선언.
+        let cnt = 2;
+
+        // sort에 넣을 함수. 짜기 귀찮아서 교재 보고 타이핑함...
+        function compare(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a < b) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+        lottoNumber.push(parseInt(Math.random() * 45) + 1);
+        console.log(`로또 첫번째 번호 : ${lottoNumber[0]}`);
+        alreadyNumber.push(lottoNumber[0]);
+        console.log(`로또 중복체크해야할 번호 : ${alreadyNumber}`);
+
+        // while (alreadyNumber.indexOf(lottoNumber[alreadyNumber.length + 1]) == -1) {
+        // lottoNumber 목록에서 중복방지 배열의 숫자를 찾아야 함. 2026-07-13
+        // 어제 종일 2% 부족했던 이유가 있었다.
+        // 랜덤 생성되는 번호를 대체 어떻게 중복 체크를 해줘야하는 걸까? 한참 고민했는데
+        // 강사님께서 수업 시간마다 반복하면서 강조하시던
+        // " 변수는 '어떤 값을 저장하는 용도'다. ".가 큰 힌트가 됐다.
+
+        // 임시로 값을 담을 변수인 tempLottoNumber를 중복 체크 배열인 
+        // alreadyNumber과 indexOf 함수를 통해 검색.
+        // while (tempLottoNumber.indexOf(alreadyNumber) == -1) {
+        // 쓰인 위치가 반대다.
+
+
+        while (alreadyNumber.indexOf(tempLottoNumber) == -1) {
+            tempLottoNumber = parseInt(Math.random() * 45) + 1;
+            if (alreadyNumber.indexOf(tempLottoNumber) != -1) {
+                // lottoNumber.pop();
+                // pop()도 필요없다.
+
+                console.log(`중복번호! 이번에 생성된 번호는 ${tempLottoNumber}로 중복체크 배열에 있는 ${alreadyNumber}에 포함됩니다.`);
+
+                // 중복값이므로 초기화.
+                tempLottoNumber = -1;
+            }
+            else {
+                // 중복 검사를 한 tempLottoNumber를 push해준다.
+                lottoNumber.push(tempLottoNumber);
+                // console.log(`로또 ${cnt}번째 번호 : ${lottoNumber}`);
+                // 위와 같이 쓰면 지금까지 들어간 번호 배열 전체가 나오므로
+                console.log(`로또 ${cnt}번째 번호 : ${tempLottoNumber}`);
+                console.log(`누적된 로또 번호: ${lottoNumber}`);
+                // alreadyNumber.push(lottoNumber);
+                // 아니지아니지 로또번호 자체를 넣으면 배열이 이상해진다.
+                // 방금 검사해서 넣어준 번호만 배열에 추가해줘야지.
+
+                alreadyNumber.push(tempLottoNumber);
+
+                // 넣어준 뒤 tempLottoNumber를 다시 초기화.
+                tempLottoNumber = 0;
+
+                console.log(`${cnt - 1}번째 반복, 현재 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
+                cnt++;
+            }
+            // lottoNumber.push(parseInt(Math.random() * 45) + 1);
+            // console.log(`로또 두번째 번호 : ${lottoNumber[1]}`);
+            // console.log(`로또 번호: ${lottoNumber}`);
+            // 여기 있으면 중복값이 들어갔을 때 다음 값이 들어가지 않아 undefined가 들어감.
+            // if문의 else 안쪽에 넣어주자.
+
+            // 중복방지가 제대로 되는지 테스트용이었기에 length > 1로 지정.
+            // 정상동작함. length > 5으로 변경하면 끝.
+            // if (lottoNumber.length > 1) {
+            //     break;
+            // }
+            if (lottoNumber.length > 5) {
+                break;
+            }
+        }
+        lottoNumber.sort(compare);
+        alreadyNumber.sort(compare);
+
+        console.log(`최종적으로 생성된 로또 번호 배열은 ${lottoNumber}입니다.`);
+        console.log(`최종적으로 생성된 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

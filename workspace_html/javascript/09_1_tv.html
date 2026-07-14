@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // TV 만들기
+        // 채널 : 0~100 까지
+        //   - 10일 때 채널 업을 누르면 0번으로.
+        //   - 0일 때 down을 누르면 100번으로.
+
+        // 기능
+        /*
+            전원 on
+            전원 off
+            채널(직접입력)
+            채널 up
+            채널 down
+            볼륨 up
+            볼륨 down
+            음소거 on/off
+        */
+
+        let power = false; // 전원 상태 저장
+        let volMute = false; //음소거 상태 저장
+        let lastCh = 0;
+        // let chUpDown = '';
+        // let vlUpDown = '';
+        // upDown으로 통일
+        let upDown = '';
+        let lastVl = 0;
+        let muteVl = 0; //음소거 전 볼륨 저장 목적.
+        const CH_MAX = 10;
+        const CH_MIN = 0;
+        const VL_MAX = 5, VL_MIN = 0;
+
+        function powerOn() {
+            power = true;
+            console.log("TV 켜짐.");
+        }
+
+        function powerOff() {
+            power = false;
+            console.log("TV 꺼짐.");
+        }
+
+        function powerOnOff() {
+            if (power) {
+                power = false;
+                console.log("TV 꺼짐.");
+            } else {
+                power = true;
+                console.log("TV 켜짐.");
+            }
+        }
+
+        function statePowerOff() {
+            console.log('전원 꺼져있음.');
+        }
+
+        // function statusPower() {
+        //     if (power) {
+
+        //     } else {
+        //         console.log('전원 꺼져있음.');
+        //     }
+        // }
+
+        function changeChannel(ch = lastCh) {
+            console.log(ch + '번으로 채널 변경');
+        }
+
+        function changeVolume() {
+            console.log(lastVl + '으로 볼륨 변경');
+        }
+
+        function channelUpDown(upDown) {
+            if (power) {
+                if (upDown == 'down') {
+                    lastCh--;
+                    if (lastCh < CH_MIN) {
+                        lastCh = CH_MAX;
+                    }
+                    changeChannel();
+                }
+                else {
+                    statePowerOff();
+                }
+            } else if (upDown == 'up') {
+                lastCh++;
+                if (lastCh > CH_MAX) {
+                    lastCh = CH_MIN;
+                }
+                changeChannel();
+            }
+        }
+        function volumeUpDown(upDown) {
+            if (power) {
+                if (upDown == 'up') {
+                    lastVl++;
+                    if (lastVl > VL_MAX) {
+                        lastVl = VL_MAX;
+                    }
+                    if (volMute == true) {
+                        volMute = false;
+                        lastVl++;
+                    }
+                    changeVolume();
+                }
+                else {
+                    statePowerOff();
+                }
+            } else if (upDown == 'down') {
+                lastVl--;
+                if (lastVl < CH_MIN) {
+                    lastVl = CH_MIN;
+                }
+                if (volMute == true) {
+                    volMute = false;
+                    lastVl--;
+                }
+                changeVolume();
+            }
+        }
+
+        function channel(ch) {
+            if (power) {
+                if (ch < CH_MIN || ch > CH_MAX) {
+                    console.log('채널이 없습니다.');
+                    return;
+                }
+                lastCh = ch;
+                // console.log(ch + '번으로 채널 변경');
+                changeChannel();
+            } else {
+                statePowerOff();
+            }
+        }
+
+        function channelUp() {
+            if (power) {
+                // lastCh = lastCh + 1;
+                // lastCh += 1;
+                lastCh++
+                if (lastCh > CH_MAX) {
+                    lastCh = CH_MIN;
+                }
+                changeChannel();
+                // console.log(++lastCh + '번으로 채널 변경');
+            }
+            else {
+                statePowerOff();
+            }
+        }
+
+        function channelDown() {
+            if (power) {
+                lastCh--;
+                if (lastCh < CH_MIN) {
+                    lastCh = CH_MAX;
+                }
+                changeChannel();
+            }
+            else {
+                statePowerOff();
+            }
+        }
+
+        // 볼륨(최초엔 0)
+        // 최대:5, 최소:0
+        // 5일 때 up 누르면 5 고정
+        // 0일 때 down 누르면 0 고정
+        // 음소거
+        function mute() {
+            // toggle
+
+            // 지금 음소거 상태라면 볼륨 0
+            // 음소거를 해제하면 볼륨은 기존 볼륨.
+            if (power) {
+                if (volMute == false) {
+                    volMute = true;
+                    muteVl = lastVl;
+                    lastVl = 0;
+                    console.log('음소거 되었습니다. 현재 볼륨은', lastVl, '입니다.');
+                } else {
+                    volMute = false;
+                    lastVl = muteVl;
+                    console.log('음소거가 해제됐습니다. 음소거 전 볼륨 ', lastVl, '으로 조정됩니다.');
+                }
+            } else {
+                statePowerOff();
+            }
+
+        }
+
+        function volumeUp() {
+            if (power) {
+                lastVl++;
+                if (lastVl > VL_MAX) {
+                    lastVl = VL_MAX;
+                }
+                if (volMute == true) {
+                    volMute = false;
+                    lastVl = muteVl;
+                    lastVl++;
+                }
+                changeVolume();
+
+            } else {
+                statePowerOff();
+            }
+        }
+
+        function volumeDown() {
+            if (power) {
+                lastVl--;
+                if (lastVl < VL_MIN) {
+                    lastVl = VL_MIN;
+                }
+                if (volMute == true) {
+                    volMute = false;
+                    lastVl = muteVl;
+                    lastVl--;
+                }
+                changeVolume();
+
+            } else {
+                statePowerOff();
+            }
+        }
+
+        powerOn();
+        channel(8);
+        // channelUpDown(up);
+        // channelUpDown(down);
+        // volumeUpDown(up);
+        channelUp();
+        channelUp();
+        channelUp();
+        volumeUp();
+        mute();
+        mute();
+        mute();
+        volumeUp();
+        mute();
+        volumeDown();
+        volumeDown();
+        volumeDown();
+        // volumeUpDown(up);
+        // volumeUpDown(down);
+        // volumeUp();
+        // mute();
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
