@@ -510,73 +510,73 @@
         // 중복체크할 문자열을 따로 추가하고
         // while을 돌리든 이중for문 같은 걸 돌리든 하면 되지 않을까?
 
-        let q5_lotto = [];
-        let q5_already = [];
-        let q5_flag = false;
+        // let q5_lotto = [];
+        // let q5_already = [];
+        // let q5_flag = false;
 
-        function compare(a, b) {
-            if (a > b) {
-                return 1;
-            } else if (a < b) {
-                return -1;
-            } else {
-                return 0;
-            }
-        }
+        // function compare(a, b) {
+        //     if (a > b) {
+        //         return 1;
+        //     } else if (a < b) {
+        //         return -1;
+        //     } else {
+        //         return 0;
+        //     }
+        // }
 
-        q5_lotto.push(parseInt(Math.random() * 45) + 1);
-        // 처음으로 들어갈 값이 제대로 들어가는지 확인하기 위해 console.log 찍어보기
-        console.log(q5_lotto);
-        // 이미 위에서 첫 번째 수를 하나 넣었으니.
-        // 또, index 값 기준으로 [0, 1, 2, 3, 4] 까지만 중복체크를 하면 되므로.
-        for (i = 0; i < 5; i++) {
-            // for 반복문이 돌 때마다 중복방지 배열에 로또 배열에 넣은 번호를 하나씩 추가.
-            q5_already.push(q5_lotto[i]);
-            console.log(`중복 방지 배열 길이: ${q5_already.length}, 루프 ${i + 1}회`);
-            console.log(`중복 방지 배열 : ${q5_already}, 루프 ${i + 1}회`);
-            // q5_already에서 parseInt(Math.random() * 45 + 1)을
-            // indexOf 함수로 찾았을 때 -1 = 없을 때, 중복값이 아닌 동안 while문으로 반복
-            // if로 분기를 줘야될 듯?
+        // q5_lotto.push(parseInt(Math.random() * 45) + 1);
+        // // 처음으로 들어갈 값이 제대로 들어가는지 확인하기 위해 console.log 찍어보기
+        // console.log(q5_lotto);
+        // // 이미 위에서 첫 번째 수를 하나 넣었으니.
+        // // 또, index 값 기준으로 [0, 1, 2, 3, 4] 까지만 중복체크를 하면 되므로.
+        // for (i = 0; i < 5; i++) {
+        //     // for 반복문이 돌 때마다 중복방지 배열에 로또 배열에 넣은 번호를 하나씩 추가.
+        //     q5_already.push(q5_lotto[i]);
+        //     console.log(`중복 방지 배열 길이: ${q5_already.length}, 루프 ${i + 1}회`);
+        //     console.log(`중복 방지 배열 : ${q5_already}, 루프 ${i + 1}회`);
+        //     // q5_already에서 parseInt(Math.random() * 45 + 1)을
+        //     // indexOf 함수로 찾았을 때 -1 = 없을 때, 중복값이 아닌 동안 while문으로 반복
+        //     // if로 분기를 줘야될 듯?
 
-            // q5_lotto에 1~45의 값을 또 push로 넣어줌.
-            q5_lotto.push(parseInt(Math.random() * 45) + 1);
-            console.log(`로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
-            console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+        //     // q5_lotto에 1~45의 값을 또 push로 넣어줌.
+        //     q5_lotto.push(parseInt(Math.random() * 45) + 1);
+        //     console.log(`로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
+        //     console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
 
-            // if 중복방지 배열에 q5_lotto[i+1]. 즉 직전에 넣은 숫자가 있을 경우
-            if (q5_already.indexOf(q5_lotto[i + 1]) != -1) {
+        //     // if 중복방지 배열에 q5_lotto[i+1]. 즉 직전에 넣은 숫자가 있을 경우
+        //     if (q5_already.indexOf(q5_lotto[i + 1]) != -1) {
 
-                // pop으로 마지막, 직전에 들어간 번호를 제거.
-                q5_lotto.pop();
-                console.log(`!팝!로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
-                console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
-                // ...? 이걸 while 안에 넣어야 되는 거 아닌가? 아니네...
-                // 일단 몇 번 돌려봤을 때 크게 이상한 점은 보이지 않았는데
-                // 지피티가 아니라 하면 자고 일어나서 운동 다녀오고 수업 전에 수정해보자...
-                // 2026-07-13
+        //         // pop으로 마지막, 직전에 들어간 번호를 제거.
+        //         q5_lotto.pop();
+        //         console.log(`!팝!로또 배열 길이 : ${q5_lotto.length}, 루프 ${i + 1}회`);
+        //         console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+        //         // ...? 이걸 while 안에 넣어야 되는 거 아닌가? 아니네...
+        //         // 일단 몇 번 돌려봤을 때 크게 이상한 점은 보이지 않았는데
+        //         // 지피티가 아니라 하면 자고 일어나서 운동 다녀오고 수업 전에 수정해보자...
+        //         // 2026-07-13
 
-                while (q5_already.indexOf(q5_lotto.push(i + 1)) == -1)
-                // while에도 ||을 줄 수 있지 않을까 if 문 배열 길이 조건 while에 넣어보기.
-                // 로또 배열에 넣는 값 자체를 indexOf 함수에 넣을 수 있지 않을까?
-                {
-                    // while (q5_already.indexOf(q5_lotto[i]) == -1) {
-                    // q5_lotto.push(parseInt(Math.random() * 45 + 1));
-                    console.log(`로또 배열 길이 : ${q5_lotto.length}, ~while 안쪽~루프 ${i + 1}회`);
-                    console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
-                    // if (q5_lotto.length == 6) 
-                    // 7자리가 될 때가 있음.
-                    if (q5_lotto.length > 5) {
-                        q5_flag = true;
-                        break;
-                    }
-                }
-                if (q5_flag == true) {
-                    break;
-                }
-            }
-        }
-        q5_lotto.sort(compare);
-        console.log(q5_lotto);
+        //         while (q5_already.indexOf(q5_lotto.push(i + 1)) == -1)
+        //         // while에도 ||을 줄 수 있지 않을까 if 문 배열 길이 조건 while에 넣어보기.
+        //         // 로또 배열에 넣는 값 자체를 indexOf 함수에 넣을 수 있지 않을까?
+        //         {
+        //             // while (q5_already.indexOf(q5_lotto[i]) == -1) {
+        //             // q5_lotto.push(parseInt(Math.random() * 45 + 1));
+        //             console.log(`로또 배열 길이 : ${q5_lotto.length}, ~while 안쪽~루프 ${i + 1}회`);
+        //             console.log(`로또 배열 : ${q5_lotto}, 루프 ${i + 1}회`);
+        //             // if (q5_lotto.length == 6) 
+        //             // 7자리가 될 때가 있음.
+        //             if (q5_lotto.length > 5) {
+        //                 q5_flag = true;
+        //                 break;
+        //             }
+        //         }
+        //         if (q5_flag == true) {
+        //             break;
+        //         }
+        //     }
+        // }
+        // q5_lotto.sort(compare);
+        // console.log(q5_lotto);
 
         // arr = [];
         // console.log(arr.push(5));
@@ -604,6 +604,169 @@
             328 : 1스트라이크 1볼
             382 : 2볼
         */
+
+        // 각각의 자리수에 담아줄 숫자 변수 선언.
+        let numberBaseball = [];
+
+        let tempNumber = parseInt(Math.random() * 9) + 1;
+
+        numberBaseball.push(tempNumber);
+        console.log(`현재 생성된 값은 : ${numberBaseball} 입니다.`);
+
+        let alreadyNumber = [];
+
+        // 게임 커맨드(menu) 입력 받기 위한 변수 선언.
+        let menu;
+
+        // 3자리 수 게임을 할 것인지, 4자리 수 게임을 할 것인지 입력받기.
+        let baseballMode = Number(prompt('3과 4중에 입력해주세요.'));
+
+        // if 문으로 방어 코드 작성
+        if (baseballMode > 4 || baseballMode < 3 || isNaN(baseballMode) == true) {
+            console.log('유효값이 아닙니다. 3과 4중 하나를 입력해주세요.');
+        }
+
+        console.log(`선택한 게임 모드는 ${baseballMode}자리 수 게임입니다.`);
+
+        alreadyNumber.push(tempNumber);
+        console.log(`현재 중복 방지 배열에 들어간 값은 : ${alreadyNumber} 입니다.`);
+
+        tempNumber = -1;
+
+        // strike, ball 처리 위한 변수, 정답까지 걸린 횟수 카운트하기 위한 변수 선언.
+        let correctCount = 0;
+        let strikeCount = 0;
+        let ballCount = 0;
+
+        // 정답 입력받을 변수 선언.
+        let playerInput = 0;
+
+        // 중복값이 나오지 않을 때까지 반복.
+        while (alreadyNumber.indexOf(tempNumber) == -1) {
+
+            console.log(`선택한 자릿수는 ${baseballMode}입니다.`);
+            if ((numberBaseball.length > 2 && baseballMode == 3) || (numberBaseball.length > 3 && baseballMode == 4)) {
+                tempNumber = parseInt(Math.random() * 10);
+            }
+            tempNumber = parseInt(Math.random() * 9) + 1;
+            // 만약 중복값이 나오면
+            if (alreadyNumber.indexOf(tempNumber) != -1) {
+
+                console.log(`중복값이 생성됐습니다. ${tempNumber}는 이미 배열 안에 있기 때문에 추가하지 않습니다.`);
+
+                // 임시로 저장해둔 값 초기화.
+                tempNumber = -1;
+
+            } else {
+                // 배열에 push로 값을 넣어줌.
+                // tempNumber.push(numberBaseball);
+                // 반대로 넣었네...?
+                numberBaseball.push(tempNumber);
+                alreadyNumber.push(tempNumber);
+                tempNumber = -1;
+                // console.log(`현재 생성된 값은 : ${numberBaseball} 입니다.`);
+                // console.log(`현재 생성된 배열의 길이는 : ${numberBaseball.length} 입니다.`);
+                // console.log(`현재 중복 방지 배열에 들어간 값은 : ${alreadyNumber} 입니다.`);
+
+
+            }
+
+            if ((numberBaseball.length > 2 && baseballMode == 3) || (numberBaseball.length > 3 && baseballMode == 4)) {
+                break;
+            }
+
+        }
+        console.log('숫자야구를 위한 배열이 완성됐습니다.');
+
+        // 잘 추가됐는지 테스트용 출력문.
+        console.log(`완성된 배열은 ${numberBaseball}입니다.`);
+
+        // 생성된 랜덤번호 배열을 number 타입으로 담아줄 변수 선언.
+        let clearNumber = 0;
+        let thNumber = 0, huNumber = 0, teNumber = 0, onNumber = 0;
+        if (baseballMode == 3) {
+            clearNumber = numberBaseball[0] * 100
+                + numberBaseball[1] * 10
+                + numberBaseball[2];
+
+            huNumber = numberBaseball[0];
+            teNumber = numberBaseball[1];
+            onNumber = numberBaseball[2];
+        }
+        else if (baseballMode == 4) {
+            clearNumber = numberBaseball[0] * 1000
+                + numberBaseball[1] * 100
+                + numberBaseball[2] * 10
+                + numberBaseball[3];
+
+            thNumber = numberBaseball[0];
+            huNumber = numberBaseball[1];
+            teNumber = numberBaseball[2];
+            onNumber = numberBaseball[3];
+        }
+        console.log(`이번 회차 숫자야구의 정답은 ${clearNumber}입니다.`);
+
+        // 입력받은 숫자를 배열로 변환해줄 변수 선언.
+        let inputNumString = String(num);
+        let inputNumArray = [];
+
+        // do {
+        //     menu = Number(prompt('1:시작 0:종료'));
+        //     // menu에 제시된 값과 다른 값이 입력됐을 경우.
+        //     if (menu < 0 || menu > 1 || isNaN(menu) == true) {
+        //         alert("유효하지 않은 메뉴입니다. 다시 입력해주세요.");
+        //     }
+        //     else {
+        //         while (playerInput != numberBaseball) {
+        //             strikeCount = 0, ballCount = 0;
+        //             if (baseballMode == 3) {
+        //                 playerInput = Number(prompt('3자리 수를 입력하세요.'));
+        //                 if (playerInput > 999 || playerInput < 100 || isNaN(playerInput) == true) {
+        //                     console.log("유효값이 아닙니다. 다시 입력하세요.");
+        //                 }
+        //                 else {
+        //                     inputNumArray = new Array.from(playerInput);
+        //                     // 2 strike일 경우.
+        //                     // if ((inputNumArray[0] == numberBaseball[0]) && ((inputNumArray[1] == numberBaseball[1]))
+        //                     //     || (inputNumArray[0] == numberBaseball[0]) && ((inputNumArray[2] == numberBaseball[2]))
+        //                     //     || (inputNumArray[1] == numberBaseball[1]) && ((inputNumArray[2] == numberBaseball[2])))
+        //                         // 너무 하드 코딩인데?
+        //                         // 뭐가 달라진거니...?
+        //                     if ((inputNumArray.indexOf(numberBaseball[0]) == 0) && ((inputNumArray.indexOf(numberBaseball[1]) == 1))
+        //                         || (inputNumArray.indexOf(numberBaseball[0]) == 0) && ((inputNumArray.indexOf(numberBaseball[2])) == 2)
+        //                         || (inputNumArray.indexOf(numberBaseball[1]) == 1) && ((inputNumArray.indexOf(numberBaseball[2])) == 2))
+        //                         {
+        //                         strikeCount = 2;
+        //                         console.log(`${strikeCount}스트라이크입니다. 입력하신 수는 ${playerInput}입니다.`);
+
+        //                     }
+        //                 }
+        //             }
+        //             else if (baseballMode == 4) {
+        //                 playerInput = Number(prompt('4자리 수를 입력하세요.'));
+        //                 if (playerInput > 9999 || playerInput < 1000 || isNaN(playerInput) == true) {
+        //                     console.log("유효값이 아닙니다. 다시 입력하세요.");
+        //                 }
+        //                 else {
+        //                     inputNumArray = new Array.from(playerInput);
+        //                     // 3 strike일 경우.
+        //                     if ((inputNumArray[0] == numberBaseball[0]) && ((inputNumArray[1] == numberBaseball[1])) && ((inputNumArray[2] == numberBaseball[2]))
+        //                         || (inputNumArray[0] == numberBaseball[0]) && ((inputNumArray[1] == numberBaseball[1])) && ((inputNumArray[3] == numberBaseball[3]))
+        //                         || (inputNumArray[1] == numberBaseball[1]) && ((inputNumArray[2] == numberBaseball[2])) && ((inputNumArray[3] == numberBaseball[3]))) {
+        //                         strikeCount = 3;
+        //                         console.log(`${strikeCount}스트라이크입니다. 입력하신 수는 ${playerInput}입니다.`);
+
+        //                     }
+        //                 }
+        //             }
+        //             correctCount++;
+        //         }
+
+        //     }
+
+        // } while (menu != 0 || menu != null)
+
+
 
     </script>
 </head>

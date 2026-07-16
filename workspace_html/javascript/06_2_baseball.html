@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 숫자야구 게임
+        // 임의의 3자리 숫자인 정답이 있을 때
+        // 스트라이크 : 숫자와 자리가 맞은 개수
+        // 볼 : 숫자는 정답에 있지만 자리가 틀린 수
+        // 아웃 : 하나도 안맞음
+        /*
+            예 : [123]이 정답일 때
+            145 : 1스트라이크
+            135 : 1스트라이크 1볼
+            367 : 1스트라이크
+            328 : 1스트라이크 1볼
+            382 : 2볼
+        */
+
+        // 제곱 연산을 위한 함수.
+        // 왜 만들었는가? 자릿수 별로 나눌 때나 합칠 때 사용하기 위해.
+        function square(num, mul) {
+            for (let i = 0; i < mul - 1; i++) {
+                if (i != 0) {
+                    result = result * num;
+                } else {
+                    result = num * num;
+                }
+                // // 테스트용 출력문
+                // console.log(`현재 ${i + 1}번째 제곱 연산 중, 연산 결과는 ${result}.`);
+            }
+            if (mul == 1) {
+                result = num * 1;
+            }
+            if (mul == 0) {
+                result = 1;
+            }
+            return result;
+        }
+
+        // 랜덤 숫자 생성, start~end까지의 숫자 생성 함수
+        function rand(start, end) {
+            result = parseInt(Math.random() * end) + start;
+            return result;
+        }
+
+        // 초기화 위한 함수.
+        function clear(v) {
+            if (typeof v == typeof 0) {
+                v = -1;
+            } else if (typeof v == typeof 'string') {
+                v = '';
+            } else if (typeof v == typeof [1, 2, 3, 4, 5]) {
+                v = [];
+            }
+            return v;
+        }
+
+        // 사용자가 입력한 숫자를 배열로 변경해주기 위한 함수.
+        function numToArr(input) {
+            let numArray = [];
+            let tempNum = 0;
+            const inputNum = Number(input);
+            input = String(input);
+            for (let i = 0; i < input.length; i++) {
+                // 3자리수일 때
+                // 백의 자리: parseInt(3자리수 / 100 = 10 * 2)
+                // 십의 자리: parseInt((3자리수 / 10 = 10 * 1) % 10 = 10 * 1)
+                // 일의 자리: parseInt((3자리수 / 1(생략됨) = 10 * 0 ) % 10 = 10 * 1)
+
+                // 4자리수일 때
+                // 천의 자리: parseInt(4자리수 / 1000 = 100 * 3)
+                // 백의 자리: parseInt((4자리수 / 100 = 10 * 2) % 10 = 10 * 1)
+                // 십의 자리: parseInt((4자리수 / 10 = 10 * 1) % 10 = 10 * 1)
+                // 일의 자리: parseInt((4자리수 / 1(생략됨) = 10 * 0) % 10 = 10 * 1)
+
+                // 백의 자리 or 천의 자리. 제일 큰 자릿수 숫자 추출.
+                if (i == 0) {
+                    tempNum = parseInt(inputNum / square(10, (input.length - i - 1)));
+                    numArray.push(tempNum);
+                    // 테스트용
+                    // console.log(`for 반복문의 현재 i는 ${i}, 현재 값은${tempNum}, 현재까지 변환된 배열은 ${numArray}입니다.`);
+                } else {
+                    tempNum = parseInt(inputNum / square(10, (input.length - i - 1))) % square(10, 1);
+                    numArray.push(tempNum);
+                    // 테스트용
+                    // console.log(`for 반복문의 현재 i는 ${i}, 현재 값은${tempNum}, 현재까지 변환된 배열은 ${numArray}입니다.`);
+                }
+
+            }
+            // 생성된 값 확인용
+            // console.log(numArray);
+            return numArray;
+        }
+
+        // 생성된 숫자야구 배열을 숫자로 변환해줄 함수.
+        function arrToNum(array) {
+            let result = 0;
+            // for (let i = array.length; i > 0; i--) 
+            // 이게 아니라 0부터 올라가게 해주고 -를 주면 되는 게 아닌가
+            for (let i = 0; i < array.length; i++) {
+                // console.log(array);
+                // console.log(array.length);
+                result += array[i] * square(10, array.length - i - 1);
+                // console.log(array[i]);
+                // // 잘 바뀌는지 테스트용
+                // console.log(result);
+                // return result;
+                // for 바깥에 둬야지... 정신을 어디다 팔아먹은거냐
+            }
+            // 테스트용
+            // console.log(result);
+            return result;
+        }
+
+        // 테스트용
+        // let numTest = arrToNum([1, 2, 3]);
+        // console.log(numTest);
+
+        // 함수 테스트
+        // console.log(square(10, 3 - 1));
+        // console.log((123 / square(10, 3)) % square(10, 2));
+        // console.log((123 / square(10, 2)) % square(10, 1));
+        // console.log((123 / square(10, 1)) % square(10, 0));
+        // console.log(numToArr(123));
+        // console.log((1234 / square(10, 4)) % square(10, 3));
+        // console.log((1234 / square(10, 3)) % square(10, 2));
+        // console.log((1234 / square(10, 1)) % square(10, 0));
+        // console.log(numToArr(1234));
+
+        // 출력 테스트. 잘 되므로 주석처리
+        // console.log(square(10, 3));
+        // console.log(square(2, 3));
+
+        // 선언해야 할 변수
+        // 3자리 수 게임을 할지, 4자리 수 게임을 할지 받을 변수.
+        // 랜덤 숫자 배열, 중복방지를 위한 변수
+        // 중복 방지를 위한 다른 배열이 필요할까? 딱히 필요없을 듯.
+        // 게임 메뉴 받을 변수.
+        // strike, ball, 정답 카운트해줄 변수.
+        // 정답 입력받을 변수.
+
+        let randNum = [];
+        let tempNumber = -1;
+        let menu;
+        let userInput = [];
+
+        // 주석처리해도 될 듯
+        // tempNumber = parseInt(Math.random() * 9) + 1;
+        // // console.log(typeof tempNumber);
+        // randNum.push(tempNumber);
+        // console.log(`현재 생성된 수는 ${randNum}`);
+
+        // // while문 돌리기 전에 초기화
+        tempNumber = -1;
+
+        // 게임 클리어 체크를 위한 변수. 안 줘도 될 듯.
+        // 주는 게 편할 듯 while문에 넣을 수 있게끔 2026-07-16
+        let compleNumber = 0;
+
+        // strike, ball, 정답까지 걸린 횟수
+        let strike_cnt = 0;
+        let ball_cnt = 0;
+        let co_cnt = 0;
+
+
+        // 몇 자리수 게임을 할 것인지
+        let bbMode = 0;
+
+        // 스코어보드 입력받을 배열.
+        let scoreboard = [];
+        // 시작 후로 배치.
+        // bbMode = Number(prompt("3과 4중 입력하세요."));
+        // if (bbMode > 4 || bbMode < 3 || isNaN(bbMode)) {
+        //     console.log("유효값이 아닙니다. 3과 4중 입력하세요.");
+        // } else {
+        //     // 배열 생성.
+        //     while (randNum.length < bbMode) {
+        //         // console.log(randNum.length);
+        //         if (randNum.length == bbMode - 1) {
+        //             // 0~9까지 랜덤생성.
+        //             tempNumber = rand(0, 10);
+        //             // 들어간 값 테스트
+        //             // console.log(`중복 체크해야 할 이번 랜덤 생성 번호는 ${tempNumber}입니다.`);
+        //             if (tempNumber == 0) {
+        //                 randNum.push(tempNumber);
+        //                 tempNumber = -1;
+        //             }
+        //         }
+        //         // 1~9까지 랜덤생성.
+        //         tempNumber = rand(1, 9);
+        //         // 들어간 값 테스트
+        //         // console.log(`중복 체크해야 할 이번 랜덤 생성 번호는 ${tempNumber}입니다.`);
+        //         if (randNum.indexOf(tempNumber) == -1) {
+        //             randNum.push(tempNumber);
+        //             tempNumber = -1;
+        //         }
+        //         tempNumber = -1;
+        //     }
+        //     // 배열 정상적으로 만들어졌는지 테스트용.
+        //     console.log(`숫자야구를 위한 배열이 생성 완료됐습니다. ${randNum}`);
+        //     // console.log("숫자야구를 위한 배열이 생성 완료됐습니다.");
+
+        //     // // 생성된 숫자 배열 => 숫자 변환
+        //     // for (i = 0; i < randNum.length; i++) {
+        //     //     compleNumber += (randNum[i] * square(10, (randNum.length - 1) - i));
+        //     // }
+        //     // // 결과 테스트
+        //     // console.log(`맞춰야 할 수는 ${compleNumber}`);
+        // }
+        do {
+            menu = Number(prompt("1:시작 2:스코어보드 0:종료"));
+            if (menu > 2 || menu < 0 || isNaN(menu) == true) {
+                console.log(`입력하신 ${menu}는 유효한 메뉴가 아닙니다. 1:시작 2:스코어보드 0:종료 중 다시 입력해주세요.`);
+            } else if (menu == 2) {
+                console.log('아직 미구현 기능입니다.');
+                // if (scoreboard.length == 0) {
+                //     console.log('기록이 없습니다.');
+                // } else {
+                //     console.log(`${scoreboard}`);
+                // }
+            } else if (menu == 1) {
+                do {
+                    bbMode = prompt("3과 4중 입력하세요.");
+                    console.log(`입력하신 게임모드는 ${bbMode}입니다.`);
+                    if (bbMode > 4 || bbMode < 3 || isNaN(bbMode) == true) {
+                        console.log("유효값이 아닙니다. 3과 4중 입력하세요.");
+                    } else {
+                        // 배열 생성.
+                        while (randNum.length != bbMode) {
+                            // console.log(randNum.length);
+                            if (randNum.length == bbMode - 1) {
+                                // 0~9까지 랜덤생성.
+                                tempNumber = rand(0, 10);
+                                // 들어간 값 테스트
+                                // console.log(`중복 체크해야 할 이번 랜덤 생성 번호는 ${tempNumber}입니다.`);
+                                if (tempNumber == 0) {
+                                    randNum.push(tempNumber);
+                                    tempNumber = -1;
+                                }
+                            }
+                            // 1~9까지 랜덤생성.
+                            tempNumber = rand(1, 9);
+                            // 들어간 값 테스트
+                            // console.log(`중복 체크해야 할 이번 랜덤 생성 번호는 ${tempNumber}입니다.`);
+                            if (randNum.indexOf(tempNumber) == -1) {
+                                randNum.push(tempNumber);
+                                tempNumber = -1;
+                            }
+                            tempNumber = -1;
+                        }
+                        // 배열 정상적으로 만들어졌는지 테스트용.
+                        // console.log(`숫자야구를 위한 배열이 생성 완료됐습니다. ${randNum}`);
+                        compleNumber = arrToNum(randNum);
+                        // 테스트용
+                        console.log(`배열을 숫자로 바꾼 값은 ${compleNumber}입니다.`);
+                    }
+                } while (bbMode < 3 || bbMode > 4)
+
+                // console.log("숫자야구를 위한 배열이 생성 완료됐습니다.");
+
+                do {
+                    userInput = Number(prompt(`현재 모드는 ${bbMode}자리 모드입니다. ${bbMode}자리 수를 입력하세요.`));
+                    if (bbMode == 3) {
+                        if (userInput > 999 || userInput < 100 || isNaN(userInput) == true) {
+                            console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
+                        }
+                    }
+                    if (bbMode == 4) {
+                        if (userInput > 9999 || userInput < 1000 || isNaN(userInput) == true) {
+                            console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
+                        }
+                    }
+                    if (userInput == 0) {
+                        break;
+                    }
+                    for (i = 0; i < randNum.length; i++) {
+                        let inputArray = [];
+                        inputArray = numToArr(userInput);
+                        // 값이 잘 들어갔는지 확인.
+                        // console.log(inputArray);
+                        for (i = 0; i < randNum.length; i++) {
+                            // 자릿수 일치하는 경우
+                            if (inputArray.indexOf(randNum[i]) == i) {
+                                // 스트라이크 개수 증가
+                                strike_cnt++;
+                                // 자릿수는 일치하지 않지만 정답 번호가 있는 경우
+                            } else if ((inputArray.indexOf(randNum[i]) != i) && (inputArray.indexOf(randNum[i]) != -1)) {
+                                // 볼 개수 증가
+                                ball_cnt++;
+                                // 아닌 경우
+                            } else if (inputArray.indexOf(randNum[i]) == -1) {
+                                // 그대로
+                                strike_cnt = strike_cnt;
+                                ball_cnt = ball_cnt;
+                            }
+                        }
+                        if (((strike_cnt == 0) && (ball_cnt == 0))) {
+                            console.log(`아웃입니다. 입력하신 값은 ${userInput}입니다.`);
+                        } else if (strike_cnt < randNum.length) {
+                            console.log(`${strike_cnt}스트라이크, ${ball_cnt}볼입니다. 입력하신 값은 ${userInput}입니다.`);
+                        }
+                        co_cnt++;
+                        strike_cnt = 0;
+                        ball_cnt = 0;
+
+
+                    }
+                }
+                // 모든 자리의 숫자를 맞출 때까지 반복.
+                while (userInput != compleNumber)
+                if (userInput == 0) {
+                    console.log('게임을 중단했습니다.');
+                } else {
+                    console.log(`입력하신 ${userInput}은 정답입니다. 정답까지 ${co_cnt}회 시도하셨습니다.`);
+                    // scoreboard.push(prompt('닉네임을 입력하세요.'));
+                    // scoreboard.push(co_cnt);
+                }
+                // 게임이 끝났으니 정답까지 걸린 횟수, 숫자야구 배열 초기화.
+                co_cnt = 0;
+                randNum = [];
+
+                // // 여기부터
+                // userInput = Number(prompt(`현재 모드는 ${bbMode}자리 모드입니다. ${bbMode}자리 수를 입력하세요.`));
+                // if (bbMode == 3) {
+                //     if (userInput > 999 || userInput < 100 || isNaN(userInput) == true) {
+                //         console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
+                //     }
+                // }
+                // if (bbMode == 4) {
+                //     if (userInput > 9999 || userInput < 1000 || isNaN(userInput) == true) {
+                //         console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
+                //     }
+                // }
+                // for (i = 0; i < randNum.length; i++) {
+                //     let inputArray = [];
+                //     inputArray = numToArr(userInput);
+                //     // 값이 잘 들어갔는지 확인.
+                //     // console.log(inputArray);
+                //     for (i = 0; i < randNum.length; i++) {
+                //         if (inputArray.indexOf(randNum[i]) == i) {
+                //             strike_cnt++;
+                //         } else if (inputArray.indexOf(randNum[i]) != i) {
+                //             ball_cnt++;
+                //         }
+                //     }
+                //     if (((strike_cnt == 0) && (ball_cnt == 0))) {
+                //         console.log(`아웃입니다. 입력하신 값은 ${userInput}입니다.`);
+                //     } else if (strike_cnt < randNum.length) {
+                //         console.log(`${strike_cnt}스트라이크, ${ball_cnt}볼입니다. 입력하신 값은 ${userInput}입니다.`);
+                //     }
+                //     co_cnt++;
+                //     strike_cnt = 0;
+                //     ball_cnt = 0;
+
+
+                // }
+                // // 여기까지의 블럭을 else 안으로
+            }
+        }
+        // 종료를 누를 때까지 반복.
+        while (menu != 0)
+        console.log('안녕히 가세요.');
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

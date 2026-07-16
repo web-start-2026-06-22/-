@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="msg">
+        <span>원래</span> 있던 글씨
+    </div>
+
+    <div id="count">0</div>
+    <div id="clock"></div>
+
+    <div id="log">원래 있던 글씨</div>
+
+    <table border="1">
+        <tbody id="tbody">
+            <!-- js로 구현
+            <tr>
+                <td>첫째칸</td>
+            </tr>
+             -->
+        </tbody>
+    </table>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+            </tr>
+        </thead>
+        <tbody id="board">
+
+        </tbody>
+    </table>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+            </tr>
+        </thead>
+        <tbody id="board2">
+
+        </tbody>
+    </table>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>재고</th>
+            </tr>
+        </thead>
+        <tbody id="item">
+
+        </tbody>
+    </table>
+
+
+    <script>
+        const msg = document.querySelector('#msg');
+        console.log(msg);
+
+        // 태그 안쪽의 글씨들(컨텐츠) 가져오는 방법들
+
+        // textContent
+        // 컨텐츠 영역의 소스 중에서 text(글씨)만 그대로 가져온다
+        console.log('msg.textContent', msg.textContent);
+
+        // innerText
+        // 브라우저에 보이는 글씨로 가져온다.
+        // - 브라우저가 보여줄 내용에 대한 계산이 끝나고 실제로 표시하는 text
+        console.log('msg.ineerText', msg.innerText);
+
+        // innerHTML
+        console.log('msg.innerHTML', msg.innerHTML);
+
+        // 위의 것은 변수의 내용을 읽은거고
+        // 이제부터 변수에 값을 담으면
+        // 컨텐츠의 내용을 바꿔준다
+
+        // textContent, innerText는 tag도 글씨로 인식한다.
+        msg.textContent = '<h1>h1제목</h1>      a  b       c';
+        msg.innerText = '<h1>h1제목</h1>      a  b       c';
+
+        // innerHTML은 tag는 tag로 인식한다.
+        msg.innerHTML = '<h1>h1제목</h1>      a  b       c';
+        msg.innerHTML += 'd'
+
+        msg.innerHTML = '<a href="javascript:alert(1);alert(2)">눌러봐</a>'
+
+        const count = document.querySelector('#count');
+        setInterval(function () {
+            const count = document.querySelector('#count');
+            let cnt = count.textContent;
+            // console.log(cnt, typeof cnt);
+            cnt = Number(cnt) + 1;
+            count.innerText = cnt;
+            // console.log(cnt, typeof cnt);
+        }, 1000)
+        console.log(count);
+
+        // #clock에 시간을 "몇 분 몇 초"가 나오게 계속 갱신
+        // const clock = document.querySelector('#clock');
+        setInterval(function () {
+            let now = new Date();
+            let sec = now.getSeconds();
+            let minute = now.getMinutes();
+
+            // if (sec > 59) {
+            //     minute++;
+            //     sec = 0;
+            // }
+            // if (minute > 59) {
+            //     minute = 0;
+            // }
+            // sec++;
+            const time = minute + `분:` + sec + `초`;
+            clock.textContent = time;
+            // clock.innerText = minute + "분:" + sec + "초";
+        }, 1000);
+
+        ////////////////////
+        // DOM 생성
+        ////////////////////
+
+        // DOM 요소 생성
+        const div = document.createElement('div');
+        console.log(div);
+        // <div id="lol"></div>
+        div.setAttribute("id", "lol");
+        // <div id="lol">정글차이</div>
+        div.textContent = "정글차이";
+        console.log(div);
+
+        div.setAttribute("style", "color:red");
+
+        const log = document.querySelector('#log');
+        // append
+        // 마지막 자식 요소로 추가된다.
+        // 글씨도 넣을 수는 있다.
+        log.append(div);
+        log.append('<h1>abcd</h1>');
+
+        // 같은 객체를 두번 append할 때 조심!!
+        // 같은 객체는 이동된다.
+        log.append(div);
+
+        const p = document.createElement('p');
+        p.innerText = 'p태그';
+
+        // appendChild
+        // append 처럼 마지막 자식 요소로 추가된다.
+        // DON만 넣을 수 있다.
+        log.appendChild(p);
+        // log.appendChild('<h1>글씨일 뿐이다.</h1>');
+
+        const p2 = document.createElement('p');
+        p2.innerText = 'p2';
+
+        // prepend : 첫번째 자식 요소로 추가.
+        log.prepend(p2);
+
+        const p3 = document.createElement('p');
+        p.textContent = 'p3';
+
+        // before : 이전 형제로 추가
+        log.before(p3);
+
+        const p4 = document.createElement('p');
+        p.textContent = 'p4';
+
+        // after : 다음 형제로 추가
+        log.after(p4);
+
+        // const tbody = document.querySelector('#tbody');
+        // const tRow = document.createElement('tr');
+        // const tData = document.createElement('td');
+        // // console.log(tbody);
+        // // console.log(tRow);
+        // // console.log(tData);
+        // tbody.append(tRow);
+        // tRow.append(tData);
+        // tData.textContent = "첫째칸";
+        let tr = document.createElement('tr');
+
+        let td = document.createElement('td');
+        td.innerText = '첫째칸'
+        tr.append(td);
+
+        let tbody = document.querySelector('#tbody');
+        tbody.prepend(tr);
+
+        const rows = [
+            ['제목1', '작성자1'],
+            ['제목2', '작성자2'],
+            ['제목3', '작성자3'],
+            ['제목4', '작성자4'],
+            ['제목5', '작성자5']
+        ]
+
+        const board = document.querySelector('#board');
+        const row2 = document.createElement('tr');
+        const tData2_front = document.createElement('td');
+        const tData2_behind = document.createElement('td');
+
+        // console.log(rows.length);
+        // for (let i = 0; i < rows.length; i++) {
+        //     let trows = [];
+        //     let tcells = [];
+        //     trows.push(document.createElement('tr'));
+        //     tbody2.append(trows[i]);
+        //     for (let j = 0; j < rows[i].length; j++) {
+        //         tcells.push(document.createElement('td'));
+        //         trows[i].append(tcells[i][j]);
+        //         tcells.textContent = tcells[i][j];
+        //     }
+        // }
+
+        // tbody2.append(row2);
+
+        // row2.append(tData2_front);
+        // row2.append(tData2_behind);
+        // tData2_front.textContent = '제목1';
+        // tData2_behind.textContent = '작성자1';
+
+        // for (let i = 0; i < rows.length; i++) {
+        //     for (let j = 0; j < rows[i].length; j++) {
+        //         console.log(rows[i][j]);
+        //     }
+        // }
+
+        let rowArray = [];
+        let cellArray = [];
+
+        for (let i = 0; i < rows.length; i++) {
+            cellArray = [];
+            // 줄 수 만큼 생성.
+            rowArray.push(document.createElement('tr'));
+            board.append(rowArray[i]);
+            for (let j = 0; j < rows[i].length; j++) {
+                // 라인마다 셀 수 만큼 생성.
+                cellArray.push(document.createElement('td'));
+                // 잘 모르겠으면, 헷갈리면 console.log 찍어보기.
+                // console.log(cellArray);
+                // 몇번째 줄인지는 중요하지 않음. 여기서 따질 필요가 없다.
+                // 앞셀인지 뒤셀인지 판단.
+                // i번째 줄에 [j]번째 셀을 추가. 
+                // for(j...)가 도는 동안이므로 0, 1. 총 2번
+                rowArray[i].append(cellArray[j]);
+
+                // 각 셀에 넣어줄 정보 = rows[i][j];
+                cellArray[j].textContent = rows[i][j];
+            }
+        }
+        console.log(rowArray);
+        console.log(cellArray);
+        console.log(board);
+
+
+        //    게시판을 동적으로 출력해보자
+        /*
+            <tbody id="board">
+            <tr>
+                <td>제목1</td>
+                <td>작성자1</td>
+            </tr>
+            <tr>
+                <td>제목2</td>
+                <td>작성자2</td>
+            </tr>
+        </tbody>
+        */
+        /*
+        <table border="1">
+         <thead>
+             <tr>
+                 <th>상품명</th>
+                 <th>가격</th>
+                 <th>재고</th>
+             </tr>
+         </thead>
+         <tbody id="item">
+ 
+         </tbody>
+     </table>
+        */
+        const products = [
+            ['키보드', 50000, 10],
+            ['마우스', 30000, 5],
+            ['모니터', 250000, 3],
+            ['스피커', 70000, 8]
+        ]
+        let tbody3 = document.querySelector('#item');
+
+        for (let i = 0; i < products.length; i++) {
+            let tr = document.createElement('tr');
+            // console.log(tr);
+            for (let j = 0; j < products[i].length; j++) {
+                let td = document.createElement('td');
+                tr.append(td);
+                td.textContent = products[i][j];
+                // console.log(td);
+            }
+            tbody3.append(tr);
+        }
+        console.log(tbody3);
+
+        let board2 = document.querySelector('#board2');
+        // for (let i = 0; i < rows.length; i++) {
+        //     for (let j = 0; j < rows[i].length; j++) {
+        //         let html = `
+        //     <tr>
+        //         <td>${rows[i][j]}</td>
+        //         <td>${rows[i][j]}</td>
+        //     </tr>
+        // `
+        //         board2.innerHTML += html;
+        //     }
+        // }
+        // for (let i = 0; i < rows.length; i++) {
+        //     let html = `
+        //     <tr>
+        //         <td>${rows[i][0]}</td>
+        //         <td>${rows[i][1]}</td>
+        //     </tr>
+        // `
+        //     board2.innerHTML += html;
+        // }
+        for (let i = 0; i < rows.length; i++) {
+            let html = `
+            <tr>
+                <td>${rows[i][0]}</td>
+                <td>${rows[i][1]}</td>
+            </tr>
+        `
+            board2.innerHTML = html + board2.innerHTML;
+        }
+
+
+        let str = '';
+        for (let i = 0; i < 5; i++) {
+            // str += i;
+            str = i + str;
+        }
+        console.log(str);
+
+        const body = document.querySelector('body');
+        const style = document.createElement('style');
+        /*
+            <style>
+                #board {
+                    border: 1px solid red;
+                }
+        */
+        style.innerText = `
+                #board {
+                    border: 1px solid red;
+                }
+       `
+        body.append(style);
+        const script = document.createElement('script')
+        script.innerText = `
+                alert(1);
+        `
+        body.append(script);
+
+        ////////////////////
+        // style
+
+        const clock = document.getElementById('clock');
+        // CSS에서 -로 연결되는 프로퍼티 명은
+        // 카멜케이스(단어를 대문자로)
+        clock.style.color = 'red';
+        clock.style.fontSize = '1.5em';
+        console.log(clock.style);
+        console.log('-------------------');
+        console.log(clock.style);
+        console.log(clock.style.color);
+        console.log(clock.style.height);
+        clock.style.height = '50px';
+        console.log(clock.style.height);
+
+        let w = window.getComputedStyle(clock, null).getPropertyValue('width');
+        console.log('w', w);
+
+        clock.style.border = '1px solid plum';
+
+        // 기존 높이보다 5px 크게
+        clock.style.height = parseInt(Math.random() * 100) + 'px';
+        console.log(clock.style.height);
+
+        clock.style.height = parseInt('clock.style.height') + 5 + 'px';
+        console.log(clock.style.height);
+
+        // 문제 1
+        // <div class='quiz q1'>힌트만 달라</div>
+        // 글씨 마지막에 " 쮸인님~♥" 붙이기
+        // "힌트만 달라 쮸인님~♥"
+        const q1_div = document.createElement('div');
+        q1_div.setAttribute("class", "quiz q1");
+        let q1_text = "힌트만 달라";
+        let q1_addText = " 쮸인님~♥"
+        q1_div.textContent = `${q1_text}${q1_addText}`;
+        console.log(q1_div);
+
+
+       // 문제2
+        /*
+            <div class='quiz q2'>퀴즈2</div>
+            <div class='quiz q2-1'>퀴즈2-1</div>
+            <div class='quiz q2-2'>퀴즈2-2</div>
+            <div class='quiz q2'></div>
+            <div class='quiz q2-1'>퀴즈2-1</div>
+        */
+        // 위 코드 중 클래스 q2가 몇개인가?
+        // 2개
+        let q2_html = `
+            <div class='quiz q2'>퀴즈2</div>
+            <div class='quiz q2-1'>퀴즈2-1</div>
+            <div class='quiz q2-2'>퀴즈2-2</div>
+            <div class='quiz q2'></div>
+            <div class='quiz q2-1'>퀴즈2-1</div>
+        `;
+        console.log(q2_html);
+        // 결국 <div...>~</div>까지가 하나의 문자열이므로 split으로 구분해줌.
+        let q2_str = q2_html.split('</div>');
+        console.log(q2_str);
+
+        // 문자열 for 루프 돌릴 때 사용할 변수들.
+        // idx = indexOf를 체크할 변수.
+        // cnt = q2 개수를 체크할 변수.
+
+        let q2_idx = 0;
+        // let q2_cnt = 0;
+
+        // 마지막 공백까지 6개가 나오므로
+        let q2_notcnt = q2_str.length -1;
+        for(i = 0; i < q2_str.length; i++){
+            // q2_idx = q2_str[i].indexOf('q2');
+            // if(q2_idx != -1){
+            //     q2_cnt++;
+            // }
+            // 접근법 자체는 좋았는데 q2가 포함된 걸 모두 찾고 있음.
+            // 그럼 q2 외의 모두를 빼면 어떨까?
+            q2_idx = q2_str[i].indexOf('q2-1');
+            if(q2_idx != -1){
+                q2_notcnt--;
+            }
+            q2_idx = q2_str[i].indexOf('q2-2');
+            if(q2_idx != -1){
+                q2_notcnt--;
+            }
+        }
+        console.log(q2_notcnt);
+
+        // 문제3
+        // 위 코드에서 q2를 가지는 태그의 글씨를 출력하시오
+        /* 
+            퀴즈2-1
+
+        */
+
+        // 문제4
+        // 위 코드 중 글씨가 없는 태그의 내용을 "비어있음"으로 바꾼다
+
+    </script>
+</body>
+
+</html>

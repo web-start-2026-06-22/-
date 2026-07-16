@@ -19,6 +19,10 @@
         // console.log에 찍을 용도로 선언.
         let cnt = 2;
 
+        // while문 자체가 돌아간 횟수를 세기 위해 추가. 
+        // while문 몇 번 돌고 중복 아닌 번호가 나왔는지 출력되면 재밌을 것 같다 by 최민수 강사님 2026-07-14
+        let whCnt = 0;
+
         // sort에 넣을 함수. 짜기 귀찮아서 교재 보고 타이핑함...
         function compare(a, b) {
             if (a > b) {
@@ -58,6 +62,7 @@
 
                 // 중복값이므로 초기화.
                 tempLottoNumber = -1;
+                whCnt++;
             }
             else {
                 // 중복 검사를 한 tempLottoNumber를 push해준다.
@@ -73,10 +78,11 @@
                 alreadyNumber.push(tempLottoNumber);
 
                 // 넣어준 뒤 tempLottoNumber를 다시 초기화.
-                tempLottoNumber = 0;
+                tempLottoNumber = -1;
 
-                console.log(`${cnt - 1}번째 반복, 현재 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
+                console.log(`while문 ${whCnt}번째 반복, 현재 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
                 cnt++;
+                whCnt++;
             }
             // lottoNumber.push(parseInt(Math.random() * 45) + 1);
             // console.log(`로또 두번째 번호 : ${lottoNumber[1]}`);
@@ -90,14 +96,17 @@
             //     break;
             // }
             if (lottoNumber.length > 5) {
+                whCnt--;
                 break;
             }
         }
         lottoNumber.sort(compare);
-        alreadyNumber.sort(compare);
+        // 불필요해서 주석처리 2026-07-14
+        // alreadyNumber.sort(compare);
 
-        console.log(`최종적으로 생성된 로또 번호 배열은 ${lottoNumber}입니다.`);
-        console.log(`최종적으로 생성된 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
+        console.log(`최종적으로 생성된 로또 번호 배열은 ${lottoNumber}, 생성되기까지 반복된 while문 횟수는 ${whCnt}입니다.`);
+        // 2026-07-14
+        // console.log(`최종적으로 생성된 로또 번호 중복 방지 배열은 ${alreadyNumber}입니다.`);
 
     </script>
 </head>

@@ -278,89 +278,118 @@
         // 입력받은 수 백의 자리, 십의 자리, 일의 자리 담을 변수까지 선언.
 
         // // 임의의 세 자리수 변수.
-        // let rand_hun = parseInt(Math.random() * 9) + 1;
-        // let rand_ten = parseInt(Math.random() * 9) + 1;
-        // let rand_one = parseInt(Math.random() * 10);
-        // // 합치기
-        // let rand_num = rand_hun * 100 + rand_ten * 10 + rand_one;
-
-        // // 스트라이크, 볼 개수
-        // let strike_cnt = 0, ball_cnt = 0;
-        // // 정답 맞추기까지의 횟수, 정답을 입력받을 변수 재사용을 위해 초기화.
-        // // 하려 했는데 그냥 선언해야될 듯. 위 주석처리하고.
-        // let co_cnt = 0;
-        // let correct;
-
-        // let co_hun = 0, co_ten = 0, co_one = 0;
-
-        // do {
-        //     // 루프를 돌 때마다 리셋
-        //     strike_cnt = 0, ball_cnt = 0;
-        //     correct = Number(prompt("숫자 야구를 시작합니다. 100~999까지의 수 중 하나를 입력하세요."));
-        //     if (correct > 999 || correct < 100 || correct < 0) {
-        //         console.log("유효한 값이 아닙니다. 다시 입력하세요.");
-        //     }
-        //     co_hun = parseInt(correct / 100);
-        //     co_ten = parseInt((correct / 10) % 10);
-        //     co_one = correct % 10;
-
-        //     // 세 자리 중 두 자리가 같을 경우.
-        //     // && 는 논리곱이라 우선순위가 높으므로 각 자리수 비교를 괄호로 묶어주기.
-
-        //     // 원 스트라이크 + 2볼, 1볼일 경우 체크가 안 될 것 같다.
-        //     if (((rand_hun == co_hun) && (rand_ten == co_ten))
-        //         || ((rand_hun == co_hun) && (rand_one == co_one))
-        //         || ((rand_ten == co_ten) && (rand_one == co_one))) {
-        //         // strike 2개 부여.
-        //         strike_cnt = 2;
-        //         console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
-        //     }
-        //     // 세 자리 중 한 자리가 같을 경우.
-        //     else if ((rand_hun == co_hun)
-        //         || (rand_ten == co_ten)
-        //         || (rand_one == co_one)) {
-        //         // strike 1개 부여.
-        //         strike_cnt = 1;
-        //         console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
-        //     }
-        //     // 세 자리 중 정확히 일치하는 수가 없는 경우.
-        //     else {
-        //         // 자리의 위치는 다르나, 임의의 수 중 2가지는 맞춘 경우.
-        //         if ((rand_hun == co_ten || rand_hun == co_one) && (rand_ten == co_one)) {
-        //             ball_cnt = 2;
-        //             console.log(`${baa_cnt}볼, 입력하신 수는 ${correct}입니다.`);
-        //         }
-        //         else {
-        //             // 자리의 위치는 다르나, 임의의 수 중 1가지는 맞춘 경우.
-        //             if (rand_hun == co_hun) {
-        //                 ball_cnt = 1;
-        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
-        //             }
-        //             else if (rand_hun == co_one) {
-        //                 ball_cnt = 1;
-        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
-        //             }
-        //             else if (rand_ten == co_one) {
-        //                 ball_cnt = 1;
-        //                 console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
-        //             }
-        //             // 위치도 숫자도 맞추지 못한 경우
-        //             else {
-        //                 console.log(`아웃입니다. 입력하신 수는 ${correct}입니다.`);
-        //             }
-        //         }
-        //     }
-        //     co_cnt++;
+        let rand_hun = parseInt(Math.random() * 9) + 1;
+        let rand_ten = 0;
+        let rand_one = 0;
 
 
-        //     // 백의 자리, 십의 자리, 일의 자리가 모두 동일할 때까지 반복
-        //     // 논리곱이라 각각 괄호로 묶어주기.
-        // }
-        // // while ((rand_hun != co_hun) && (rand_ten != co_ten) && (rand_one != co_one))
-        // while (rand_num != correct)
-        // // 될 줄 알았는데 안 됨 조건 설정을 실수했는지 || 처럼 동작
-        // // 그래서 위에서 각각의 자리 수를 임의로 지정하고 합친 걸 담는 변수를 추가 선언해줌.
-        // console.log(`입력하신 수 ${correct}는 정답입니다. 정답까지 ${co_cnt}회 걸리셨습니다.`);
+        // 중복 체크용 변수.
+        let alreadyNumber = [];
+        alreadyNumber.push(rand_hun);
+        console.log(`현재 중복 방지 배열은 ${alreadyNumber}입니다.`);
+
+        let cnt = 1;
+
+        let nextNum = 0;
+
+        while (cnt < 3) {
+            nextNum = parseInt(Math.random() * 9) + 1;
+            if ((alreadyNumber.indexOf(nextNum) == -1) && cnt == 1) {
+                rand_ten = nextNum;
+                alreadyNumber.push(nextNum);
+                nextNum = 0;
+            }
+            else if ((alreadyNumber.indexOf(nextNum) == -1) && cnt == 2) {
+                rand_one = nextNum;
+            }
+            else {
+                nextNum = 0;
+            }
+            cnt++;
+        }
+        // 합치기
+        let rand_num = rand_hun * 100 + rand_ten * 10 + rand_one;
+        // rand_ten = parseInt(Math.random() * 9) + 1;
+        // rand_one = parseInt(Math.random() * 10);
+
+        // 스트라이크, 볼 개수
+        let strike_cnt = 0, ball_cnt = 0;
+        // 정답 맞추기까지의 횟수, 정답을 입력받을 변수 재사용을 위해 초기화.
+        // 하려 했는데 그냥 선언해야될 듯. 위 주석처리하고.
+        let co_cnt = 0;
+        let correct;
+
+        let co_hun = 0, co_ten = 0, co_one = 0;
+
+
+        do {
+            // 루프를 돌 때마다 리셋
+            strike_cnt = 0, ball_cnt = 0;
+            correct = Number(prompt("숫자 야구를 시작합니다. 100~999까지의 수 중 하나를 입력하세요."));
+            if (correct > 999 || correct < 100 || isNaN(correct) == true) {
+                console.log("유효한 값이 아닙니다. 다시 입력하세요.");
+            }
+            co_hun = parseInt(correct / 100);
+            co_ten = parseInt((correct / 10) % 10);
+            co_one = correct % 10;
+
+            // 세 자리 중 두 자리가 같을 경우.
+            // && 는 논리곱이라 우선순위가 높으므로 각 자리수 비교를 괄호로 묶어주기.
+
+            // 원 스트라이크 + 2볼, 1볼일 경우 체크가 안 될 것 같다.
+            if (((rand_hun == co_hun) && (rand_ten == co_ten))
+                || ((rand_hun == co_hun) && (rand_one == co_one))
+                || ((rand_ten == co_ten) && (rand_one == co_one))) {
+                // strike 2개 부여.
+                strike_cnt = 2;
+                console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
+            }
+            // 세 자리 중 한 자리가 같을 경우.
+            else if ((rand_hun == co_hun)
+                || (rand_ten == co_ten)
+                || (rand_one == co_one)) {
+                // strike 1개 부여.
+                strike_cnt = 1;
+                console.log(`${strike_cnt}스트라이크, 입력하신 수는 ${correct}입니다.`);
+            }
+            // 세 자리 중 정확히 일치하는 수가 없는 경우.
+            else {
+                // 자리의 위치는 다르나, 임의의 수 중 2가지는 맞춘 경우.
+                if ((rand_hun == co_ten || rand_hun == co_one) && (rand_ten == co_one)) {
+                    ball_cnt = 2;
+                    console.log(`${baa_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+                }
+                else {
+                    // 자리의 위치는 다르나, 임의의 수 중 1가지는 맞춘 경우.
+                    if (rand_hun == co_hun) {
+                        ball_cnt = 1;
+                        console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+                    }
+                    else if (rand_hun == co_one) {
+                        ball_cnt = 1;
+                        console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+                    }
+                    else if (rand_ten == co_one) {
+                        ball_cnt = 1;
+                        console.log(`${ball_cnt}볼, 입력하신 수는 ${correct}입니다.`);
+                    }
+                    // 위치도 숫자도 맞추지 못한 경우
+                    else {
+                        console.log(`아웃입니다. 입력하신 수는 ${correct}입니다.`);
+                    }
+                }
+            }
+            co_cnt++;
+
+
+            // 백의 자리, 십의 자리, 일의 자리가 모두 동일할 때까지 반복
+            // 논리곱이라 각각 괄호로 묶어주기.
+        }
+        // while ((rand_hun != co_hun) && (rand_ten != co_ten) && (rand_one != co_one))
+        while (rand_num != correct)
+        // 될 줄 알았는데 안 됨 조건 설정을 실수했는지 || 처럼 동작
+        // 그래서 위에서 각각의 자리 수를 임의로 지정하고 합친 걸 담는 변수를 추가 선언해줌.
+        console.log(`입력하신 수 ${correct}는 정답입니다. 정답까지 ${co_cnt}회 걸리셨습니다.`);
 
     </script>
 </head>
