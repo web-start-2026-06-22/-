@@ -255,15 +255,18 @@
                         // 배열 정상적으로 만들어졌는지 테스트용.
                         // console.log(`숫자야구를 위한 배열이 생성 완료됐습니다. ${randNum}`);
                         compleNumber = arrToNum(randNum);
-                        // 테스트용
-                        console.log(`배열을 숫자로 바꾼 값은 ${compleNumber}입니다.`);
+
                     }
                 } while (bbMode < 3 || bbMode > 4)
 
                 // console.log("숫자야구를 위한 배열이 생성 완료됐습니다.");
+                // 테스트용 위치 바꾸다보니 출력이 안 됐음. while 밖으로 빼야됨.
+                // console.log(`배열을 숫자로 바꾼 값은 ${compleNumber}입니다.`);
 
                 do {
                     userInput = Number(prompt(`현재 모드는 ${bbMode}자리 모드입니다. ${bbMode}자리 수를 입력하세요.`));
+                    let inputArray = [];
+                    inputArray = numToArr(userInput);
                     if (bbMode == 3) {
                         if (userInput > 999 || userInput < 100 || isNaN(userInput) == true) {
                             console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
@@ -274,45 +277,44 @@
                             console.log(`값의 범위를 벗어났습니다. 다시 입력하세요.`);
                         }
                     }
-                    if (userInput == 0) {
+                    if ((userInput == 0) || (userInput == null)) {
                         break;
                     }
-                    for (i = 0; i < randNum.length; i++) {
-                        let inputArray = [];
-                        inputArray = numToArr(userInput);
-                        // 값이 잘 들어갔는지 확인.
-                        // console.log(inputArray);
-                        for (i = 0; i < randNum.length; i++) {
-                            // 자릿수 일치하는 경우
-                            if (inputArray.indexOf(randNum[i]) == i) {
-                                // 스트라이크 개수 증가
-                                strike_cnt++;
-                                // 자릿수는 일치하지 않지만 정답 번호가 있는 경우
-                            } else if ((inputArray.indexOf(randNum[i]) != i) && (inputArray.indexOf(randNum[i]) != -1)) {
-                                // 볼 개수 증가
-                                ball_cnt++;
-                                // 아닌 경우
-                            } else if (inputArray.indexOf(randNum[i]) == -1) {
-                                // 그대로
-                                strike_cnt = strike_cnt;
-                                ball_cnt = ball_cnt;
-                            }
-                        }
-                        if (((strike_cnt == 0) && (ball_cnt == 0))) {
-                            console.log(`아웃입니다. 입력하신 값은 ${userInput}입니다.`);
-                        } else if (strike_cnt < randNum.length) {
-                            console.log(`${strike_cnt}스트라이크, ${ball_cnt}볼입니다. 입력하신 값은 ${userInput}입니다.`);
-                        }
-                        co_cnt++;
-                        strike_cnt = 0;
-                        ball_cnt = 0;
+                    // for (let i = 0; i < randNum.length; i++) {
+                    // for 반복문이 2번 돌아갈 필요는 없을 듯?
 
-
+                    // 값이 잘 들어갔는지 확인.
+                    // console.log(inputArray);
+                    for (let i = 0; i < randNum.length; i++) {
+                        // 자릿수 일치하는 경우
+                        if (inputArray.indexOf(randNum[i]) == i) {
+                            // 스트라이크 개수 증가
+                            strike_cnt++;
+                            // 자릿수는 일치하지 않지만 정답 번호가 있는 경우
+                        } else if ((inputArray.indexOf(randNum[i]) != i) && (inputArray.indexOf(randNum[i]) != -1)) {
+                            // 볼 개수 증가
+                            ball_cnt++;
+                            // 아닌 경우
+                        } else if (inputArray.indexOf(randNum[i]) == -1) {
+                            // 그대로
+                            strike_cnt = strike_cnt;
+                            ball_cnt = ball_cnt;
+                        }
                     }
+
+                    // }
+                    if (((strike_cnt == 0) && (ball_cnt == 0))) {
+                        console.log(`아웃입니다. 입력하신 값은 ${userInput}입니다.`);
+                    } else if (strike_cnt < randNum.length) {
+                        console.log(`${strike_cnt}스트라이크, ${ball_cnt}볼입니다. 입력하신 값은 ${userInput}입니다.`);
+                    }
+                    co_cnt++;
+                    strike_cnt = 0;
+                    ball_cnt = 0;
                 }
                 // 모든 자리의 숫자를 맞출 때까지 반복.
                 while (userInput != compleNumber)
-                if (userInput == 0) {
+                if ((userInput == 0)) {
                     console.log('게임을 중단했습니다.');
                 } else {
                     console.log(`입력하신 ${userInput}은 정답입니다. 정답까지 ${co_cnt}회 시도하셨습니다.`);

@@ -61,6 +61,24 @@
         </tbody>
     </table>
 
+    <div class='quiz q1'>
+        힌트만 달라
+    </div>
+    <div class='quiz q2'>
+        퀴즈2
+    </div>
+    <div class='quiz q2-1'>
+        퀴즈2-1
+    </div>
+    <div class='quiz q2-2'>
+        퀴즈2-2
+    </div>
+    <div class='quiz q2'>
+
+    </div>
+    <div class='quiz q2-1'>
+        퀴즈2-1
+    </div>
 
     <script>
         const msg = document.querySelector('#msg');
@@ -365,10 +383,10 @@
        `
         body.append(style);
         const script = document.createElement('script')
-        script.innerText = `
-                alert(1);
-        `
-        body.append(script);
+        // script.innerText = `
+        //         alert(1);
+        // `
+        // body.append(script);
 
         ////////////////////
         // style
@@ -402,15 +420,22 @@
         // <div class='quiz q1'>힌트만 달라</div>
         // 글씨 마지막에 " 쮸인님~♥" 붙이기
         // "힌트만 달라 쮸인님~♥"
-        const q1_div = document.createElement('div');
-        q1_div.setAttribute("class", "quiz q1");
-        let q1_text = "힌트만 달라";
-        let q1_addText = " 쮸인님~♥"
-        q1_div.textContent = `${q1_text}${q1_addText}`;
+
+        const q1_div = document.querySelector('.q1')
         console.log(q1_div);
+        let q1_addtext = " 쮸인님~♥";
+        q1_div.textContent += `${q1_addtext}`;
+
+        // js로 html 태그 만들고 넣기
+        // const q1_div = document.createElement('div');
+        // q1_div.setAttribute("class", "quiz q1");
+        // let q1_text = "힌트만 달라";
+        // let q1_addText = " 쮸인님~♥"
+        // q1_div.textContent = `${q1_text}${q1_addText}`;
+        // console.log(q1_div);
 
 
-       // 문제2
+        // 문제2
         /*
             <div class='quiz q2'>퀴즈2</div>
             <div class='quiz q2-1'>퀴즈2-1</div>
@@ -420,44 +445,48 @@
         */
         // 위 코드 중 클래스 q2가 몇개인가?
         // 2개
-        let q2_html = `
-            <div class='quiz q2'>퀴즈2</div>
-            <div class='quiz q2-1'>퀴즈2-1</div>
-            <div class='quiz q2-2'>퀴즈2-2</div>
-            <div class='quiz q2'></div>
-            <div class='quiz q2-1'>퀴즈2-1</div>
-        `;
-        console.log(q2_html);
-        // 결국 <div...>~</div>까지가 하나의 문자열이므로 split으로 구분해줌.
-        let q2_str = q2_html.split('</div>');
-        console.log(q2_str);
+        // let q2_html = `
+        //     <div class='quiz q2'>퀴즈2</div>
+        //     <div class='quiz q2-1'>퀴즈2-1</div>
+        //     <div class='quiz q2-2'>퀴즈2-2</div>
+        //     <div class='quiz q2'></div>
+        //     <div class='quiz q2-1'>퀴즈2-1</div>
+        // `;
+        // console.log(q2_html);
+        // // 결국 <div...>~</div>까지가 하나의 문자열이므로 split으로 구분해줌.
+        // let q2_str = q2_html.split('</div>');
+        // console.log(q2_str);
 
-        // 문자열 for 루프 돌릴 때 사용할 변수들.
-        // idx = indexOf를 체크할 변수.
-        // cnt = q2 개수를 체크할 변수.
+        // // 문자열 for 루프 돌릴 때 사용할 변수들.
+        // // idx = indexOf를 체크할 변수.
+        // // cnt = q2 개수를 체크할 변수.
 
-        let q2_idx = 0;
-        // let q2_cnt = 0;
+        // let q2_idx = 0;
+        // // let q2_cnt = 0;
 
-        // 마지막 공백까지 6개가 나오므로
-        let q2_notcnt = q2_str.length -1;
-        for(i = 0; i < q2_str.length; i++){
-            // q2_idx = q2_str[i].indexOf('q2');
-            // if(q2_idx != -1){
-            //     q2_cnt++;
-            // }
-            // 접근법 자체는 좋았는데 q2가 포함된 걸 모두 찾고 있음.
-            // 그럼 q2 외의 모두를 빼면 어떨까?
-            q2_idx = q2_str[i].indexOf('q2-1');
-            if(q2_idx != -1){
-                q2_notcnt--;
-            }
-            q2_idx = q2_str[i].indexOf('q2-2');
-            if(q2_idx != -1){
-                q2_notcnt--;
-            }
-        }
-        console.log(q2_notcnt);
+        // // 마지막 공백까지 6개가 나오므로
+        // let q2_notcnt = q2_str.length -1;
+        // for(i = 0; i < q2_str.length; i++){
+        //     // q2_idx = q2_str[i].indexOf('q2');
+        //     // if(q2_idx != -1){
+        //     //     q2_cnt++;
+        //     // }
+        //     // 접근법 자체는 좋았는데 q2가 포함된 걸 모두 찾고 있음.
+        //     // 그럼 q2 외의 모두를 빼면 어떨까?
+        //     q2_idx = q2_str[i].indexOf('q2-1');
+        //     if(q2_idx != -1){
+        //         q2_notcnt--;
+        //     }
+        //     q2_idx = q2_str[i].indexOf('q2-2');
+        //     if(q2_idx != -1){
+        //         q2_notcnt--;
+        //     }
+        // }
+        // console.log(q2_notcnt);
+
+        let q2_div = document.querySelectorAll('.q2');
+        console.log(q2_div);
+        console.log(`정답:${q2_div.length}`);
 
         // 문제3
         // 위 코드에서 q2를 가지는 태그의 글씨를 출력하시오
@@ -466,9 +495,34 @@
 
         */
 
+
+        for (let i = 0; i < q2_div.length; i++) {
+            // console.log(q2_div[i].textContent);
+            // div의 빈값은 0
+            // if (q2_div[i].textContent == false) 
+            if (q2_div[i].textContent == 0) {
+                q2_div[i].textContent = '비어있음';
+            }
+            console.log(q2_div[i].textContent);
+        }
+
         // 문제4
         // 위 코드 중 글씨가 없는 태그의 내용을 "비어있음"으로 바꾼다
 
+        // let q4_bonusdiv = document.querySelectorAll('.quiz');
+        // console.log(q4_bonusdiv.length);
+
+        // let q4_bonus = "보너스 문제"
+
+        // for (let i = 0; i < q4_bonusdiv.length; i++) {
+        //     if (q4_bonusdiv[i].className == 'quiz q2') {
+        //         q4_bonusdiv[i].textContent = `${q4_bonus}+${i}`;
+        //     }
+        //     console.log(q4_bonusdiv[i].textContent);
+        // }
+        // console.log(q4_bonusdiv[0]);
+        // console.log(q4_bonusdiv[0].textContent);
+        // console.log(q4_bonusdiv[0].className);
     </script>
 </body>
 
