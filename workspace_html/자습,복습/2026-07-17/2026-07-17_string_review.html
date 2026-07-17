@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 문제1
+        // 어떤 이메일에서 id만 출력하기.
+
+        // split() 사용해서 @를 기준으로 분리해주고 
+        // 앞의 것을 출력한다.
+
+        let q1_email = "asdf4321@gmail.com"
+
+        // split('@')으로 문자열을 나눠주면
+        // q1_email.split('@').length = 2
+        // q1_email.split('@')[0] = 아이디 부분.
+        // q1_email.split('@')[1] = 메일 주소, 도메인 부분.
+        console.log(q1_email.split('@')[0]);
+
+        // 문제2
+        // 주민번호로 성별 출력하기
+
+        // 이 문제도 split('-')으로 나눠주면
+        // 앞의 배열은 출생일자
+        // 뒤의 배열은 성별, 지역 정보 등이 들어가게 된다.
+        // 그 중 성별은 맨 처음 문자다.
+
+        let q2_num = '123456-2345678';
+
+
+        // console.log(q2_num.split('-')[1][0])
+        // 가져오고자 하는 번호인 2가 나올 것이다.
+        // 다만 문자열의 요소로 들어갔던 것을 출력하는 것이기에 문자로 출력될 수 있다.
+        // 가공을 거치자.
+        let q2_genderNum = Number(q2_num.split('-')[1][0]);
+        if (q2_genderNum == 1) {
+            console.log('남성');
+        } else if (q2_genderNum == 2) {
+            console.log('여성');
+        } else {
+            console.log(`${q2_num}가 주민번호의 형태가 아닙니다. 추출된 성별 정보 번호는 ${q2_genderNum}입니다.`);
+        }
+
+
+        // 문제3
+        // "2026-07-14 12:43:19"
+        // 월, 분 구하기
+
+        // split(' ')으로 공백을 기준으로 양쪽을 나눠주고
+        // 날짜에 해당하는 배열은 split('-')을 통해
+        // 시간에 해당하는 배열은 split(':')을 통해 한 번씩 더 나눠준다.
+        // 그리고 월, 분에 해당하는 index인 [1]을 출력해주면 된다.
+
+        let q3_str = "2026-07-14 12:43:19";
+        let q3_date = q3_str.split(' ')[0];
+        console.log(q3_date);
+        let q3_time = q3_str.split(' ')[1];
+        console.log(q3_time);
+        console.log(`월 : ${q3_date.split("-")[1]}, 분 : ${q3_time.split(":")[1]}`);
+
+
+        // ---------------------
+        // 보안상 당첨 이메일을 가려서 출력
+        // todair@naver.com >>>> to****@naver.com
+
+        // 문제4
+        // 앞 두 글자만 제대로 표시하고 *표 4개 표시하고 @부터 다 출력.
+
+        // 이메일 선언
+        // 방법1. indexOf로 @ 위치 찾고 slice로 s부터 @ 앞까지 자른 걸 replace
+        // = 원래 풀었던 방식인데 indexOf를 쓰기까지하면 너무 길어질 것 같아서 손으로 셈.
+        // indexOf까지 써보자.
+
+        // 방법2. split('@')으로 앞뒤 가르고 split[0]으로 아이디 부분을 포커싱
+        // 그 뒤 아이디 부분 마찬가지로 slice해서 replace하고 + @ + split[1]
+
+        let q4_email = "adsf1324@hotmail.com";
+
+        // 방법1
+        console.log(q4_email.replace(q4_email.slice(2, q4_email.indexOf('@')), '****'));
+
+        // 방법2
+        let q4_id = q4_email.split('@')[0];
+        let q4_domain = q4_email.split('@')[1];
+        // 끝 index를 주지 않으면 시작 index부터 끝까지이므로.
+        let q4_idStar = q4_id.slice(2);
+        console.log(q4_id.replace(q4_idStar, '****') + '@' + q4_domain);
+
+
+        // 문제5
+        // 앞 두 글자만 제대로 표시하고 * 표는 가려진 개수만큼
+        // 예: study.todair@gmail.com >> st**********@gmail.com
+
+        // *을 담을 문자열 선언해서 for문 돌리기.
+        // replace, slice 조합해서 대체하기.
+        // id 부분만 대체해야하므로 위에서처럼 split 사용해서 id만 빼내주기.
+
+        let q5_email = "example5@hanmail.net";
+        let q5_id = q5_email.split('@')[0];
+        let q5_idStar = '';
+        let q5_star = '*';
+
+        // 맨 앞의 두 글자는 남겨야 하므로
+        for (let i = 0; i < q5_id.length - 2; i++) {
+            q5_idStar += q5_star;
+        }
+
+        console.log(q5_email.replace(q5_id.slice(2), q5_idStar));
+
+
+
+
+        // ============================================
+        // JavaScript 문자열 연습 문제
+        // (slice, split, replace, length, indexOf,
+        // lastIndexOf, for, if 활용)
+        // ============================================
+
+        // ------------------------------
+        // Level 1
+        // ------------------------------
+
+        // 문제 1
+        // 전화번호에서 가운데 번호만 출력하기.
+        //
+        // let phone = "010-9876-1234";
+        //
+        // 출력
+        // 9876
+
+        let phone = "010-9876-1234";
+        console.log(phone.split('-')[1]);
+
+        // 문제 2
+        // 전화번호를 보안 처리하기.
+        //
+        // let phone = "010-9876-1234";
+        //
+        // 출력
+        // 010-****-1234
+
+        console.log(phone.replace(phone.split('-')[1], '****'));
+
+        // 문제 3
+        // URL에서 도메인만 출력하기.
+        //
+        // let url = "https://www.naver.com/news";
+        //
+        // 출력
+        // www.naver.com
+
+        // url을 '//'으로 한 번, /으로 한 번 잘라서 [0] 출력
+
+        let url = "https://www.naver.com/news";
+        console.log(url.split('//')[1].split('/')[0]);
+
+
+        // 문제 4
+        // 파일명에서 확장자 출력하기.
+        //
+        // let file = "profile_photo.png";
+        //
+        // 출력
+        // png
+
+        // split('.')으로 나눈 걸 배열에 담고 4번은 해당 배열의 [1], 
+        // 5번은 [0]을 출력하면 된다.
+
+        let file = "profile_photo.png";
+
+        let fileArr = file.split('.');
+        console.log(fileArr[1]);
+        // 문제 5
+        // 파일명에서 파일 이름만 출력하기.
+        //
+        // let file = "profile_photo.png";
+        //
+        // 출력
+        // profile_photo
+
+        console.log(fileArr[0]);
+
+
+        // 문제 6
+        // 날짜에서 년도만 출력하기.
+        //
+        // let date = "2026/07/15";
+        //
+        // 출력
+        // 2026
+
+        // split('/')으로 자르고 [0] 출력. 
+        // 근데 이 문제도 자른 걸 7번에서 또 써먹을 수 있으니 배열에 담아두고 
+        // 7번은 [1], [2] 출력.
+
+        let date = "2026/07/15";
+
+        let dateArr = date.split('/');
+        console.log(dateArr[0]);
+
+
+        // 문제 7
+        // 날짜에서 월과 일 출력하기.
+        //
+        // let date = "2026/07/15";
+        //
+        // 출력
+        // 07월
+        // 15일
+
+        console.log(dateArr[1] + '월');
+        console.log(dateArr[2] + '알');
+
+
+        // 문제 8
+        // 상품코드에서 마지막 번호만 출력하기.
+        //
+        // let code = "ITEM-2026-00125";
+        //
+        // 출력
+        // 00125
+
+        // split('-')으로 나눠주고, [2] 출력
+
+        let code = "ITEM-2026-00125"
+
+        console.log(code.split('-')[2]);
+
+        // ------------------------------
+        // Level 2
+        // ------------------------------
+
+        // 문제 9
+        // 이메일 아이디의 길이를 출력하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // 아이디 길이 : 16
+        //
+        // (@ 앞까지만 아이디)
+
+        // 전체의 길이를 출력하면 바로 email.length를 해주면 됐으나
+        // 아이디 영역의 길이만 출력하는 것이므로 split('@')[0].length
+        // 다만, 이 문제도 10번, 11번과 연결돼서 도메인 영역도 다루므로
+        // 배열에 담아놓고 배열의 [0].length를 해주는 것이 바람직.
+
+        let email = "study.javascript@gmail.com"
+
+        let emailArr = email.split('@');
+        console.log(emailArr[0].length);
+
+        // 문제 10
+        // 이메일의 도메인만 출력하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // gmail.com
+
+        console.log(emailArr[1]);
+
+        // 문제 11
+        // 이메일의 도메인을 변경하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // study.javascript@google.com
+
+        // 뒤의 'com' 부분은 굳이 불필요하게 함께 바꿔줄 필요가 없다.
+        // .으로 한 번 더 split해주자.
+        let reDomain = emailArr[1].split('.')[0];
+        console.log(email.replace(reDomain, 'google'));
+
+        // 문제 12
+        // 주민번호에서 생년월일 출력하기.
+        //
+        // let jumin = "990312-1234567";
+        //
+        // 출력
+        // 99년
+        // 03월
+        // 12일
+
+        // '-'으로 split, slice로 2자리씩 끊어주기.
+        // split은 배열로 담는다.
+        // 2자리씩이니까 년을 출력 후 정상적으로 출력되는 걸 확인하면
+        // 월, 일은 시작, 끝 index를 2씩 올려주면 된다.
+
+        let jumin = "990312-1234567";
+        let juminArr = jumin.split('-');
+
+        console.log(juminArr[0].slice(0, 2) + '년');
+        console.log(juminArr[0].slice(2, 4) + '월');
+        console.log(juminArr[0].slice(4, 6) + '일');
+
+        // 문제 13
+        // 주민번호를 보안 처리하기.
+        //
+        // let jumin = "990312-1234567";
+        //
+        // 출력
+        // 990312-1******
+
+        let secArr = '';
+        let star = '*';
+
+        // 뒷 번호 전체를 가리는 게 아니라 한 자리, 성별 정보는 보여줘야 하므로
+        for (let i = 0; i < juminArr[1].length - 1; i++) {
+            secArr += star;
+        }
+
+        // 뒷 배열을 전부 replace하면 안 되므로 slice를 통해 대체할 범위를 지정.
+        console.log(jumin.replace(juminArr[1].slice(1), secArr));
+
+        // ------------------------------
+        // Level 3
+        // ------------------------------
+
+        // 문제 14
+        // 이메일 아이디를 모두 *로 바꾸기.
+        //
+        // let email = "apple123@gmail.com";
+        //
+        // 출력
+        // ********@gmail.com
+        //
+        // 조건
+        // - *의 개수는 아이디 길이와 같아야 한다.
+        // - for문으로 직접 문자열 만들기.
+
+        // split('@')로 아이디 영역, 도메인 영역 나누기
+        // split한 배열의 [0]으로 id 길이 구해주고
+        // for 문 돌리기.
+
+        let lv3_email = "apple123@gmail.com";
+        let lv3_emailArr = lv3_email.split('@');
+
+        // 이전 문제에서 선언한 변수 초기화 후 재활용.
+        secArr = '';
+
+        for (let i = 0; i < lv3_emailArr[0].length; i++) {
+            secArr += star;
+        }
+
+        // 이렇게 하면? id 영역 전체가 * 1개로 대체됨. 변수를 잘못 사용.
+        // console.log(lv3_email.replace(lv3_emailArr[0], star));
+
+        console.log(lv3_email.replace(lv3_emailArr[0], secArr));
+
+        // 문제 15
+        // 이메일 아이디의 마지막 두 글자만 보이게 하기.
+        //
+        // let email = "apple123@gmail.com";
+        //
+        // 출력
+        // ******23@gmail.com
+        //
+        // 조건
+        // - 앞부분은 모두 *
+        // - 마지막 두 글자는 그대로 출력
+
+        // slice(-2)로 뒤부터 카운트.
+        // *의 개수가 달라졌으므로 또 별 담을 변수 초기화
+        // 또, 2개는 남겨야 하므로 for문 돌릴 때 length - 2
+        secArr = '';
+        for (let i = 0; i < lv3_emailArr[0].length - 2; i++) {
+            secArr += star;
+        }
+
+        // 의도대로 동작하지 않음. lv3_emailArr[0].slice(-2) console.log 찍어보자.
+        // console.log(lv3_email.replace(lv3_emailArr[0].slice(-2), secArr));
+        // console.log(lv3_emailArr[0].slice(-2));
+        // 아, 끝에 2개만 정상적으로 출력되게 하는 거였구나. 그러면
+        console.log(lv3_email.replace(lv3_emailArr[0].slice(0, -2), secArr));
+
+
+
+        // 문제 16
+        // 이름 가운데 글자를 *로 바꾸기.
+        //
+        // let name = "홍길동";
+        //
+        // 출력
+        // 홍*동
+        //
+        // let name = "김철수";
+        //
+        // 출력
+        // 김*수
+
+        // length는 당연히 둘다 3인데 [1]을 줄 수 있는 형태로 변경을 해보자.
+
+        let name = "홍길동";
+        let name2 = "김철수";
+
+        // console.log(name[1]);
+        // 안 해도 되네?
+
+        console.log(name.replace(name[1], star));
+        console.log(name2.replace(name2[1], star));
+
+        // 문제 17
+        // 비밀번호 길이만큼 * 출력하기.
+        //
+        // let pw = "abcd1234";
+        //
+        // 출력
+        // ********
+        //
+        // 조건
+        // - for문으로 문자열 만들기.
+
+        // for문 돌리기. 종료 조건 pw.length로 주면 될 듯.
+        // 위의 변수 초기화
+
+        let pw = "abcd1234";
+
+        secArr = '';
+
+        for (let i = 0; i < pw.length; i++) {
+            secArr += star;
+        }
+
+        console.log(secArr);
+
+        // ------------------------------
+        // Level 4
+        // ------------------------------
+
+        // 문제 18
+        // 문자열의 단어 개수 구하기.
+        //
+        // let str = "HTML CSS JavaScript Python";
+        //
+        // 출력
+        // 4
+
+        // split(' ') 후 length 출력
+
+        let str = "HTML CSS JavaScript Python";
+
+        console.log(str.split(' ').length);
+
+        // 문제 19
+        // 아래 문자열을 날짜 형식으로 바꾸기.
+        //
+        // let str = "20260715";
+        //
+        // 출력
+        // 2026-07-15
+
+        // slice 활용. 연도까지 4자리 먼저 끊어주고 나머지 2자리씩
+        let q19_str = "20260715";
+        let q19_strYear = q19_str.slice(0, 4);
+        let q19_strMon = q19_str.slice(4, 6);
+        let q19_strDay = q19_str.slice(6);
+
+        console.log(`${q19_strYear}-${q19_strMon}-${q19_strDay}`);
+
+        // 문제 20 (보류)
+        // 이메일 아이디를 모두 대문자로 출력하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // STUDY.JAVASCRIPT
+
+        // 문제 21
+        // 이메일 아이디의 첫 두 글자만 출력하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // st
+
+        // 아이디 빼내오기 위해 split('@').
+        // 그럴 필요도 없는 문제긴 한데 뒷 문제까지 생각하면 split하는 게 편할 듯
+
+        let q21_email = "study.javascript@gmail.com";
+        let q21_emailArr = q21_email.split('@');
+        console.log(q21_email.slice(0, 2));
+
+        // 문제 22
+        // 이메일 아이디의 마지막 세 글자 출력하기.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // ipt
+
+        console.log(q21_emailArr[0].slice(-3));
+
+
+        // ============================================
+        // 도전 문제
+        // ============================================
+
+        // 문제 21이었지만 24
+        // 아래 이메일를 다음과 같이 출력하시오.
+        //
+        // let email = "study.javascript@gmail.com";
+        //
+        // 출력
+        // st**************pt@gmail.com
+        //
+        // 조건
+        // 1. 앞 두 글자는 그대로 출력
+        // 2. 뒤 두 글자는 그대로 출력
+        // 3. 가운데는 모두 *
+        // 4. * 개수는 자동 계산
+        // 5. repeat() 사용 금지
+        // 6. for문으로 * 문자열 직접 생성하기
+
+        // 일단 split('@')으로 아이디 영역 빼놓고 따지기인데 위의 이메일과 동일하니까 재사용.
+        // 앞뒤의 두 글자씩을 남기는 거니까 length - 4 만큼 반복.
+        // 위의 *출력 위한 변수 또 초기화.
+
+        secArr = '';
+        for (let i = 0; i < q21_emailArr[0].length - 4; i++) {
+            secArr += star;
+        }
+
+        // 전체를 출력하지만, 앞뒤 2글자만 변경 => replace, slice 활용.
+        console.log(q21_email.replace(q21_emailArr[0].slice(2, -2), secArr));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
