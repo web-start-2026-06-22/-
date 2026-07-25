@@ -464,7 +464,7 @@ function bind_quiz() {
         const q5_contDiv = document.createElement('div')
         // const q5_todoText = document.querySelector('input').hasAttribute('type="text"'); // 이게 아니라 아래처럼
         // const q5_todoText = document.querySelector('input[type="text"]'); // 조각하기 더 쉽도록 클래스 부여
-        const q5_todoText = document.querySelector('.todo');
+        const q5_todoText = document.querySelector('.todo'); // 할일 적는 input 필드 선택.
         // console.log(q5_todoText);
         // 흠 근데 굳이 계속 변수를 추가해줄 필요가 있을까. innerHTML로 때려박아도 될 것 같은데.
         q5_contDiv.innerHTML = `
@@ -476,6 +476,8 @@ function bind_quiz() {
 
     q5_div.addEventListener('click', function (event) {
         event.stopPropagation();
+        const q5_chk = q5_div.querySelectorAll('.chk'); // 4번 해결을 위해 아래에서 3번 진행 중 선언한 변수 활용.
+        let q5_chkArr = []; // 매순간 초기화.
         // console.log(event.target); // 어떤 값들이 타겟으로 잡히는지 테스트
         // event.target.classList.contains('line'); // 접근 방향 수정으로 필요없어짐. 주석처리.
         if (event.target.classList.contains('chk')) { // 라인 개별 checkbox 눌렀을 때.
@@ -486,12 +488,37 @@ function bind_quiz() {
             // 뭔가 의도했던대로 동작하지 않는다. console.log 찍어보자. 원인: 위에 기존 코드 주석처리 안 해서
             // console.log(event.target.parentNode);
             event.target.parentNode.classList.toggle('checked'); // toggle처리.
+
+            const q5_allCheck = event.target.parentNode.parentNode.querySelector('#selectAll');
+            for (let i = 0; i < q5_chk.length; i++) { // 모든 체크박스의 검사를 위함.
+                if (q5_chk[i].checked) { // 체크박스 체크 여부.
+                    q5_chkArr.push(true); // 배열에 true를 담는다.
+                } else {
+                    q5_chkArr.push(false); // 배열에 false를 담는다.
+                }
+            }
+            console.log(q5_chkArr); // 의도대로 값이 잘 담겼는지 체크.
+            console.log(q5_allCheck); // 의도대로 전체 선택 체크박스를 찾아가고 있는지 체크.
+            // if (q5_chk.indexOf(0) != -1) { // false가 담겼을 경우. = check되지 않은 항목이 하나라도 있을 경우.
+            // 왜 에러가 나나 했더니 위에서 만든 배열로 변경해주지 않았음.
+            // if (q5_chkArr.indexOf(0) != -1) { // if문 조건 반대로 줌.
+            if (q5_chkArr.indexOf(false) != -1) { // true, false를 배열에 던져줬을 때
+                // 그걸 indexOf 같은 거로 체크할 땐 명확히 해야되는 듯. 아 그렇겠네 문자열 체크하는 거니까.
+                // event.target.parentNode.parentNode.querySelector('#selectAll').checked == false;
+                // 너무 길어진다. 변수에 담자.
+                q5_allCheck.checked = false;
+            } else if (q5_chkArr.indexOf(false) == -1) { // 거짓, 미체크 항목이 없을 경우.
+                // q5_allCheck.checked = !false; // 될 줄 알고 써봤는데 안 되네.
+                // if문 조건 같은 거 적을 때 동작하는 듯. 아니면 잘못 썼거나.
+                q5_allCheck.checked = true;
+            }
         }
         if (event.target.classList.contains('delete')) { // 라인 개별 삭제 버튼을 눌렀을 때.
             // if (event.target.parentNode.classList.contains('checked')) {
             //     div.remove(classList.contains('checked'));
             // }
             // 얌전히 getquerySelector를 한 번 더 쓰자.
+            // 5번에서 querySelectorAll로 변경하고 반복문 돌려야될 부분.
             const q5_deleteDiv = document.querySelector('.checked'); // 체크된 라인에 해당하는 div 가져오기.
             q5_deleteDiv.remove();
         }
@@ -524,4 +551,5 @@ function bind_quiz() {
         }
     })
     // 5-3까지 함. 5-4부터 이어하기
+    // 5-4까지 함. 5-5부터 이어하기. 20260725 18:46
 }
