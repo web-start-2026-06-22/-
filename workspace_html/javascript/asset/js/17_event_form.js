@@ -549,6 +549,14 @@ function bind_quiz() {
                 }
             }
         }
+        if (event.target.value == '선택 삭제') { // 선택 삭제를 눌렀을 때
+            const q5_chk = q5_div.querySelectorAll('.chk'); // 5번 해결을 위해 아래에서 3번 진행 중 선언한 변수 활용.
+            for (let i = 0; i < q5_chk.length; i++) {
+                if (q5_chk[i].checked) { // 체크돼있는 체크박스일 경우.
+                    q5_chk[i].parentNode.remove(); // 체크박스의 부모로 한 번만 올라가면 해당 체크박스를 포함한 div가 나옴.
+                }
+            }
+        }
     })
     // 5-3까지 함. 5-4부터 이어하기
     // 5-4까지 함. 5-5부터 이어하기. 20260725 18:46
