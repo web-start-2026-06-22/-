@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warning {
+            color: red;
+            width: 200px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+    <script src="./asset/js/17_event_form.js"></script>
+</head>
+
+<body>
+
+    <form id="form" method="get" action="https://search.naver.com/search.naver" target="_blank">
+        검색 : <input type="text" id="query" name="query"><br>
+        <br>
+        <input type="submit" value="검색">
+    </form>
+
+    <div id="parent">
+        부모
+        <div id="child1">자식1</div>
+        <div id="child2">자식2</div>
+    </div>
+
+    <table id="board" border="1">
+        <tr>
+            <td>
+                <input type="checkbox" class="chk" value="1">
+            </td>
+            <td class="title">제목1</td>
+            <td writer="w1">작성자1</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="chk" value="2">
+            </td>
+            <td class="title">제목2</td>
+            <td writer="w2">작성자2</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="chk" value="3">
+            </td>
+            <td class="title">제목3</td>
+            <td writer="w3">작성자3</td>
+        </tr>
+    </table>
+    <hr>
+    <div class="q1">
+        주문한 사람: <input type="text" class="delivery" name="name"><br>
+        주문한 주소: <input type="text" class="delivery" name="address"><br>
+        <input type="checkbox" class="delivery chk">주문 정보와 배송 정보가 같습니다.<br>
+
+        배송받을 사람: <input type="text" class="shipment" name="name"><br>
+        배송받을 주소: <input type="text" class="shipment" name="address"><br>
+    </div>
+    <hr>
+    <div class="q2">
+        아이디: <input type="text" class="login"><br>
+        비밀번호: <input type="password" class="login"><br>
+        <br>
+        <div class="warning"></div>
+        <input type="button" class="login" value="login">
+    </div>
+    <hr>
+    <div class="q3">
+        <select class="pizza">
+            <option value="1">불고기</option>
+            <option value="2">페퍼로니</option>
+            <option value="3">새우</option>
+            <option value="4">치즈</option>
+            <option value="5">파인애플</option>
+            <option value="6">고르곤졸라</option>
+        </select><br>
+        <input type="radio" class="size" name="size" value="small" price="18000" checked>small
+        <input type="radio" class="size" name="size" value="medium" price="20000">medium
+        <input type="radio" class="size" name="size" value="large" price="22000">large
+        <br>
+        <input type="radio" class="dou" name="dou" value="씬" checked>씬
+        <input type="radio" class="dou" name="dou" value="고구마">고구마
+        <input type="radio" class="dou" name="dou" value="치즈">치즈
+        <input type="radio" class="dou" name="dou" value="소보로">소보로
+        <br>
+        <input type="checkbox" class="toping" value="토핑없음" price="0" checked>토핑없음
+        <input type="checkbox" class="toping" value="감자" price="2000">감자(2000)
+        <input type="checkbox" class="toping" value="고구마" price="2000">고구마(2000)
+        <input type="checkbox" class="toping" value="치즈" price="2500">치즈(2500)
+        <input type="checkbox" class="toping" value="베이컨" price="3000">베이컨(3000)
+        <input type="checkbox" class="toping" value="옥수수" price="500">옥수수(500)
+        <input type="checkbox" class="toping" value="페퍼론치노" price="2500">페페론치노(2500)
+        <br>
+        <div class="q3_order"></div>
+        <input type="button" class="btn" value="주문">
+    </div>
+    <hr>
+    <div class="q4">
+        <button type="button" class="q4 btn" value="인기상품순">인기상품순</button>
+        <button type="button" class="q4 btn" value="낮은가격순">낮은가격순</button>
+        <button type="button" class="q4 btn" value="높은가격순">높은가격순</button>
+        <button type="button" class="q4 btn" value="신상품순">신상품순</button>
+        <button type="button" class="q4 btn" value="상품평 많은순">상품평 많은순</button>
+    </div>
+    <hr>
+    <div class="q5">
+        <form>
+            <h1>Todo List</h1>
+            <input type="text" class="todo" placeholder="할 일을 입력하세요.">
+            <button type="button" class='todoAdd' value="추가">추가</button>
+            <input type="checkbox" id='selectAll' value="전체 선택">전체 선택
+            <button type="button" id="deleteCheckedAll" value="선택 삭제">선택 삭제</button>
+        </form>
+    </div>
+
+    <div id="view">
+        <!-- <div class="log">글씨 출력</div> -->
+    </div>
+
+</body>
+
+</html>
