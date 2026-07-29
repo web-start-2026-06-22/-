@@ -288,88 +288,190 @@ function bind_quiz() {
     */
 
     const q3_div = document.querySelector('.q3');
+    const q3_order = document.querySelector('.q3_order');
 
-    q3_div.addEventListener('click', function () {
+    // q3_div.addEventListener('click', function () {
+    q3_div.addEventListener('click', function (event) { // event 받아와주기
         //  그냥 각각 value로 가져와주면 될 것 같은데?
         // 메뉴라는 배열을 추가 선언하고, select, radio, checkbox 선택한 것들 담고 출력 20260722
-
+        // q3_div.stopPropagation();
         const q3_pizza = document.querySelector('.pizza');
         // const q3_size = document.querySelector('.size');
         const q3_size = document.querySelector('[name=size]:checked');
         // const q3_dou = document.querySelector('.dou');
         const q3_dou = document.querySelector('[name=dou]:checked');
-        const q3_toping = document.querySelectorAll('.toping');
+        // const q3_toping = document.querySelectorAll('.toping'); 따로 빼는 게 적합하다 판단.
         const q3_orderBtn = document.querySelector('.btn');
 
+        const q3_topingDiv = document.querySelector('.topingDiv');
+
+        const q3_noToping = q3_topingDiv.querySelector('.noToping');
+        const q3_toping = q3_topingDiv.querySelectorAll('.toping');
+
         let q3_menu = [];
+
+        let q3_topingList = [];
+
+        let q3_totalPrice = 0;
         // let q3_topingFlag = true;
-        // let q3_topingList = [];
 
         // 각 요소별로 value값 잘 가져와지는지 출력해보기.
-        console.log(q3_pizza[q3_pizza.value - 1].innerText); // 정상출력
-        console.log(q3_size.value); // radio value값 = 의도대로가 아님.가 아니라 텍스트를 뽑고 싶었는데 애초에 안 되는 거였네
+        // console.log(q3_pizza[q3_pizza.value - 1].innerText); // 정상출력
+        // console.log(q3_size.value); // radio value값 = 의도대로가 아님.가 아니라 텍스트를 뽑고 싶었는데 애초에 안 되는 거였네
         // console.log(q3_size);
-        console.log(q3_dou.value); // radio value값 = 의도대로가 아님. 사이즈와 동일
+        // console.log(q3_dou.value); // radio value값 = 의도대로가 아님. 사이즈와 동일
         // console.log(q3_dou);
-        console.log(q3_toping); // value = undefined, 당연함. for문 돌려야될 듯.
+        // console.log(q3_toping); // value = undefined, 당연함. for문 돌려야될 듯.
 
         q3_menu.push(q3_pizza[q3_pizza.value - 1].innerText);
-        q3_menu.push(q3_size.value);
+        q3_menu.push(q3_size.value.split('(')[0]);
         q3_menu.push(q3_dou.value);
 
-        for (let i = 0; i < q3_toping.length; i++) {
-            // console.log(event.target); // 확인용.
-            if (q3_toping[i].checked) { // 몇 번째 항목이 체크돼있는지 검사.
-                // if (q3_toping[0].checked) { // 토핑없음이 체크돼있을 때
-                // 다른 걸 체크하면 토핑없음을 체크해제하고 싶다.
-                // toggle 같은 느낌이니까
-                // q3_toping[0] 토핑없음이 체크돼있는 상태를 저장할 변수를 따로 만들고 
-                // console.log를 먼저 찍어보자. !q3_toping[0].value 이런 게 제대로 가져와지는지.
-                // console.log(!q3_toping[0].value); // 가져와지지 않네 뭐가 문젤까?
-                // !q3_toping[0] 자체를 console.log 찍어보기.
-                // console.log(!q3_toping[0]); // false가 가져와진다.
-                // q3_topingFlag = true;   // 토핑없음 플래그 true 설정.
-                // flag가 아니라 배열을 주면 어떨까? 20260723
-                if (q3_toping[0].checked) {
-                    for (let t = 1; t < q3_toping.length; t++) {
-                        q3_toping[t].checked = false;
-                    }
-                }
-                if (event.target.value != '토핑없음') {
-                    q3_toping[0].checked = false;
-                    event.target.checked = true;
-                }
-                // if (event.target.checked) {
-                //     event.target.checked == false;
-                // }
-                // q3_toping[1].checked = false;
-                // q3_toping[2].checked = false;
-                // q3_toping[3].checked = false;
-                // q3_toping[4].checked = false;
-                // q3_toping[5].checked = false;
-                // q3_toping[6].checked = false;
+        // for (let i = 0; i < q3_toping.length; i++) {
+        //     // console.log(event.target); // 확인용.
+        //     if (q3_toping[i].checked) { // 몇 번째 항목이 체크돼있는지 검사.
+        //         // if (q3_toping[0].checked) { // 토핑없음이 체크돼있을 때
+        //         // 다른 걸 체크하면 토핑없음을 체크해제하고 싶다.
+        //         // toggle 같은 느낌이니까
+        //         // q3_toping[0] 토핑없음이 체크돼있는 상태를 저장할 변수를 따로 만들고 
+        //         // console.log를 먼저 찍어보자. !q3_toping[0].value 이런 게 제대로 가져와지는지.
+        //         // console.log(!q3_toping[0].value); // 가져와지지 않네 뭐가 문젤까?
+        //         // !q3_toping[0] 자체를 console.log 찍어보기.
+        //         // console.log(!q3_toping[0]); // false가 가져와진다.
+        //         // q3_topingFlag = true;   // 토핑없음 플래그 true 설정.
+        //         // flag가 아니라 배열을 주면 어떨까? 20260723
+        //         if (q3_toping[0].checked) {
+        //             for (let t = 1; t < q3_toping.length; t++) {
+        //                 q3_toping[t].checked = false;
+        //             }
+        //         }
+        //         if (event.target.value != '토핑없음') {
+        //             q3_toping[0].checked = false;
+        //             event.target.checked = true;
+        //         }
+        //         // if (event.target.checked) {
+        //         //     event.target.checked == false;
+        //         // }
+        //         // q3_toping[1].checked = false;
+        //         // q3_toping[2].checked = false;
+        //         // q3_toping[3].checked = false;
+        //         // q3_toping[4].checked = false;
+        //         // q3_toping[5].checked = false;
+        //         // q3_toping[6].checked = false;
 
 
+        //     }
+        //     // 아래 코드 for문 안쪽 블럭의 if 그대로 위에 넣고 if문으로 체크할 항목을
+        //     // if문으로 한 번 더 체크. 
+        //     // for (let t = 1; t < q3_toping.length - 1; t++) {
+        //     //     if (q3_toping[t].checked) {
+        //     //         q3_topingList.unshift(q3_toping[t]);
+        //     //         q3_topingList.pop();
+        //     //         console.log(q3_topingList[0]);
+        //     //     }
+        //     // }
+        if (event.target.value != '토핑없음' && q3_noToping.checked) {
+            q3_noToping.checked = false;
+            // q3_topingText.push(event.target.value);
+            // console.log(q3_topingText); // 값 잘 들어가는지 체크
+            // console.log(q3_noToping.checked, q3_toping); // if에서 검사할 값 체크
+        } else {
+            if (event.target.value == '토핑없음' && event.target.checked) { // 클릭하는 시점이어야 함. 그래서 false면 동작이 제대로 안 됨..
+                q3_noToping.checked = true;
+                // q3_topingText.push(q3_noToping.value);
+                // console.log(q3_topingText);
+                for (let i = 0; i < q3_toping.length; i++) {
+                    q3_toping[i].checked = false;
+                }
+            } else {
+                q3_noToping.checked = false;
             }
-            // 아래 코드 for문 안쪽 블럭의 if 그대로 위에 넣고 if문으로 체크할 항목을
-            // if문으로 한 번 더 체크. 
-            // for (let t = 1; t < q3_toping.length - 1; t++) {
-            //     if (q3_toping[t].checked) {
-            //         q3_topingList.unshift(q3_toping[t]);
-            //         q3_topingList.pop();
-            //         console.log(q3_topingList[0]);
-            //     }
-            // }
-
-
         }
-        q3_menu.push(event.target.value);
+        if (q3_noToping.checked) {
+            q3_menu.push(q3_noToping.value);
+        } else {
+            for (let i = 0; i < q3_toping.length; i++) {
+                if (q3_toping[i].checked) {
+                    q3_menu.push(q3_toping[i].value.split('(')[0]);
+                }
+            }
+        }
 
-        const q3_order = document.querySelector('.q3_order');
+        // const q3_order = document.querySelector('.q3_order'); // 밖에 빼는 게 맞겠는데 얜
         q3_order.innerText = q3_menu;
-        console.log(q3_menu);
-
+        console.log(q3_menu); // 아직 토핑 추가 전 단계의 메뉴. + 추가함. 
+        if (event.target.value == '주문') {
+            for (let i = 0; i < q3_toping.length; i++) {
+                if (q3_toping[i].checked) {
+                    // q3_totalPrice += q3_toping[i].value.split('(')[1].slice(0, q3_toping[i].value.split('(')[1].indexOf(')')); // 문자열이니까 Number로 감싸기.
+                    q3_totalPrice += Number(q3_toping[i].value.split('(')[1].slice(0, q3_toping[i].value.split('(')[1].indexOf(')')));
+                    // console.log('토핑 가격:', Number(q3_toping[i].value.split('(')[1].slice(0, q3_toping[i].value.split('(')[1].indexOf(')'))));
+                }
+            }
+            // q3_totalPrice += q3_size.value.split('(')[1].slice(0, q3_size.value.split('(')[1].indexOf(')'));
+            q3_totalPrice += Number(q3_size.value.split('(')[1].slice(0, q3_size.value.split('(')[1].indexOf(')')));
+            // console.log('사이즈 가격:', Number(q3_size.value.split('(')[1].slice(0, q3_size.value.split('(')[1].indexOf(')'))));
+            // console.log(q3_totalPrice); // 값 체크
+            q3_order.innerHTML += ` 총 결제금액: ${q3_totalPrice}원`;
+        }
     })
+    // const q3_topingDiv = document.querySelector('.topingDiv');
+    // q3_topingDiv.addEventListener('click', function (event) {
+    //     const q3_noToping = q3_topingDiv.querySelector('.noToping');
+    //     const q3_toping = q3_topingDiv.querySelectorAll('.toping');
+    //     const q3_orderBtn = document.querySelector('.btn');
+    //     let q3_topingText = [];
+    //     // let q3_topingArr = []; // 매순간 초기화.
+    //     // q3_topingArr.push(q3_noToping.checked); // null이 들어가네.
+    //     // q3_noToping check 여부를 if로 먼저 검사
+    //     // if (q3_noToping.checked) {
+    //     //     q3_topingArr.push(true); // check돼있으면 true
+    //     // } else {
+    //     //     q3_topingArr.push(false); // 그렇지 않으면 false
+    //     // }
+
+    //     // for (let i = 0; i < q3_toping.length; i++) {
+    //     //     // q3_topingArr.push(q3_toping[i].checked); // 얘도 마찬가지겠지 이래도 안 된다고?
+    //     //     if (q3_toping[i].checked) {
+    //     //         q3_topingArr.push(true);
+    //     //     } else {
+    //     //         q3_topingArr.push(false);
+    //     //     }
+    //     // }
+    //     // console.log(q3_topingArr); // 의도대로 잘 들어갔는지 체크
+
+    //     // console.log(q3_noToping); // 여기서 계속 에러가 나니까 체크. html 저장을 안 해서 생긴 문제.
+    //     if (event.target.value != '토핑없음' && q3_noToping.checked) {
+    //         q3_noToping.checked = false;
+    //         // q3_topingText.push(event.target.value);
+    //         // console.log(q3_topingText); // 값 잘 들어가는지 체크
+    //         // console.log(q3_noToping.checked, q3_toping); // if에서 검사할 값 체크
+    //     } else {
+    //         if (event.target.value == '토핑없음' && event.target.checked) { // 클릭하는 시점이어야 함. 그래서 false면 동작이 제대로 안 됨..
+    //             q3_noToping.checked = true;
+    //             // q3_topingText.push(q3_noToping.value);
+    //             // console.log(q3_topingText);
+    //             for (let i = 0; i < q3_toping.length; i++) {
+    //                 q3_toping[i].checked = false;
+    //             }
+    //         } else {
+    //             q3_noToping.checked = false;
+    //         }
+    //     }
+    //     // 위의 코드 블럭 굳이 분리해둘 필요가 있었을까? 위에 잘 동작하던 것과 합치면 되는 게 아닌가
+
+    //     // if (q3_noToping.checked) {
+    //     //     q3_topingText.push(q3_noToping.value);
+    //     // } else {
+    //     //     q3_topingText.push(event.target.value);
+    //     //     console.log(q3_topingText); // 잘 들어가는지 체크.
+    //     // } // 안 들어감. 위에 토핑 선택할 때로 묶자.
+
+    //     // q3_order.innerText = q3_order.innerText + q3_topingText;
+    //     // // innerText 같은 거로 넣어주는 걸 아예 메뉴 다 받고 끝낸 뒤 for문 돌리기
+
+    // })
+
 
     /*
         문제 4 : 메뉴 선택
@@ -400,25 +502,56 @@ function bind_quiz() {
     //     event.target.classList.add('.bold');
 
     // })
+    // q4_div.addEventListener('click', function (event) {
+    //     event.stopPropagation();
+
+    //     // 방법1. classList.add, remove, contains 활용
+    //     // if classList.contains(활용.) 
+    //     // if (event.target.classList.contains('bold')) { // bold 클래스를 가지고 있는 경우. = 클릭됐던 것 체크.
+    //     //     event.target.classList.remove('bold'); // 클래스 빼기
+    //     // } else {
+    //     //     // console.log(event.target.value); // 제대로 타겟팅이 되는지 체크. 체크되므로 주석처리.
+    //     //     event.target.classList.add('bold'); // classList.add로 클래스 추가해주기.
+    //     //     console.log(event.target.classList);
+    //     // }
+
+    //     // 근데 위의 방식? 라디오? 토글로도 표현할 수 있는거지. toggle이 좀 더 짧아질 것.
+    //     // 방법2. classList.toggle 활용 
+
+    //     event.target.classList.toggle('bold');
+
+    // })
+
+    // 1.라디오마냥 하나 체크된 상태에서 다른 것 체크했을 때 빼주기
+    // 배열로 버튼들 true, false 상태를 담아주고
+    // indexOf(true)를 찾고.
+    // for문을 돌려서 눌린 버튼 인덱스와 배열 인덱스를 비교,
+    // 비교했을 때 같고, true라면 toggle('bold') 처리
+    // 아니면 클릭된 버튼 add('bold'), 나머지 버튼들 remove('bold').
+    // 없는 걸 빼도 에러나진 않으니.
     q4_div.addEventListener('click', function (event) {
-        event.stopPropagation();
+        // let q4_boldArr = [false, false, false, false, false];
 
-        // 방법1. classList.add, remove, contains 활용
-        // if classList.contains(활용.) 
-        // if (event.target.classList.contains('bold')) { // bold 클래스를 가지고 있는 경우. = 클릭됐던 것 체크.
-        //     event.target.classList.remove('bold'); // 클래스 빼기
-        // } else {
-        //     // console.log(event.target.value); // 제대로 타겟팅이 되는지 체크. 체크되므로 주석처리.
-        //     event.target.classList.add('bold'); // classList.add로 클래스 추가해주기.
-        //     console.log(event.target.classList);
-        // }
-
-        // 근데 위의 방식? 라디오? 토글로도 표현할 수 있는거지. toggle이 좀 더 짧아질 것.
-        // 방법2. classList.toggle 활용 
-
-        event.target.classList.toggle('bold');
-
+        // if (q4_boldArr.indexOf(true) == -1) {
+        // event.target.classList.toggle('bold');
+        // console.log(q4_btn);
+        // console.log(event.target);
+        if (event.target.value != undefined) { // 값이 들어갔을 때
+            event.target.classList.toggle('bold');
+            for (let i = 0; i < q4_btn.length; i++) {
+                if (q4_btn[i].classList.contains('bold')) {
+                    // if (q4_btn[i].value == event.target.value) {
+                    //     // event.target.classList.toggle('bold');
+                    // }
+                    if (q4_btn[i].value != event.target.value) {
+                        q4_btn[i].classList.remove('bold');
+                        event.target.classList.add('bold');
+                    }
+                }
+            }
+        }
     })
+
 
     /*
         문제 5 : Todo List
@@ -461,7 +594,7 @@ function bind_quiz() {
     const q5_add = document.querySelector('.todoAdd');
     q5_add.addEventListener('click', function () { // 클릭될 때마다 생성
         // const q5_contDiv = document.createElement('div').classList.add('line'); 한 번에 하려 하면 안 되네.
-        const q5_contDiv = document.createElement('div')
+        const q5_contDiv = document.createElement('div');
         // const q5_todoText = document.querySelector('input').hasAttribute('type="text"'); // 이게 아니라 아래처럼
         // const q5_todoText = document.querySelector('input[type="text"]'); // 조각하기 더 쉽도록 클래스 부여
         const q5_todoText = document.querySelector('.todo'); // 할일 적는 input 필드 선택.
@@ -471,6 +604,12 @@ function bind_quiz() {
         <input type="checkbox" class="q5 chk">${q5_todoText.value}<button type="button" class="delete" value="삭제">삭제
         `
         q5_div.append(q5_contDiv);
+
+        q5_todoText.value = '';
+
+        if (q5_add.parentNode.querySelector('#selectAll').checked) {
+            q5_add.parentNode.querySelector('#selectAll').checked = false;
+        }
 
     })
 
@@ -497,8 +636,8 @@ function bind_quiz() {
                     q5_chkArr.push(false); // 배열에 false를 담는다.
                 }
             }
-            console.log(q5_chkArr); // 의도대로 값이 잘 담겼는지 체크.
-            console.log(q5_allCheck); // 의도대로 전체 선택 체크박스를 찾아가고 있는지 체크.
+            // console.log(q5_chkArr); // 의도대로 값이 잘 담겼는지 체크.
+            // console.log(q5_allCheck); // 의도대로 전체 선택 체크박스를 찾아가고 있는지 체크.
             // if (q5_chk.indexOf(0) != -1) { // false가 담겼을 경우. = check되지 않은 항목이 하나라도 있을 경우.
             // 왜 에러가 나나 했더니 위에서 만든 배열로 변경해주지 않았음.
             // if (q5_chkArr.indexOf(0) != -1) { // if문 조건 반대로 줌.
@@ -519,8 +658,11 @@ function bind_quiz() {
             // }
             // 얌전히 getquerySelector를 한 번 더 쓰자.
             // 5번에서 querySelectorAll로 변경하고 반복문 돌려야될 부분.
-            const q5_deleteDiv = document.querySelector('.checked'); // 체크된 라인에 해당하는 div 가져오기.
-            q5_deleteDiv.remove();
+            // const q5_deleteDiv = document.querySelector('.checked'); // 체크된 라인에 해당하는 div 가져오기.
+            // q5_deleteDiv.remove();
+            // 위 코드보단 아래가 낫겠지 싶은데.
+            // 위 코드는 할 일1, 2, 3이 있고 1, 3이 체크돼있을 때 3에서 delete를 눌러도 1이 삭제되니까.
+            event.target.parentNode.remove();
         }
 
         // 왜 안 먹나 했는데 id로 줘놓고 클래스를 가져오려니까 당연히 안 먹지.
@@ -556,8 +698,11 @@ function bind_quiz() {
                     q5_chk[i].parentNode.remove(); // 체크박스의 부모로 한 번만 올라가면 해당 체크박스를 포함한 div가 나옴.
                 }
             }
+            const q5_allSelect = event.target.parentNode.querySelector('#selectAll');
+            q5_allSelect.checked = false;
         }
     })
     // 5-3까지 함. 5-4부터 이어하기
     // 5-4까지 함. 5-5부터 이어하기. 20260725 18:46
 }
+// 3번 문제 피자, 5번 자잘한 것 마무리. 20260727
