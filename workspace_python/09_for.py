@@ -72,6 +72,20 @@ print(f"주사위 3이 나오기까지 {cnt}회 걸렸습니다.")
             +++++++++
 """
 
+# 줄마다 + 2n-1
+# 혹은 2n + 1
+# ' '는 range(4 = (반복 끝 - 1))로 양쪽
+
+# endLine = 5
+# start = 0
+start = int(input("몇 번째 줄에서 시작할지 입력하세요."))
+endLine = int(input("출력할 줄 수를 입력하세요."))
+for i in range(start, endLine):
+    # print(i)
+    print(" " * (endLine - i - 1), end="")
+    print("*" * (2 * i + 1), end="")
+    print()
+
 import turtle as t
 
 t.shape("turtle")
@@ -79,3 +93,13 @@ t.shape("turtle")
 # while True:
 #     print(1)
 # 무한루프 돌 때 ctrl+c 누르면 KeyboardInterrupt 에러 뜨면서 중단됨
+
+for i in range(1, 101):
+    if i % 3 == 0 and i % 5 == 0:
+        print(i, "FizzBuzz")
+    elif i % 3 == 0:
+        print(i, "Fizz")
+    elif i % 5 == 0:
+        print(i, "Buzz")
+    else:
+        print(i)

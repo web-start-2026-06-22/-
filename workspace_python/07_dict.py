@@ -190,6 +190,16 @@ fruit_info = dict.values(cart)
 
 total = 0
 
+for i in cart.keys():
+    # print(i)
+    # print(cart[i])
+    # print(cart[i]["가격"])
+    # print(cart[i]["개수"])
+    # print(cart[i]["가격"] * cart[i]["개수"])
+    total += cart[i]["가격"] * cart[i]["개수"]
+print(f"<cart.keys()반복분> 총액은 {total}원입니다.")
+total = 0
+
 for i in fruit_info:
     # print(i)
     # print(fruit_info[i]["가격"]) # i 자체가 fruit_info[i]를 가지고 있기 때문에 에러
@@ -211,11 +221,16 @@ q3_answer = 0
 cnt = 1
 # while q3_upDown != q3_answer:
 #     q3_answer = int(input("1~99까지의 숫자를 입력하세요."))
-#     if q3_answer < q3_upDown:
-#         print(f"{q3_answer}은 맞춰야할 수보다 작습니다.")
+#     if q3_answer < 1 or q3_answer > 99:
+#         print("범위를 벗어났습니다.")
+#     elif not (type(q3_answer) == int):
+#         print("숫자를 입력하세요.")
 #     else:
-#         print(f"{q3_answer}은 맞춰야할 수보다 큽니다.")
-#     cnt += 1
+#         if q3_answer < q3_upDown:
+#             print(f"{q3_answer}은 맞춰야할 수보다 작습니다.")
+#         else:
+#             print(f"{q3_answer}은 맞춰야할 수보다 큽니다.")
+#         cnt += 1
 # print(f"정답입니다! 정답까지 {cnt}회 걸리셨습니다.")
 
 """
@@ -247,37 +262,66 @@ pw = dict.values(users)  # 비번
 # for i in pw:
 #     print(i)
 
-login = input("아이디와 비밀번호를 입력하세요. 띄어쓰기로 id, pw를 구분합니다.").split()
+# login = input("아이디와 비밀번호를 입력하세요. 띄어쓰기로 id, pw를 구분합니다.").split()
+
 # print(login)
+# print(login[0])
+# print(login[1])
+# print(type(login))
 
 idError = True
 pwError = True
+
+# for i in users.keys():
+#     # print(i)
+#     # print(users[i])
+#     # if login == []:
+#     # print("아이디가 입력되지 않았습니다.")
+
+#     # elif login[0] != i:
+#     if login[0] != i:
+#         # print("아이디가 유효하지 않습니다.")
+#         idError = True
+#     else:
+#         idError = False
+#         if login[1] != users[i]:
+#             # print("비밀번호가 잘못됐습니다.")
+#             pwError = True
+#         else:
+#             pwError = False
+#             if idError == False and pwError == False:
+#                 break
+#     print("로그인 성공")
+
 
 # pwStr = " ".join(pw)
 # print(pwStr)
 
 
-if login == []:
-    print("아이디가 입력되지 않았습니다.")
-elif login != []:
-    for i, idpw in enumerate(users.items()):
-        if login[0] != idpw[0]:
-            # print("유효하지 않은 아이디입니다.")
-            pass
-        elif login[0] == idpw[0]:
-            idError = False
-            if login[1] == idpw[1]:
-                pwError = False
-                # print("로그인 성공")
-            else:
-                pwError = True
-                # print("비밀번호가 틀립니다.")
-if (idError == False) and (pwError == False):
-    print("로그인 성공")
-elif (idError == False) and (pwError == True):
-    print("비번이 틀립니다.")
-elif idError == True:
-    print("유효하지 않은 아이디입니다.")
+# if login == []:
+#     print("아이디가 입력되지 않았습니다.")
+# elif login != []:
+#     for i, idpw in enumerate(users.items()):
+#         if login[0] != idpw[0]:
+#             # print("유효하지 않은 아이디입니다.")
+#             pass
+#         elif login[0] == idpw[0]:
+#             idError = False
+#             if login[1] == idpw[1]:
+#                 pwError = False
+#                 # print("로그인 성공")
+#             else:
+#                 pwError = True
+#                 # print("비밀번호가 틀립니다.")
+# if login == []:
+#     print("입력값이 없습니다.")
+# else:
+#     if (idError == False) and (pwError == False):
+#         print("로그인 성공")
+#     elif (idError == False) and (pwError == True):
+#         print("비번이 틀립니다.")
+#     elif idError == True:
+#         print("유효하지 않은 아이디입니다.")
 
 # idStr = " ".join(id)
 # print(idStr)
