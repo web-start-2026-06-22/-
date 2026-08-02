@@ -8,9 +8,18 @@ for i in reversed(range(5)):
 # 구구단인데 3단씩 옆으로
 
 
-for i in range(2, 10, 1):
+for i in range(2, 10, 3):
     for j in range(1, 10, 1):
-        print(f"{i} x {j} = {i*j}")
+        if i + 2 < 10:
+            # print(f"{i} x {j} = {i*j}", end=" ")
+            # print(f"{i+1} * {j} = {(i+1)*j}", end=" ")
+            # print(f"{i+2} * {j} = {(i+2)*j}")
+            print(
+                f"{i} * {j} = {i*j} \t {i+1} * {j} = {(i+1)*j} \t {i+2} * {j} = {(i+2)*j}"
+            )
+        else:
+            print(f"{i} * {j} = {i*j} \t {i+1} * {j} = {(i+1)*j}")
+    print()
 print("-" * 30)
 # for i in range(2, 10, 3):
 #     for j in range(1, 10, 1):
@@ -86,9 +95,9 @@ for i in range(start, endLine):
     print("*" * (2 * i + 1), end="")
     print()
 
-import turtle as t
+# import turtle as t
 
-t.shape("turtle")
+# t.shape("turtle")
 
 # while True:
 #     print(1)
