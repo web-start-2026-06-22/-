@@ -1074,3 +1074,408 @@ order by
 -- 	ename + sal
 -- from
 -- 	emp;
+
+-- DDL
+-- create
+desc emp;
+
+create table emp2(
+	empno int(4) primary key,
+	ename varchar(10) not null,
+	job varchar(9),
+	mgr int(4),
+	hiredate date,
+	sal decimal(7, 2), -- 총 7자리, 그 중 2자리 소수점
+	comm decimal(7, 2),
+	deptno int(2)
+);
+
+select
+	*
+from
+	emp2;
+
+desc emp2;
+
+desc dept;
+
+create table dept2(
+	deptno int(2) primary key,
+	dname varchar(14),
+	loc varchar(13)
+);
+
+select
+	*
+from
+	dept2;
+
+desc dept2;
+
+-- 테이블 복사
+create table emp_copy
+as select * from emp;
+
+
+select
+	*
+from
+	emp_copy;
+
+create table emp_copy2
+as select * from emp where 1 <> 1;
+
+select * from emp_copy2;
+
+create table dept3
+as select * from dept where 1 != 1;
+
+select * from dept3;
+
+desc dept3;
+
+-- 테이블 삭제
+drop table dept3;
+
+create table emp3 (
+	empno int(4),
+	ename varchar(10) not null,
+	job varchar(9),
+	mgr int(4),
+	hiredate date,
+	sal decimal(7, 2),
+	comm decimal(7, 2),
+	deptno int(2),
+	primary key(empno),
+	foreign key(deptno) references dept3(deptno)
+);
+
+select * from emp3;
+
+desc emp3;
+
+create table dept3(
+	deptno int(2) primary key,
+	dname varchar(14),
+	loc varchar(13)
+);
+
+-- alter
+alter table emp3
+add gender varchar(10) not null default'남';
+select * from emp3;
+desc emp3;
+
+alter table emp3
+change gender gender2 varchar(10);
+
+alter table emp3
+rename column gender2 to gender3;
+select * from emp3;
+
+alter table emp3
+drop column gender;
+
+drop table emp3;
+
+drop table dept3;
+desc dept3;
+
+select * from emp_copy;
+truncate table emp_copy; 
+
+select * from dept2;
+drop table dept2;
+
+select * from emp2;
+drop table emp2;
+
+create table dept2(
+	deptno int(2) primary key,
+	dname varchar(14),
+	loc varchar(13)
+);
+
+create table emp2 (
+	empno int(4),
+	ename varchar(10) not null,
+	job varchar(9) default 'CLERK',
+	mgr int(4),
+	hiredate date default now(),
+	sal decimal(7, 2),
+	comm decimal(7, 2),
+	deptno int(2),
+	primary key(empno),
+	foreign key(deptno) references dept2(deptno)
+);
+
+select * from emp2;
+
+insert into dept2
+values (
+	10,
+	'맞아맞아마',
+	'아카라이브'
+);
+
+insert into emp2
+values (1000, '아무개', '아니아니마', 2000, str_to_date('2026-08-09', '%Y-%m-%d'), 4000, 100, 10)
+
+insert into emp2 (empno, ename, sal, comm, deptno)
+values (1001, '지에엥', 4100, 150, 10);
+
+
+-- ename은 not null 제한.
+-- insert에 누락하면 null이 들어간다.
+-- 그래서 에러 발생.
+-- insert into emp2 (empno, sal, comm, deptno)
+-- values (1001, 4100, 150, 10);
+
+-- primary key
+-- unique + not null
+-- insert into emp2 (empno, ename, sal, comm, deptno)
+-- values (1001, '지에엥', 4100, 150, 10);
+
+-- dept 테이블에 deptno 20값이 없어서 에러.
+-- insert into emp2 (empno, ename, sal, comm, deptno)
+-- values (1002, '지에엥', 4100, 150, 20);
+
+
+insert into emp2 (empno, ename, sal, comm, deptno)
+values
+(1002, '뇨치킨', 4100, 150, 10),
+(1003, '도망도망마', 4100, 150, 10),
+(1004, '뇨이이익', 4100, 150, 10);
+
+insert into emp2 (empno, ename, sal, comm, deptno)
+values
+(1012, '상처를 치료', 4100, 150, 10),
+(1013, '해줄 사람', 4100, 150, 10),
+(1014, '어디 없나', 4100, 150, 10);
+
+select * from emp2;
+
+-- update
+update emp2
+set
+	sal = 1000,
+	comm = 200;
+
+update emp2
+set
+	sal = sal * 1.1,
+	comm = comm * 1.2
+where empno = 1002;
+
+select * from dept2;
+
+update dept2
+set deptno = 20
+where deptno = 10;
+
+delete from emp2
+where empno = 1001;
+
+delete from emp2;
+
+select * from emp2;
+
+commit;
+
+rollback;
+
+select
+	*
+from
+	emp e
+left outer join emp e2 on
+	(e.mgr = e2.empno)
+left outer join dept d on
+	(e.deptno = d.deptno)
+order by
+	e.ename desc;
+
+select * from emp
+where deptno = 10;
+
+-- index
+create index idx_emp_empno_desc
+on emp(empno desc);
+
+select * from emp;
+
+select * from emp
+order by empno desc;
+
+create index idx_emp_deptno
+on emp(deptno);
+
+show index from emp;
+
+select * from emp
+where deptno = 10;
+
+select *
+from emp force index (idx_emp_deptno);
+
+-- use
+-- 강제는 아닌데 권장하는 느낌. force보다 약함.
+
+-- mariadb 한글 한 글자는 3Byte
+select length('한구');
+select length('ab');
+
+create table emp_auto (
+	empno int auto_increment,
+	ename varchar(50),
+	primary key(empno)
+);
+
+insert into emp_auto (ename)
+values ('가만히 놔두다간 끊임없이 덧나');
+
+select * from emp_auto;
+
+-- 무한 대댓글
+select
+empno, ename, mgr, 1 as level
+from emp
+where mgr is null
+union all
+select
+empno, ename, mgr, 2 as level
+from emp
+where mgr = 7839;
+
+with recursive emp_recu as (
+select
+	empno,
+	ename,
+	mgr,
+	lpad(ename, length(ename), ' '),
+	1 as level,
+	cast(ename as char(200)) as sort_key
+from
+	emp
+where
+	mgr is null
+union all
+select
+	e.empno,
+	e.ename,
+	e.mgr,
+	lpad(e.ename, (er.level * 4)+ length(e.ename), ' '),
+	er.level + 1 as level,
+	concat(er.sort_key, '-', cast(e.ename as char(200))) as sort_key
+from
+	emp e
+join emp_recu er on
+	e.mgr = er.empno
+)
+select
+	*
+from
+	emp_recu
+order by
+	sort_key;
+/*
+문제 1
+1981년에 입사한 사원 중에서
+급여가 가장 낮은 사원을 조회하시오
+*/
+
+select ename 사원명, sal 최저급여 from emp
+where sal =(
+select min(sal)
+from emp
+where hiredate between '1981-01-01' and '1981-12-31'
+);
+
+
+/*
+문제 2
+각 부서 별
+급여가 가장 높은 사원 가장 낮은 사원의 차이를 조회하시오
+출력 : 부서명, 차이 금액
+*/
+select d.dname, (max(sal) - min(sal)) as '차이 금액'
+from dept d join emp e using(deptno)
+group by deptno;
+
+/*
+문제 3
+BLAKE보다 높은 연봉을 받는 사람들 출력
+*/
+-- select sal
+-- from emp
+-- where ename = 'BLAKE';
+
+select ename, sal
+from emp
+where sal > (
+select sal
+from emp
+where ename = 'BLAKE'
+);
+
+/*
+문제 4
+JONES랑 같은 job을 가진 사람들
+*/
+-- select job
+-- from emp
+-- where ename = 'JONES';
+select ename, job
+from emp
+where job = (
+select job
+from emp
+where ename = 'JONES'
+);
+
+
+/*
+문제 5
+급여 등급 별 사원 수를 등급 오름차순으로 정렬
+단, 모든 등급을 표시한다
+*/
+-- select * from salgrade;
+
+select e.ename, s.grade
+from emp e join salgrade s
+where e.sal between losal and hisal
+order by s.grade;
+
+select count(grade)
+from (
+select s.grade
+from emp e join salgrade s
+where e.sal between losal and hisal
+) as grade
+group by grade
+order by grade;
+
+
+/*
+문제 6
+이름, 급여, 급여 등급, 부서 이름 조회
+단, 급여 등급 3 이상만 조회.
+급여 등급 내림차순, 등급이 같은 경우 급여 내림차순, 급여가 같은 경우 이름 내림차순
+*/
+select e.ename, e.sal, s.grade, d.dname
+from emp e join dept d using(deptno)
+join salgrade s
+where e.sal between losal and hisal and s.grade > 3
+order by s.grade desc, e.sal desc, ename desc;
+
+/*
+문제 7
+부서명이 SALES인 사원 중
+급여 등급이 2 또는 3인 사원을 급여 내림차순으로 정렬
+*/
+
+select d.dname, e.ename, s.grade
+from emp e join dept d using(deptno)
+join salgrade s
+where e.sal between losal and hisal and s.grade in (2, 3) and d.dname = 'SALES'
+order by sal desc;
