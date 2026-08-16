@@ -1446,11 +1446,11 @@ from emp e join salgrade s
 where e.sal between losal and hisal
 order by s.grade;
 
-select count(grade)
+select grade.grade, count(grade)
 from (
 select s.grade
 from emp e join salgrade s
-where e.sal between losal and hisal
+where e.sal between s.losal and s.hisal
 ) as grade
 group by grade
 order by grade;
@@ -1465,8 +1465,8 @@ order by grade;
 select e.ename, e.sal, s.grade, d.dname
 from emp e join dept d using(deptno)
 join salgrade s
-where e.sal between losal and hisal and s.grade > 3
-order by s.grade desc, e.sal desc, ename desc;
+where e.sal between s.losal and s.hisal and s.grade >= 3
+order by s.grade desc, e.sal desc, e.ename desc;
 
 /*
 문제 7
@@ -1474,8 +1474,128 @@ order by s.grade desc, e.sal desc, ename desc;
 급여 등급이 2 또는 3인 사원을 급여 내림차순으로 정렬
 */
 
-select d.dname, e.ename, s.grade
+select d.dname, e.ename, e.sal, s.grade
 from emp e join dept d using(deptno)
 join salgrade s
-where e.sal between losal and hisal and s.grade in (2, 3) and d.dname = 'SALES'
+where e.sal between s.losal and s.hisal and s.grade in (2, 3) and d.dname = 'SALES'
 order by sal desc;
+
+
+-- ---------------------------------------------------------------------------
+/* 시험 */
+-- ---------------------------------------------------------------------------
+/*
+ * 문제1
+ */
+
+select e.ename, e.sal, d.dname
+from emp e join dept d using(deptno)
+where e.sal > 2000;
+
+/*
+* 문제2
+*/
+
+select e.ename, e.sal, s.grade
+from emp e join salgrade s on e.sal between s.losal and s.hisal
+where e.sal between 1000 and 3000;
+
+/*
+* 문제3
+*/
+
+select e.ename, e.hiredate, d.dname
+from emp e join dept d using(deptno)
+order by e.hiredate asc;
+
+/*
+* 문제4
+*/
+
+select e.ename, d.dname, e.sal, s.grade
+from emp e join dept d using(deptno)
+join salgrade s on e.sal between s.losal and s.hisal
+where s.grade >= 3
+order by e.sal desc;
+
+/*
+* 문제5
+*/
+
+-- 평균 구하기
+select deptno, avg(sal)
+from emp
+group by deptno;
+
+-- 부서번호 10에 해당하는 사원
+select e.ename, d.dname, e.sal
+from emp e join dept d using(deptno)
+where deptno = 10 and sal >
+(
+select avg(sal)
+from emp
+where deptno = 10
+);
+
+-- 부서번호 20에 해당하는 사원
+select e.ename, d.dname, e.sal
+from emp e join dept d using(deptno)
+where deptno = 20 and sal >
+(
+select avg(sal)
+from emp
+where deptno = 20
+);
+
+-- 부서번호 30에 해당하는 사원
+select e.ename, d.dname, e.sal
+from emp e join dept d using(deptno)
+where deptno = 30 and sal >
+(
+select avg(sal)
+from emp
+where deptno = 30
+);
+
+
+-- 합치면
+select e.ename, d.dname, e.sal
+from emp e join dept d using(deptno)
+where deptno = 10 and e.sal >
+(
+select avg(sal)
+from emp
+where deptno = 10
+) or deptno = 20 and e.sal >
+(
+select avg(sal)
+from emp
+where deptno = 20
+) or deptno = 30 and e.sal >
+(
+select avg(sal)
+from emp
+where deptno = 30
+);
+
+
+-- 값 나오는지 테스트
+select * from emp e join (select deptno, avg(sal) as avsal
+from emp
+group by deptno ) as avsalT using(deptno)
+where sal > avsalT.avsal;
+
+-- 최종 코드
+select e.ename, d.dname, e.sal, avsalT.avsal as '평균 급여'
+from emp e join (select deptno, avg(sal) as avsal
+from emp
+group by deptno ) avsalT using(deptno)
+join dept d using(deptno)
+where e.sal > avsalT.avsal
+order by d.dname asc, e.sal desc;
+
+
+-- select e.ename, d.dname, e.sal, avg(e.sal)
+-- from emp e join dept d using(deptno)
+-- group by deptno
+-- order by d.dname asc, e.sal desc;
