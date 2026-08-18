@@ -1,0 +1,34 @@
+from fastapi import APIRouter, Request
+from todo import todo_list
+from model import Todo
+
+crud_router = APIRouter()
+
+@crud_router.get('/crud/r')
+async def read_todo(id : int) -> dict:
+    for item in todo_list:
+        if item.get('id') == id:
+            print(item)
+            return(todo_list)
+
+@crud_router.post('/crud/c')
+async def create_todo(todo : Todo) -> dict:
+    todo_list.append(todo)
+    print(todo_list)
+    return {
+        'message': '정상적으로 추가되었습니다.'
+    }
+    
+@crud_router.put('/crud/u') # todo_list의 변경할 값을 추가로 전달 인자로 받아주기.
+async def update_todo(id : int, item : str) -> dict:
+    for todo in todo_list:
+        if todo.get('id') == id:
+            todo['item'] = item
+    print(todo_list)
+    return(todo_list)
+
+@crud_router.delete('/crud/d') # todo_list의 어떤 값을 삭제할지 전달 인자로 받아주기.
+async def delete_todo(id : int):
+   todo_list = [ todo for todo in todo_list if todo['id'] != id ]
+   print(todo_list)
+   return(todo_list)

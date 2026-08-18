@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = () => {
+            document.querySelector('#todo_c').addEventListener('click', function () {
+                id = document.querySelector('#id').value
+                item = document.querySelector('#item').value
+                param = {
+                    id: id,
+                    item
+                }
+
+                fetch('http://127.0.0.1:8000/crud/c', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(param)
+                })
+                    .then(function (response) {
+                        return response.json()
+                    }).then(function (data) {
+                        console.log(data)
+                    }).catch(function (err) {
+                        console.error(err)
+                    })
+            })
+            document.querySelector('#todo_r').addEventListener('click', function () {
+                id = document.querySelector('#id').value
+                item = document.querySelector('#item').value
+                param = {
+                    id: id,
+                    item
+                }
+
+                fetch('http://127.0.0.1:8000/crud/r', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': "application/json"
+                    }
+                })
+                    .then(function (response) {
+                        return response.json()
+                    }).then(function (data) {
+                        console.log(data)
+                    }).catch(function (err) {
+                        console.error(err)
+                    })
+            })
+            document.querySelector('#todo_u').addEventListener('click', function () {
+                id = document.querySelector('#id').value
+                item = document.querySelector('#item').value
+                param = {
+                    id: id,
+                    item
+                }
+
+                fetch('http://127.0.0.1:8000/crud/u', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(param)
+                })
+                    .then(function (response) {
+                        return response.json()
+                    }).then(function (data) {
+                        console.log(data)
+                    }).catch(function (err) {
+                        console.error(err)
+                    })
+            })
+            document.querySelector('#todo_d').addEventListener('click', function () {
+                id = document.querySelector('#id').value
+                item = document.querySelector('#item').value
+                param = {
+                    id: id,
+                    item
+                }
+
+                fetch('http://127.0.0.1:8000/crud/d', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(param)
+                })
+                    .then(function (response) {
+                        return response.json()
+                    }).then(function (data) {
+                        console.log(data)
+                    }).catch(function (err) {
+                        console.error(err)
+                    })
+            })
+        }
+    </script>
+</head>
+<body>
+    <div>
+        id: <input type="text" name="id" id="id"><br>
+        item: <input type="text" name="item" id="item"><br>
+        <button id="todo_c">todo 추가</button><br>
+        <button id="todo_r">todo 조회</button><br>
+        <button id="todo_u">todo 수정</button><br>
+        <button id="todo_d">todo 삭제</button><br>
+    </div>
+</body>
+</html>

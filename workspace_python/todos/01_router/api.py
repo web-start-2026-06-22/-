@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 from todo import todo_router
+from crud import crud_router
 
 # 크로스 도메인 CORS 해결 코드
 app = FastAPI()
@@ -19,6 +20,15 @@ async def welcome() -> dict :
     }
     
 app.include_router(todo_router)
+app.include_router(crud_router)
+
+@app.get('/ip')
+def test(req : Request):
+    ip = req.client.host
+    print(ip)
+    
+    return ip
+    
 
 print(1, __name__)
 
