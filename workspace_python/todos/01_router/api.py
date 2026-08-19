@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, APIRouter
+from fastapi import FastAPI, Request, APIRouter, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from todo import todo_router
@@ -20,7 +20,7 @@ async def welcome() -> dict :
     }
     
 app.include_router(todo_router)
-app.include_router(crud_router)
+app.include_router(crud_router, prefix='/crud')
 
 @app.get('/ip')
 def test(req : Request):
@@ -29,6 +29,19 @@ def test(req : Request):
     
     return ip
     
+
+@app.get('/err')
+def err():
+    print('/err 실행')
+    
+    raise HTTPException(
+        status_code = 400,
+        detail = "글씨 아무거나 asdofihweo"
+    )
+    
+@app.get('/html')
+def html():
+    return "<h1>hello World</h1>"
 
 print(1, __name__)
 
