@@ -1594,6 +1594,17 @@ join dept d using(deptno)
 where e.sal > avsalT.avsal
 order by d.dname asc, e.sal desc;
 
+-- python으로 만든 테이블
+select * from emp3;
+
+insert into emp3
+select * from emp;
+
+drop table emp3;
+
+-- update emp3
+-- set sal = sal * 1.1
+-- where deptno = 30;
 
 -- select e.ename, d.dname, e.sal, avg(e.sal)
 -- from emp e join dept d using(deptno)
