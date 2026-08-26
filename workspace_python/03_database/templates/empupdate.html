@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>수정 페이지</h1>
+    <form method="post" action="/api/update">
+        {#<!-- 사번: <input type="text" name="empno" value="{{emp.empno}}" disabled><br> -->#}
+        사번: {{emp.empno}}
+        <input type="text" hidden name="empno" value="{{emp.empno}}"><br>
+        사원명: <input type="text" value="{{emp.ename}}" name="ename"><br>
+        직책: <input type="text" value="{{emp.job}}" name="job"><br>
+        상급자 사번: <input type="text" value="{{emp.mgr}}" name="mgr"><br>
+        입사 일자: <input type="text" value="{{emp.hierdate}} " name="hierdate"><br>
+        급여: <input type="text" value="{{emp.sal}}" name="sal"><br>
+        보너스: <input type="text" value="{{emp.comm}}" name="comm"><br>
+        부서 번호:
+        <select name="deptno">
+            {% for d in dept %}
+                {% if d.deptno == emp.deptno %}
+                    <option selected value="{{d.deptno}}">{{ d.deptno }} : {{ d.dname }}</option>
+                {% else %}
+                    <option value="{{d.deptno}}">{{ d.deptno }} : {{ d.dname }}</option>
+                {% endif %}
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="수정완료">
+        <a href="/detail/{{ emp.empno }}"><input type="button" value="취소"></a>
+    </form>
+</body>
+
+</html>

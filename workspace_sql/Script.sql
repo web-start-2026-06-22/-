@@ -1597,6 +1597,13 @@ order by d.dname asc, e.sal desc;
 -- python으로 만든 테이블
 select * from emp3;
 
+select * from dept3;
+
+commit;
+
+insert into dept3
+select * from dept;
+
 insert into emp3
 select * from emp;
 

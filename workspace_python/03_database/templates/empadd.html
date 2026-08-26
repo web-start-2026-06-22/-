@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사원 생성 페이지</h1>
+    <form method="post" action="/api/add">
+        사번:<input type="text" name="empno"><br>
+        사원명:<input type="text" name="ename"><br>
+        직책:<input type="text" name="job"><br>
+        상급자 사번:<input type="text" name="mgr"><br>
+        입사 일자:<input type="text" name="hierdate"><br>
+        급여:<input type="text" name="sal"><br>
+        보너스:<input type="text" name="comm"><br>
+        부서 번호:
+        <select name="deptno">
+            {% for dept in dept_list %}
+                <option value="{{dept.deptno}}">{{ dept.deptno }} : {{ dept.dname }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="생성">
+        <a href="/emplist"><input type="button" value="목록으로"></a><br>
+    </form>
+</body>
+</html>
