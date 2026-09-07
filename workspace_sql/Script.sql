@@ -1604,6 +1604,9 @@ commit;
 insert into dept3
 select * from dept;
 
+delete from emp3
+where empno = 123;
+
 insert into emp3
 select * from emp;
 
