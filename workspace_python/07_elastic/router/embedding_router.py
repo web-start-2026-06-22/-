@@ -4,6 +4,7 @@ from fastapi import APIRouter
 import re
 from util import es, load_documents, formatter, gemini
 from elasticsearch import helpers
+import time
 
 router = APIRouter(tags=["임베딩 관련 라우터"])
 
@@ -165,6 +166,8 @@ def ingest_embed_documents():
                 "_id": f'{doc2["id"]}-{index}',
                 '_source': doc2
             })
+            print('.', end='')
+            time.sleep(0.7) # 0.7초 멈춤. 그러면 1분에 85회만 동작한다.
     
     success, errors = helpers.bulk(
         es,
@@ -310,7 +313,95 @@ def search_vector(keyword):
     return formatter(response)
 
 @router.get('/embed/search/hybrid')
-def hybrid(keyword):
+def hybrid(keyword) :
+    # 라이센스가 없어서(trial에 있는데 클라우드 14일 도커 30일 제한)
+    # rrf 직접 구현
+    vector_keyword = get_keyword_embedding_with_llm(keyword)
+
+    # BM25 검색
+    text_response = es.search(
+        index="computer_chunks",
+        query={
+            "multi_match": {
+                "query": keyword,
+                "fields": ["title", "content"]
+            }
+        },
+        size=50
+    )
+
+    # 벡터 검색
+    vector_response = es.search(
+        index="computer_chunks",
+        knn={
+            "field": "embedding",
+            "query_vector": vector_keyword,
+            "k": 50,
+            "num_candidates": 100
+        },
+        size=50
+    )
+
+
+
+    rrf_score = {}
+    rank_constant = 60
+    
+    # match 검색 결과 하나마다
+    for rank, hit in enumerate(text_response["hits"]["hits"], start=1):
+        # id를 추출하고
+        doc_id = hit['_id']
+        
+        # rrf_score에서 key로 방금의 id가 없으면
+        if doc_id not in rrf_score:
+            # key를 만들고 기본값 넣어주기
+            rrf_score[doc_id] = {
+                "score": 0,
+                "source": hit["_source"]
+            }
+        # 같은 문서 끼리 점수를 누적해서 올린다.
+        rrf_score[doc_id]['score'] += (1 / (rank_constant + rank))
+
+    # vector 검색 결과 하나마다
+    for rank, hit in enumerate(vector_response["hits"]["hits"], start=1):
+        doc_id = hit['_id']
+        if doc_id not in rrf_score:
+            rrf_score[doc_id] = {
+                "score": 0,
+                "source": hit["_source"]
+            }
+        rrf_score[doc_id]['score'] += (1 / (rank_constant + rank))
+
+    print('rrf_score:', rrf_score)
+    results = sorted(
+        rrf_score.items(), # (key, value) 튜플로
+        key=lambda x: x[1]['score'], # items의 두번째 값 즉 value
+        reverse=True # 내림차순으로 정렬
+    )
+
+    # 돌려주고 싶은 개수(즉 조회 결과 수)
+    size = 10
+    # 기존 formatter가 사용할 수 있도록 Elasticsearch 응답 형태로 변환
+    hits = []
+    for doc_id, data in results[:size]:
+        hits.append({
+            "_id": doc_id,
+            "_score": data["score"],
+            "_source": data["source"]
+        })
+
+    resp = {
+        "hits": {
+            "hits": hits,
+            "total": {
+                "value": len(rrf_score)
+            }
+        }
+    }
+    return formatter(resp)
+
+@router.get('/embed/search/hybrid/rrf')
+def hybrid_rrf(keyword):
     # match 검색이랑 유사도(벡터) 검색을 함께 하는 하이브리드 검색
     
     # match 검색(BM25) : 검색어의 형태소가 포함된 단어 검색
@@ -386,3 +477,54 @@ def hybrid(keyword):
     )
     
     return formatter(response)
+
+@router.get('/embed/ask')
+def ask_rag(question):
+    results = hybrid(question)['results']
+    
+    contexts = []
+    for idx, result in enumerate(results) :
+        contexts.append(f'''
+           [검색 결과 : {idx}]
+           문서ID : {result['document']['id']}
+           청크번호 : {result['document']['chunk_index']} 
+           제목 : {result['document']['title']}
+           카테고리 : {result['document']['category']}
+           내용 : {result['document']['content']}
+        ''')
+    
+    # 리스트를 string으로 변환
+    context = "\n-------\n".join(contexts)
+    
+    prompt = f'''
+        너는 문서 기반 지식 검색 도우미야.
+        
+        아래의 context에 포함된 내용만으로 질문에 답변해야만 해.
+        
+        ** 규칙 :
+        1. 절대 추론이나 다른 내용을 담으면 안 돼.
+        2. 내용에 없는 질문이라면 "문서에서 확인할 수 없는 질문입니다."라고 답변해줘.
+        3. 한국어로 답변해줘.
+        4. 불필요하게 긴 설명을 하지 말아줘.
+        5. 답변에 대한 근거를 자연스럽게 설명해줘.
+        
+        ** 질문 : {question}
+        
+        ** context : {context}    
+    '''.strip()
+    print('prompt : ', prompt)
+    
+    answer = ask_gemini(prompt)
+    print('answer : ', answer)
+    
+    return answer
+
+
+def ask_gemini(prompt):
+    
+    response = gemini.models.generate_content(
+        model='gemini-3.8-flash',
+        contents=prompt
+    )
+    print('ask_gemini : ', response)
+    return response.text

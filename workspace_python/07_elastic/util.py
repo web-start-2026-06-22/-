@@ -4,11 +4,17 @@ from pathlib import Path # 경로 관련 라이브러리
 import json
 from google import genai
 
+# es = Elasticsearch(
+#     ELASTIC_ENDPOINT, # 쉽게 말해 DB 연결 주소
+#     api_key = ELASTIC_API_KEY # 쉽게 말해 DB 계정
+# )
 # 엘라스틱서치를 클라우드에서 연결
+
 es = Elasticsearch(
-    ELASTIC_ENDPOINT, # 쉽게 말해 DB 연결 주소
-    api_key = ELASTIC_API_KEY # 쉽게 말해 DB 계정
+    ELASTIC_ENDPOINT
 )
+
+
 
 # gemini 연결
 gemini = genai.Client(api_key=GEMINI_API_KEY)
